@@ -33,12 +33,17 @@ export default function Login() {
         toast.success(data.message || "Login successful!");
         localStorage.setItem("token", data.token);
         localStorage.setItem("role", data.role);
+// ✅ New redirect logic
+const redirectPath = data.redirect || "/home";
 
-        // ✅ Redirect using backend response
-        const redirectPath = data.redirect || "/home";
-        setTimeout(() => {
-          window.location.href = `https://viadocs.in${redirectPath}`;
-        }, 800);
+setTimeout(() => {
+  if (data.role === "admin") {
+    navigate("/admin/home"); // Redirect admin users
+  } else {
+    navigate(redirectPath); // Redirect normal users
+  }
+}, 800);
+
       } else {
         toast.error(data.message || "Invalid email or password");
       }

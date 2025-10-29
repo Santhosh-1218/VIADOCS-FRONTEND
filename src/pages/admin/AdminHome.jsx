@@ -16,7 +16,7 @@ import {
 export default function AdminHome() {
   const [referral, setReferral] = useState("overall");
   const [graphType, setGraphType] = useState("referral");
-  const [userType, setUserType] = useState("student"); // ✅ new filter
+  const [userType, setUserType] = useState("overview"); // ✅ Default to overview
   const [userCount, setUserCount] = useState(0);
   const [users, setUsers] = useState([]);
   const [graphData, setGraphData] = useState([]);
@@ -40,25 +40,36 @@ export default function AdminHome() {
   ];
 
   const colors = [
-    "#1E88E5", "#43A047", "#FB8C00", "#8E24AA", "#E53935",
-    "#00ACC1", "#FDD835", "#6D4C41", "#3949AB", "#00897B",
+    "#1E88E5",
+    "#43A047",
+    "#FB8C00",
+    "#FFD600", // ✅ DOC4 Yellow
+    "#E53935",
+    "#00ACC1",
+    "#FDD835",
+    "#6D4C41",
+    "#3949AB",
+    "#00897B",
   ];
-  
-  
-useEffect(() => {
-  const token = localStorage.getItem("token");
-  const role = localStorage.getItem("role");
-  if (!token || role !== "admin") {
-    window.location.href = "/login";
-  }
-}, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    if (!token || role !== "admin") {
+      window.location.href = "/login";
+    }
+  }, []);
 
   // ===== Fetch data from backend =====
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`https://viadocs-backend-production.up.railway.app/api/admin/dashboard?referral=${encodeURIComponent(referral)}&user_type=${encodeURIComponent(userType)}`);
+        const res = await fetch(
+          `https://viadocs-backend-production.up.railway.app/api/admin/dashboard?referral=${encodeURIComponent(
+            referral
+          )}&user_type=${encodeURIComponent(userType)}`
+        );
         const data = await res.json();
 
         if (res.ok) {
@@ -74,7 +85,6 @@ useEffect(() => {
       } catch (error) {
         console.error("Error fetching admin data:", error);
       } finally {
-        // ⏳ Small delay for smoother UI
         setTimeout(() => setLoading(false), 500);
       }
     };
@@ -82,18 +92,21 @@ useEffect(() => {
     fetchAdminData();
   }, [referral, userType]);
 
-  // ===== Fetch Trend Data (with smooth animation) =====
+  // ===== Fetch Trend Data =====
   useEffect(() => {
     const fetchTrendData = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`https://viadocs-backend-production.up.railway.app/api/admin/dashboard?period=${encodeURIComponent(filterType)}&user_type=${encodeURIComponent(userType)}`);
+        const res = await fetch(
+          `https://viadocs-backend-production.up.railway.app/api/admin/dashboard?period=${encodeURIComponent(
+            filterType
+          )}&user_type=${encodeURIComponent(userType)}`
+        );
         const data = await res.json();
 
         if (res.ok) {
           setTrendData(data.trend_data || []);
         } else {
-          console.error("Error:", data.error || "Failed to fetch trend data");
           setTrendData([]);
         }
       } catch (error) {
@@ -124,12 +137,14 @@ useEffect(() => {
                 className="border border-[#90CAF9] px-2 py-[2px] rounded bg-white text-sm"
               >
                 {referrals.map((r) => (
-                  <option key={r} value={r}>{r}</option>
+                  <option key={r} value={r}>
+                    {r}
+                  </option>
                 ))}
               </select>
             </div>
 
-            {/* ✅ New User Type Filter */}
+            {/* ✅ Updated User Type Filter */}
             <div className="flex items-center gap-2">
               <label className="font-semibold text-[#0D47A1] text-sm sm:text-base">
                 User Type:
@@ -137,8 +152,9 @@ useEffect(() => {
               <select
                 value={userType}
                 onChange={(e) => setUserType(e.target.value)}
-                className="border border-[#90CAF9] px-2 py-[2px] rounded bg-white text-sm"
+                className="border border-[#90CAF9] px-2 py-[2px] rounded bg-white text-sm font-medium text-[#0D47A1]"
               >
+                <option value="overview">Overview</option>
                 <option value="student">Student</option>
                 <option value="employee">Employee</option>
               </select>
@@ -197,7 +213,10 @@ useEffect(() => {
             </div>
           ) : graphType === "referral" ? (
             <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={graphData} margin={{ top: 10, right: 20, left: 0, bottom: 5 }}>
+              <BarChart
+                data={graphData}
+                margin={{ top: 10, right: 20, left: 0, bottom: 5 }}
+              >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="referral" tick={{ fill: "#0D47A1" }} />
                 <YAxis tick={{ fill: "#0D47A1" }} />
@@ -205,7 +224,14 @@ useEffect(() => {
                 <Legend />
                 <Bar dataKey="users" barSize={35} radius={[6, 6, 0, 0]}>
                   {graphData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={
+                        entry.referral === "DOC4"
+                          ? "#FFD600"
+                          : colors[index % colors.length]
+                      }
+                    />
                   ))}
                 </Bar>
               </BarChart>
@@ -226,7 +252,10 @@ useEffect(() => {
               </div>
 
               <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={trendData} margin={{ top: 10, right: 20, left: 0, bottom: 5 }}>
+                <LineChart
+                  data={trendData}
+                  margin={{ top: 10, right: 20, left: 0, bottom: 5 }}
+                >
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="label" tick={{ fill: "#0D47A1" }} />
                   <YAxis tick={{ fill: "#0D47A1" }} />
@@ -254,7 +283,7 @@ useEffect(() => {
             <h3 className="font-bold text-[#0D47A1] text-lg">
               User's Information :
             </h3>
-            
+
             {/* Search Bar */}
             <div className="relative">
               <svg
@@ -290,25 +319,41 @@ useEffect(() => {
           ) : (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {users
-                .filter(user => 
-                  searchQuery === "" ||
-                  user.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                  user.mail?.toLowerCase().includes(searchQuery.toLowerCase())
+                .filter(
+                  (user) =>
+                    searchQuery === "" ||
+                    user.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    user.mail?.toLowerCase().includes(searchQuery.toLowerCase())
                 )
                 .map((user, index) => (
-                <div
-                  key={index}
-                  className="bg-[#A9D2F6] rounded-md p-4 text-sm text-gray-900 shadow-sm hover:shadow-lg transition"
-                >
-                  <p><strong>Name:</strong> {user.name || "N/A"}</p>
-                  <p><strong>Username:</strong> {user.username || "N/A"}</p>
-                  <p><strong>Mail:</strong> {user.mail || "N/A"}</p>
-                  <p><strong>User Type:</strong> {user.role || "N/A"}</p>
-                  <p><strong>Referral:</strong> {user.referral || "N/A"}</p>
-                  <p><strong>No. DOC:</strong> {user.docs ?? "0"}</p>
-                  <p><strong>Date of Register:</strong> {user.register_date || "N/A"}</p>
-                </div>
-              ))}
+                  <div
+                    key={index}
+                    className="bg-[#A9D2F6] rounded-md p-4 text-sm text-gray-900 shadow-sm hover:shadow-lg transition"
+                  >
+                    <p>
+                      <strong>Name:</strong> {user.name || "N/A"}
+                    </p>
+                    <p>
+                      <strong>Username:</strong> {user.username || "N/A"}
+                    </p>
+                    <p>
+                      <strong>Mail:</strong> {user.mail || "N/A"}
+                    </p>
+                    <p>
+                      <strong>User Type:</strong> {user.role || "N/A"}
+                    </p>
+                    <p>
+                      <strong>Referral:</strong> {user.referral || "N/A"}
+                    </p>
+                    <p>
+                      <strong>No. DOC:</strong> {user.docs ?? "0"}
+                    </p>
+                    <p>
+                      <strong>Date of Register:</strong>{" "}
+                      {user.register_date || "N/A"}
+                    </p>
+                  </div>
+                ))}
             </div>
           )}
         </div>

@@ -30,15 +30,13 @@ import WordToPdf from "./pages/tools/word-to-pdf";
 import PdfMerge from "./pages/tools/pdf-merge";
 import PdfSplit from "./pages/tools/pdf-split";
 import PdfCompress from "./pages/tools/pdf-compress";
-import PdfEditor from "./pages/tools/pdf-editor";
 import ImageToPdf from "./pages/tools/image-to-pdf";
 import PdfToImage from "./pages/tools/pdf-to-image";
 import PasswordProtect from "./pages/tools/password-protect";
 import UnlockPdf from "./pages/tools/unlock-pdf";
 import ExcelToPdf from "./pages/tools/excel-to-pdf";
 import PowerpointToPdf from "./pages/tools/powerpoint-to-pdf";
-import EsignPdf from "./pages/tools/esign-pdf";
-import DocTranslator from "./pages/tools/doc-translator";
+
 
 // 🧠 Lazy import for global loader
 const PageLoader = React.lazy(() => import("./components/PageLoader/PageLoader"));
@@ -133,15 +131,12 @@ function App() {
             <Route path="/tools/pdf-merge" element={<PdfMerge />} />
             <Route path="/tools/pdf-split" element={<PdfSplit />} />
             <Route path="/tools/pdf-compress" element={<PdfCompress />} />
-            <Route path="/tools/pdf-editor" element={<PdfEditor />} />
             <Route path="/tools/image-to-pdf" element={<ImageToPdf />} />
             <Route path="/tools/pdf-to-image" element={<PdfToImage />} />
             <Route path="/tools/password-protect" element={<PasswordProtect />} />
             <Route path="/tools/unlock-pdf" element={<UnlockPdf />} />
             <Route path="/tools/excel-to-pdf" element={<ExcelToPdf />} />
             <Route path="/tools/powerpoint-to-pdf" element={<PowerpointToPdf />} />
-            <Route path="/tools/esign-pdf" element={<EsignPdf />} />
-            <Route path="/tools/doc-translator" element={<DocTranslator />} />
           </Routes>
         </div>
       </>

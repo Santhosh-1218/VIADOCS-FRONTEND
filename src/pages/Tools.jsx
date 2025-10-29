@@ -32,15 +32,13 @@ export default function Tools() {
     { slug: "pdf-merge", name: "PDF Merge", desc: "Combine multiple PDFs into one", icon: Merge },
     { slug: "pdf-split", name: "PDF Split", desc: "Extract specific pages from PDF", icon: Scissors },
     { slug: "pdf-compress", name: "PDF Compress", desc: "Reduce file size of PDFs", icon: Shrink },
-    { slug: "pdf-editor", name: "PDF Editor", desc: "Edit and modify your PDF files", icon: Edit3 },
     { slug: "image-to-pdf", name: "Image to PDF", desc: "Convert images into a PDF file", icon: Image },
     { slug: "pdf-to-image", name: "PDF to Image", desc: "Save PDF pages as images", icon: Download },
     { slug: "password-protect", name: "Password Protect", desc: "Add password to a PDF", icon: Lock },
     { slug: "unlock-pdf", name: "Unlock PDF", desc: "Remove PDF restrictions", icon: Unlock },
     { slug: "excel-to-pdf", name: "Excel to PDF", desc: "Convert spreadsheets into PDF", icon: FileSpreadsheet },
     { slug: "powerpoint-to-pdf", name: "PowerPoint to PDF", desc: "Save slides into PDF format", icon: Presentation },
-    { slug: "esign-pdf", name: "eSign PDF", desc: "Add digital signatures", icon: Signature },
-    { slug: "doc-translator", name: "Doc Translator", desc: "Translate documents easily", icon: Languages },
+    
   ];
 
   return (

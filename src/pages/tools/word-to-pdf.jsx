@@ -61,7 +61,7 @@ export default function WordToPDF() {
       formData.append("file", file);
 
       const response = await axios.post(
-        "https://viadocs-backend.up.railway.app/api/tools/word-to-pdf",
+        "https://viadocs-backend-production.up.railway.app/api/tools/word-to-pdf",
         formData,
         { responseType: "blob" }
       );

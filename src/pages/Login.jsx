@@ -21,7 +21,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://viadocs-backend.up.railway.app/api/auth/login", {
+      const res = await fetch("https://viadocs-backend-production.up.railway.app/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

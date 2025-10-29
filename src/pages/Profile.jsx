@@ -88,7 +88,7 @@ export default function Profile() {
 
   const fetchProfile = async () => {
     try {
-      const response = await axios.get("https://viadocs-backend.up.railway.app/api/profile", {
+      const response = await axios.get("https://viadocs-backend-production.up.railway.app/api/profile", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = response.data;
@@ -96,7 +96,7 @@ export default function Profile() {
 
       // prefix local static path with backend origin if needed
       if (data.profileImage && data.profileImage.startsWith('/')) {
-        data.profileImage = (window.location.origin.includes('localhost') ? 'https://viadocs-backend.up.railway.app' : window.location.origin) + data.profileImage;
+        data.profileImage = (window.location.origin.includes('localhost') ? 'https://viadocs-backend-production.up.railway.app' : window.location.origin) + data.profileImage;
       }
 
       setProfile({
@@ -140,7 +140,7 @@ export default function Profile() {
       }
 
       const response = await axios.put(
-        "https://viadocs-backend.up.railway.app/api/profile",
+        "https://viadocs-backend-production.up.railway.app/api/profile",
         updateData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -242,7 +242,7 @@ export default function Profile() {
       const formData = new FormData();
       formData.append("profileImage", croppedFile);
 
-      const res = await fetch("https://viadocs-backend.up.railway.app/api/profile/upload", {
+      const res = await fetch("https://viadocs-backend-production.up.railway.app/api/profile/upload", {
         method: "PUT",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
@@ -279,7 +279,7 @@ export default function Profile() {
     try {
       const formData = new FormData();
       formData.append("profileImage", fileForUpload);
-      const res = await fetch("https://viadocs-backend.up.railway.app/api/profile/upload", {
+      const res = await fetch("https://viadocs-backend-production.up.railway.app/api/profile/upload", {
         method: "PUT",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,

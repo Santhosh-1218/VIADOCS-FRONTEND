@@ -25,7 +25,7 @@ export default function Contact() {
     setSuccess(false);
 
     try {
-      const res = await axios.post("https://viadocs-backend.up.railway.app/api/contact", formData);
+      const res = await axios.post("https://viadocs-backend-production.up.railway.app/api/contact", formData);
       if (res.status === 200) {
         setSuccess(true);
         setFormData({ name: "", email: "", message: "" });

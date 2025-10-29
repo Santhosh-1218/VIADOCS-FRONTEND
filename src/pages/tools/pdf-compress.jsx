@@ -73,7 +73,7 @@ export default function PdfCompress() {
       formData.append("mode", mode);
 
       const response = await axios.post(
-        "https://viadocs-backend.up.railway.app/api/tools/pdf-compress",
+        "https://viadocs-backend-production.up.railway.app/api/tools/pdf-compress",
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },

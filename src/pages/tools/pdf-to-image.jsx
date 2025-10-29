@@ -23,7 +23,7 @@ export default function PdfToImage() {
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
 
-  const API_BASE_URL = "https://viadocs-backend.up.railway.app/api/tools/pdf-to-image";
+  const API_BASE_URL = "https://viadocs-backend-production.up.railway.app/api/tools/pdf-to-image";
 
   const handleFileSelect = (selectedFile) => {
     if (selectedFile.type !== "application/pdf") {

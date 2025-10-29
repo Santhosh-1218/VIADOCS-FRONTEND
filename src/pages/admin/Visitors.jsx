@@ -35,7 +35,7 @@ export default function Visitors() {
   const fetchVisitors = async () => {
     try {
       setError("");
-      const res = await axios.get("https://viadocs-backend.up.railway.app/api/admin/visitors", {
+      const res = await axios.get("https://viadocs-backend-production.up.railway.app/api/admin/visitors", {
         headers: { "Cache-Control": "no-cache" },
       });
       if (res.status === 200) {

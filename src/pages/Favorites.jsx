@@ -29,7 +29,7 @@ export default function Favorites() {
   const fetchDocs = useCallback(async () => {
     if (!isLoggedIn) return;
     try {
-      const res = await axios.get("https://viadocs-backend.onrender.com/api/docs/my-docs", {
+      const res = await axios.get("https://viadocs-backend.up.railway.app/api/docs/my-docs", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setDocs(res.data.filter((doc) => doc.favorite));
@@ -45,7 +45,7 @@ export default function Favorites() {
   // Delete doc
   const deleteDoc = async (id) => {
     try {
-      await axios.delete(`https://viadocs-backend.onrender.com/api/docs/my-docs/${id}`, {
+      await axios.delete(`https://viadocs-backend.up.railway.app/api/docs/my-docs/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchDocs();
@@ -57,7 +57,7 @@ export default function Favorites() {
   // Share doc as PDF
   const shareDocAsPDF = async (doc) => {
     try {
-      const res = await axios.get(`https://viadocs-backend.onrender.com/api/docs/my-docs/${doc._id}`, {
+      const res = await axios.get(`https://viadocs-backend.up.railway.app/api/docs/my-docs/${doc._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const fullDoc = res.data;

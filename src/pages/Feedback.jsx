@@ -24,7 +24,7 @@ export default function Feedback() {
     if (!token) return;
 
     axios
-      .get("https://viadocs-backend.onrender.com/api/profile", {
+      .get("https://viadocs-backend.up.railway.app/api/profile", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -54,7 +54,7 @@ export default function Feedback() {
       const token = localStorage.getItem("token");
 
       const res = await axios.post(
-        "https://viadocs-backend.onrender.com/api/feedback",
+        "https://viadocs-backend.up.railway.app/api/feedback",
         {
           message: feedback.message,
           rating: feedback.rating,

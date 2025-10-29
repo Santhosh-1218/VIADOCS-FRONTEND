@@ -58,7 +58,7 @@ useEffect(() => {
     const fetchAdminData = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`https://viadocs-backend.onrender.com/api/admin/dashboard?referral=${encodeURIComponent(referral)}&user_type=${encodeURIComponent(userType)}`);
+        const res = await fetch(`https://viadocs-backend.up.railway.app/api/admin/dashboard?referral=${encodeURIComponent(referral)}&user_type=${encodeURIComponent(userType)}`);
         const data = await res.json();
 
         if (res.ok) {
@@ -87,7 +87,7 @@ useEffect(() => {
     const fetchTrendData = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`https://viadocs-backend.onrender.com/api/admin/dashboard?period=${encodeURIComponent(filterType)}&user_type=${encodeURIComponent(userType)}`);
+        const res = await fetch(`https://viadocs-backend.up.railway.app/api/admin/dashboard?period=${encodeURIComponent(filterType)}&user_type=${encodeURIComponent(userType)}`);
         const data = await res.json();
 
         if (res.ok) {

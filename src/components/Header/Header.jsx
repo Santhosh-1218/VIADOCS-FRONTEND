@@ -15,7 +15,7 @@ export default function Header() {
     const token = localStorage.getItem("token");
     if (!token) return;
 
-    fetch("https://viadocs-backend.onrender.com/api/auth/verify", {
+    fetch("https://viadocs-backend.up.railway.app/api/auth/verify", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())

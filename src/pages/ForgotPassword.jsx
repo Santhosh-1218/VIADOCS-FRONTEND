@@ -25,7 +25,7 @@ export default function ForgotPassword() {
   const [timer, setTimer] = useState(0);
   const navigate = useNavigate();
 
-  const BASE_URL = "https://viadocs-backend.onrender.com/api/auth";
+  const BASE_URL = "https://viadocs-backend.up.railway.app/api/auth";
 
   // Timer for OTP resend
   useEffect(() => {

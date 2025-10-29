@@ -58,7 +58,7 @@ export default function PdfMerge() {
       files.forEach((f) => formData.append("files", f));
 
       const response = await axios.post(
-        "https://viadocs-backend.onrender.com/api/tools/pdf-merge",
+        "https://viadocs-backend.up.railway.app/api/tools/pdf-merge",
         formData,
         { responseType: "blob" }
       );

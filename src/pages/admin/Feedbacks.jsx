@@ -11,7 +11,7 @@ export default function Feedbacks() {
   const fetchFeedbacks = async () => {
     try {
       setLoading(true);
-      const res = await fetch("https://viadocs-backend.onrender.com/api/admin/feedbacks");
+      const res = await fetch("https://viadocs-backend.up.railway.app/api/admin/feedbacks");
       const data = await res.json();
 
       if (res.ok) {
@@ -41,7 +41,7 @@ export default function Feedbacks() {
 
     try {
       const res = await fetch(
-        `https://viadocs-backend.onrender.com/api/admin/feedbacks/${deleteTarget._id}`,
+        `https://viadocs-backend.up.railway.app/api/admin/feedbacks/${deleteTarget._id}`,
         {
           method: "DELETE",
         }

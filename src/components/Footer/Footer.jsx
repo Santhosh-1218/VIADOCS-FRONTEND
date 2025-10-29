@@ -19,7 +19,8 @@ export default function Footer({ sticky = false }) {
 
   return (
     <footer
-      className={`${stickyClasses} bg-gradient-to-br from-[#2E2E2E] via-[#1A1A1A] to-[#000000] text-gray-200`}
+     className={`${stickyClasses} bg-gradient-to-br from-[#2F3438] via-[#373C3F] to-[#3F4448] text-gray-200`}
+
     >
       <div className="max-w-7xl px-6 py-10 mx-auto">
         {/* ===== Top Section ===== */}
@@ -107,7 +108,7 @@ export default function Footer({ sticky = false }) {
         </div>
 
         {/* ===== Divider ===== */}
-        <div className="my-8 border-t border-gray-700"></div>
+        <div className="my-8 border-t border-gray-600/30"></div>
 
         {/* ===== Bottom Section ===== */}
         <div className="flex flex-col items-center justify-between gap-3 sm:flex-row text-center sm:text-left">

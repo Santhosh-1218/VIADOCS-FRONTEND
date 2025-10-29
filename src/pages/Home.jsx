@@ -5,6 +5,9 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+import image1 from "../assets/image1.jpg";
+import image2 from "../assets/images2.png";
+import image3 from "../assets/image3.jpg";
 import {
   MoreVertical,
   Star,
@@ -319,8 +322,8 @@ export default function Home() {
       {/* make this a flex column and allow it to grow so `main.flex-1` can push footer to bottom */}
       <div className="flex flex-col flex-1 w-full">
         <Header />
-  <main className="flex-1 px-6 py-10"> 
-          <div className="max-w-6xl mx-auto">
+      <main className="flex-1 px-6 pb-0"> {/* Changed py-10 to pb-0 */}
+        <div className="max-w-6xl mx-auto">
           {/* Welcome Section */}
           <div className="p-8 mb-10 text-center bg-white border border-[#1EC6D7]/30 shadow-lg rounded-2xl">
             <h2 className="text-3xl font-extrabold text-gray-900">
@@ -421,7 +424,7 @@ export default function Home() {
 
           {/* Document List */}
           {isLoggedIn && (
-            <div className="mt-6 border-t-2 border-[#1EC6D7]/30">
+            <div className="mt-6 mb-0 border-t-2 border-[#1EC6D7]/30"> {/* Added mb-0 */}
               {/* Search bar for documents */}
               <div className="mb-6">
                 <div className="flex items-center justify-between gap-4 px-4 py-3 bg-white rounded-lg shadow-sm">
@@ -711,9 +714,125 @@ export default function Home() {
         </main>
       </div>
 
-  {/* Footer sits outside the centered container so it spans full width */}
-  <Footer />
+      
+{/* ===== Viadocs Features Section ===== */}
+<section className="mt-0 py-16 bg-gradient-to-b from-[#F9FAFB] via-[#F3F4F6] to-white text-center"> {/* Added mt-0 */}
+  <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6">
+    Work Smarter with <span className="text-[#4066E0]">Viadocs</span>
+  </h2>
 
+  <p className="max-w-3xl mx-auto text-gray-600 text-base sm:text-lg mb-10 px-4">
+    Whether you’re a student preparing reports or an employee managing PDFs, 
+    Viadocs brings everything together in one seamless, powerful workspace.
+  </p>
+
+  {/* ===== Feature Cards ===== */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
+    {/* Card 1 */}
+    <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all border border-gray-100 hover:-translate-y-1">
+      <div className="flex items-center justify-center mb-4">
+        <div className="p-3 rounded-xl bg-[#EAF6FF] shadow-inner">
+          <img
+            src={image1}
+            alt="Create Documents"
+            className="w-20 h-20 object-contain"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <h3 className="text-lg font-semibold text-gray-800 mb-2">
+        Create Documents Instantly
+      </h3>
+      <p className="text-gray-600 text-sm leading-relaxed">
+        Generate professional projects, assignments, and resumes in seconds 
+        using Viadocs’ AI document builder — built for students and employees.
+      </p>
+    </div>
+
+    {/* Card 2 */}
+    <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all border border-gray-100 hover:-translate-y-1">
+      <div className="flex items-center justify-center mb-4">
+        <div className="p-3 rounded-xl bg-[#EAF6FF] shadow-inner">
+          <img
+            src={image2}
+            alt="PDF Tools"
+            className="w-20 h-20 object-contain"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <h3 className="text-lg font-semibold text-gray-800 mb-2">
+        All-in-One PDF Tools
+      </h3>
+      <p className="text-gray-600 text-sm leading-relaxed">
+        Merge, split, compress, or convert PDFs instantly. 
+        Manage your files securely — anytime, anywhere.
+      </p>
+    </div>
+
+    {/* Card 3 */}
+    <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all border border-gray-100 hover:-translate-y-1">
+      <div className="flex items-center justify-center mb-4">
+        <div className="p-3 rounded-xl bg-[#EAF6FF] shadow-inner">
+          <img
+            src={image3}
+            alt="AI Assistant"
+            className="w-20 h-20 object-contain"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <h3 className="text-lg font-semibold text-gray-800 mb-2">
+        AI-Powered Assistance
+      </h3>
+      <p className="text-gray-600 text-sm leading-relaxed">
+        Let our AI help summarize, rewrite, or extract key data 
+        from documents — boosting your productivity and creativity.
+      </p>
+    </div>
+  </div>
+</section>
+
+     {/* ===== Premium Section ===== */}
+<section className="py-16 bg-gradient-to-r from-[#4066E0]/10 via-[#1EC6D7]/10 to-[#6A3FD7]/10 text-center">
+  <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-4">
+    Unlock More with <span className="text-[#4066E0]">Viadocs Premium</span>
+  </h2>
+
+  <p className="max-w-3xl mx-auto text-gray-600 text-base sm:text-lg mb-8 px-4">
+    Upgrade to Viadocs Premium for faster performance, unlimited AI usage, 
+    and advanced document tools — designed to empower your work and studies.
+  </p>
+
+  {/* Premium Button (Disabled) */}
+  <div className="relative inline-block group">
+    <button
+      disabled
+      className="px-6 py-3 font-semibold rounded-full bg-gradient-to-r from-[#4066E0] to-[#1EC6D7] text-white shadow-md opacity-90 cursor-not-allowed group-hover:opacity-100 transition-all"
+    >
+      Go Premium 🚀
+    </button>
+
+    {/* Tooltip */}
+    <div className="absolute left-1/2 -translate-x-1/2 mt-2 px-3 py-1 text-sm text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap">
+      Coming Soon ✨
+    </div>
+  </div>
+</section>
+
+      {/* ===== Trusted Section ===== */}
+      <section className="py-16 text-center bg-white">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-4">
+          Built for Engineering Students & Employees
+        </h2>
+        <p className="max-w-2xl mx-auto text-gray-600 mb-10 px-4">
+          I’m a fresher who built <span className="text-[#4066E0] font-semibold">Viadocs</span> 
+          for engineering students and professionals — making document creation, editing, 
+          and PDF tools smarter and easier to use.
+        </p>
+      </section>
+
+      <Footer />
       {/* Delete confirmation modal - requires typing doc name */}
       {deleteTarget && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">

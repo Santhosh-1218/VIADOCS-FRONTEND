@@ -73,14 +73,7 @@ export default function Header() {
 
       {/* ---------- Right Section ---------- */}
       <div className="flex items-center gap-4 sm:gap-6">
-        {/* 🌐 App Button */}
-        <button
-          onClick={() => navigate("/coming-soon")}
-          className="flex items-center gap-1 text-sm font-medium text-white hover:text-[#1EC6D7]"
-        >
-          <FaGlobe className="text-base sm:text-lg" />
-          <span className="hidden sm:inline">App</span>
-        </button>
+        {/* App button removed */}
 
         {/* 👤 Login / Profile */}
         {!isLoggedIn ? (

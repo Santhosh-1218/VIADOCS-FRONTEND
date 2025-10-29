@@ -9,7 +9,7 @@ import Cropper from "react-easy-crop";
 
 import {
   ArrowLeft,
-  Settings,
+  MoreVertical,
   Edit3,
   Check,
   X,
@@ -353,7 +353,7 @@ export default function Profile() {
                 aria-expanded={settingsOpen}
                 aria-haspopup="true"
               >
-                <Settings size={20} className="text-[#4066E0]" />
+                <MoreVertical size={20} className="text-[#4066E0]" />
               </button>
               {settingsOpen && (
                 <div

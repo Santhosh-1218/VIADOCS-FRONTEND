@@ -1,20 +1,15 @@
-// src/pages/Feedback.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Send, MessageSquare, Star, User } from "lucide-react";
+import { ArrowLeft, Send, MessageSquare, Star, User, ShieldCheck } from "lucide-react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-
 export default function Feedback() {
   const navigate = useNavigate();
   const [user, setUser] = useState({ name: "", email: "" });
-  const [feedback, setFeedback] = useState({
-    message: "",
-    rating: "",
-  });
+  const [feedback, setFeedback] = useState({ message: "", rating: "" });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -34,15 +29,12 @@ export default function Feedback() {
           email: res.data.email || "",
         });
       })
-      .catch(() => {
-        console.log("No user logged in or token expired");
-      });
+      .catch(() => console.log("No user logged in or token expired"));
   }, []);
 
   // ✅ Handle input changes
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setFeedback({ ...feedback, [e.target.name]: e.target.value });
-  };
 
   // ✅ Submit feedback
   const handleSubmit = async (e) => {
@@ -52,7 +44,6 @@ export default function Feedback() {
 
     try {
       const token = localStorage.getItem("token");
-
       const res = await axios.post(
         "https://viadocs-backend-production.up.railway.app/api/feedback",
         {
@@ -81,16 +72,16 @@ export default function Feedback() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF6FF] via-[#F3F8FF] to-[#E4E1FF]">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 text-gray-800">
       <Header />
 
       <main className="flex-1 px-4 py-10 sm:px-6">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* Back Button */}
           <div className="flex justify-start mb-8">
             <button
               onClick={() => navigate(-1)}
-              className="flex items-center gap-2 px-4 py-2 text-white transition-all rounded-lg shadow-md bg-gradient-to-r from-[#4066E0] to-[#1EC6D7] hover:opacity-90 hover:scale-[1.03] active:scale-[0.97]"
+              className="flex items-center gap-2 px-4 py-2 text-white transition-all rounded-lg shadow-md bg-gradient-to-r from-[#4066E0] to-[#1EC6D7] hover:opacity-90 hover:scale-[1.03]"
             >
               <ArrowLeft size={18} />
               <span className="text-sm font-medium sm:text-base">Back</span>
@@ -98,16 +89,21 @@ export default function Feedback() {
           </div>
 
           {/* Feedback Card */}
-          <div className="p-8 border border-[#1EC6D7]/30 shadow-xl bg-white/80 backdrop-blur-md rounded-2xl">
+          <div className="p-8 border border-[#1EC6D7]/30 shadow-xl bg-white/80 backdrop-blur-md rounded-2xl hover:shadow-2xl transition-all">
             <h1 className="text-3xl font-extrabold text-center text-[#4066E0] sm:text-4xl">
               Share Your <span className="text-[#1EC6D7]">Feedback</span>
             </h1>
             <p className="max-w-lg mx-auto mt-3 text-center text-gray-600">
-              We value your opinion! Tell us how{" "}
-              <span className="text-[#4066E0] font-semibold">Viadoc</span> can serve you better.
+              We value your opinion! Help us make{" "}
+              <span className="text-[#4066E0] font-semibold">Viadocs</span> even better.
             </p>
 
-            <form onSubmit={handleSubmit} className="mt-10 space-y-6" autoComplete="off">
+            {/* Form */}
+            <form
+              onSubmit={handleSubmit}
+              className="mt-10 space-y-6"
+              autoComplete="off"
+            >
               {/* User Info */}
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
@@ -118,7 +114,7 @@ export default function Feedback() {
                     type="text"
                     value={user.name || "Guest User"}
                     disabled
-                    className="w-full px-4 py-3 mt-2 text-gray-800 bg-gray-100 border border-[#1EC6D7]/40 rounded-lg shadow-sm focus:ring-2 focus:ring-[#4066E0] focus:border-transparent"
+                    className="w-full px-4 py-3 mt-2 text-gray-800 bg-gray-100 border border-[#1EC6D7]/40 rounded-lg shadow-sm focus:ring-2 focus:ring-[#4066E0]"
                   />
                 </div>
 
@@ -130,7 +126,7 @@ export default function Feedback() {
                     type="email"
                     value={user.email || "Not logged in"}
                     disabled
-                    className="w-full px-4 py-3 mt-2 text-gray-800 bg-gray-100 border border-[#1EC6D7]/40 rounded-lg shadow-sm focus:ring-2 focus:ring-[#4066E0] focus:border-transparent"
+                    className="w-full px-4 py-3 mt-2 text-gray-800 bg-gray-100 border border-[#1EC6D7]/40 rounded-lg shadow-sm focus:ring-2 focus:ring-[#4066E0]"
                   />
                 </div>
               </div>
@@ -138,14 +134,14 @@ export default function Feedback() {
               {/* Rating */}
               <div>
                 <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                  <Star className="w-4 h-4 text-yellow-500" /> Rate Viadoc
+                  <Star className="w-4 h-4 text-yellow-500" /> Rate Viadocs
                 </label>
                 <select
                   name="rating"
                   value={feedback.rating}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 mt-2 text-gray-800 bg-white border border-[#1EC6D7]/40 rounded-lg shadow-sm focus:ring-2 focus:ring-[#4066E0] focus:border-transparent"
+                  className="w-full px-4 py-3 mt-2 text-gray-800 bg-white border border-[#1EC6D7]/40 rounded-lg shadow-sm focus:ring-2 focus:ring-[#4066E0]"
                 >
                   <option value="">Select a rating</option>
                   <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
@@ -167,8 +163,8 @@ export default function Feedback() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  placeholder="Tell us what you think..."
-                  className="w-full px-4 py-3 mt-2 text-gray-800 bg-white border border-[#1EC6D7]/40 rounded-lg shadow-sm resize-none focus:ring-2 focus:ring-[#4066E0] focus:border-transparent"
+                  placeholder="Tell us what you think about Viadocs..."
+                  className="w-full px-4 py-3 mt-2 text-gray-800 bg-white border border-[#1EC6D7]/40 rounded-lg shadow-sm resize-none focus:ring-2 focus:ring-[#4066E0]"
                 ></textarea>
               </div>
 
@@ -187,8 +183,32 @@ export default function Feedback() {
                 )}
               </button>
 
-            
+              {/* Success Message */}
+              {success && (
+                <p className="mt-4 text-center text-green-600 font-medium animate-fadeIn">
+                  ✅ Thank you for your feedback! We’ll use it to improve your Viadocs experience.
+                </p>
+              )}
             </form>
+          </div>
+
+          {/* Transparency Section (AdSense & Legal Trust) */}
+          <div className="p-6 mt-10 text-center border border-[#1EC6D7]/20 rounded-xl bg-gradient-to-br from-[#EAF6FF]/50 to-[#EAE4FF]/50">
+            <ShieldCheck className="w-8 h-8 mx-auto mb-3 text-[#4066E0]" />
+            <h3 className="text-lg font-semibold text-[#4066E0] mb-2">
+              Feedback & Data Transparency
+            </h3>
+            <p className="max-w-2xl mx-auto text-gray-600 text-sm">
+              All feedback submitted is stored securely and used only to improve the Viadocs platform.
+              We never share your information with third parties.  
+              Learn more in our{" "}
+              <span
+                className="text-[#4066E0] hover:underline cursor-pointer"
+                onClick={() => navigate("/privacy-policy")}
+              >
+                Privacy Policy
+              </span>.
+            </p>
           </div>
         </div>
       </main>

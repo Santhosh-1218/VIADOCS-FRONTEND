@@ -23,6 +23,7 @@ import HelpCenter from "./pages/HelpCenter";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import ComingSoon from "./pages/ComingSoon";
 import ForgotPassword from "./pages/ForgotPassword";
+import Terms from "./pages/Terms";
 
 // 🛠 Tools
 import PdfToWord from "./pages/tools/pdf-to-word";
@@ -121,7 +122,8 @@ function App() {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/coming-soon" element={<ComingSoon />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-
+            <Route path="/terms" element={<Terms />} />
+            
             {/* 🛡 Admin Dashboard */}
             <Route path="/admin/*" element={<AdminDashboard />} />
 

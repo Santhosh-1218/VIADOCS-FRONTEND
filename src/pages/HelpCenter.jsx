@@ -1,4 +1,3 @@
-// src/pages/HelpCenter.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -7,6 +6,8 @@ import {
   ChevronDown,
   ChevronUp,
   MessageCircle,
+  HelpCircle,
+  ShieldCheck,
 } from "lucide-react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
@@ -18,24 +19,24 @@ export default function HelpCenter() {
 
   const faqs = [
     {
-      q: "How can I create a new document in Viadoc?",
-      a: "Go to 'Create Doc' from the homepage or tools section. Choose a document type and start editing right away using Viadoc’s smart editor.",
+      q: "How can I create a new document in Viadocs?",
+      a: "Click 'Create Doc' on the homepage or Tools page. Select your document type and start editing instantly using Viadocs' smart editor.",
     },
     {
       q: "Can I edit my PDF files?",
-      a: "Yes! Open the 'Tools' page and select 'PDF Editor'. You can annotate, edit, and modify your PDF files easily.",
+      a: "Yes! Go to the 'Tools' page and open 'PDF Editor'. You can easily annotate, edit, and update your PDFs directly in the browser.",
     },
     {
       q: "How do I reset my password?",
-      a: "From the login page, click 'Forgot Password' and follow the steps to reset your account credentials securely.",
+      a: "From the Login page, click 'Forgot Password' and follow the email verification steps to reset your account securely.",
     },
     {
-      q: "Is Viadoc free to use?",
-      a: "Yes, Viadoc offers free access to all major tools with no watermarks or limits. Premium AI features may require a subscription.",
+      q: "Is Viadocs free to use?",
+      a: "Yes, Viadocs offers free access to major tools without watermarks. Some AI-powered features are available under premium plans.",
     },
     {
-      q: "How do I contact Viadoc support?",
-      a: "You can reach us anytime from the 'Contact' page, or email us directly at support@viadoc.com.",
+      q: "How do I contact Viadocs support?",
+      a: "Visit the 'Contact' page or email us directly at official.viadocs@gmail.com. Our support team responds within 24–48 hours.",
     },
   ];
 
@@ -44,34 +45,37 @@ export default function HelpCenter() {
   );
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF6FF] via-[#F3F8FF] to-[#E4E1FF]">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 text-gray-800">
       <Header />
 
       <main className="flex-1 px-4 py-10 sm:px-6">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Back Button */}
           <div className="flex justify-start mb-8">
             <button
               onClick={() => navigate(-1)}
-              className="flex items-center gap-2 px-4 py-2 text-white transition-all rounded-lg shadow-md bg-gradient-to-r from-[#4066E0] to-[#1EC6D7] hover:opacity-90 hover:scale-[1.03] active:scale-[0.97]"
+              className="flex items-center gap-2 px-4 py-2 text-white transition-all rounded-lg shadow-md bg-gradient-to-r from-[#4066E0] to-[#1EC6D7] hover:opacity-90 hover:scale-[1.03]"
             >
               <ArrowLeft size={18} />
               <span className="text-sm font-medium sm:text-base">Back</span>
             </button>
           </div>
 
-          {/* Title Section */}
+          {/* Header Section */}
           <div className="mb-10 text-center">
+            <div className="flex justify-center mb-4">
+              <HelpCircle className="w-12 h-12 text-[#4066E0]" />
+            </div>
             <h1 className="text-3xl font-extrabold text-[#4066E0] sm:text-4xl">
               Help <span className="text-[#1EC6D7]">Center</span>
             </h1>
-            <p className="mt-3 text-gray-600">
-              Find quick answers to your questions or reach out for support.
+            <p className="max-w-2xl mx-auto mt-3 text-gray-600">
+              Need assistance? Find quick answers to common questions or reach out to our support team.
             </p>
           </div>
 
           {/* Search Bar */}
-          <div className="flex justify-center mb-10">
+          <div className="flex justify-center mb-12">
             <div className="relative w-full max-w-lg">
               <Search
                 className="absolute text-[#4066E0] left-3 top-3"
@@ -81,7 +85,7 @@ export default function HelpCenter() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search for help..."
+                placeholder="Search for help, e.g. 'PDF Editor' or 'Account'"
                 className="w-full py-3 pl-10 pr-4 bg-white border border-[#1EC6D7]/40 rounded-lg shadow-sm focus:ring-2 focus:ring-[#4066E0] focus:border-transparent"
               />
             </div>
@@ -121,13 +125,13 @@ export default function HelpCenter() {
             )}
           </div>
 
-          {/* Contact Support Card */}
-          <div className="p-8 mt-12 text-center border border-[#1EC6D7]/30 shadow-lg bg-white/80 rounded-2xl backdrop-blur-md">
+          {/* Contact Support */}
+          <div className="p-8 mt-12 text-center border border-[#1EC6D7]/30 shadow-xl bg-white/80 rounded-2xl backdrop-blur-md hover:shadow-2xl transition-all">
             <h2 className="text-2xl font-bold text-[#4066E0]">
               Still Need Help?
             </h2>
             <p className="mt-2 text-gray-600">
-              Can’t find what you’re looking for? Reach out to our support team.
+              Couldn’t find the answer you’re looking for? Our friendly team is here to help you 24/7.
             </p>
             <button
               onClick={() => navigate("/contact")}
@@ -136,6 +140,25 @@ export default function HelpCenter() {
               <MessageCircle size={18} />
               Contact Support
             </button>
+          </div>
+
+          {/* Legal Transparency Section (AdSense-friendly) */}
+          <div className="p-6 mt-10 text-center border border-[#1EC6D7]/20 rounded-xl bg-gradient-to-br from-[#EAF6FF]/50 to-[#EAE4FF]/50">
+            <ShieldCheck className="w-8 h-8 mx-auto mb-3 text-[#4066E0]" />
+            <h3 className="text-lg font-semibold text-[#4066E0] mb-2">
+              Transparency & Data Safety
+            </h3>
+            <p className="max-w-2xl mx-auto text-gray-600 text-sm">
+              Viadocs prioritizes user privacy and complies with Google AdSense and GDPR standards.
+              For more details on data protection, cookies, and analytics, please visit our{" "}
+              <span
+                className="text-[#4066E0] hover:underline cursor-pointer"
+                onClick={() => navigate("/privacy-policy")}
+              >
+                Privacy Policy
+              </span>
+              .
+            </p>
           </div>
         </div>
       </main>

@@ -35,7 +35,7 @@ export default function Terms() {
 
             <p className="mb-6 text-gray-600 text-center text-sm sm:text-base">
               These Terms and Conditions govern your use of the{" "}
-              <strong>Pro Doc (Viadocs)</strong> website and its services,
+              <strong>Viadocs</strong> website and its services,
               operated by{" "}
               <strong>Work Wizards Innovations</strong>.
               By accessing or using our platform, you agree to comply with and be bound by these terms.
@@ -48,7 +48,7 @@ export default function Terms() {
                   1. Acceptance of Terms
                 </h2>
                 <p>
-                  By using Pro Doc, you acknowledge that you have read,
+                  By using Viadocs, you acknowledge that you have read,
                   understood, and agree to be bound by these Terms and all
                   applicable laws and regulations. If you do not agree with any
                   of these terms, you are prohibited from using or accessing this
@@ -73,7 +73,7 @@ export default function Terms() {
                   3. User Accounts
                 </h2>
                 <p>
-                  When you create an account on Pro Doc, you must provide accurate,
+                  When you create an account on Viadocs, you must provide accurate,
                   complete, and current information. You are responsible for
                   safeguarding your account credentials and for all activities
                   under your account.
@@ -154,7 +154,7 @@ export default function Terms() {
                     href="mailto:boppudisanthosh44@gmail.com"
                     className="text-[#4066E0] hover:underline"
                   >
-                    boppudisanthosh44@gmail.com
+                   official.viadocs@gmail.com
                   </a>
                   <br />
                   <strong>Organization:</strong> Work Wizards Innovations

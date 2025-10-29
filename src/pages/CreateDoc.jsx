@@ -1048,7 +1048,7 @@ const shareDocument = async () => {
       try {
         await navigator.share({
           title: documentName,
-          text: "Sharing my document from Pro Doc",
+          text: "Sharing my document from Viadocs",
           files: [pdfFile],
         });
         
@@ -1798,7 +1798,7 @@ if (!id && !showEditor) {
       <button
         onClick={() => {
           alert(
-            "Pro Doc Help:\n\n" +
+            "Viadocs Help:\n\n" +
               "Keyboard Shortcuts:\n" +
               "Ctrl+B - Bold\n" +
               "Ctrl+I - Italic\n" +

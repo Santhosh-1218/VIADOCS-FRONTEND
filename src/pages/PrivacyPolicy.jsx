@@ -49,7 +49,7 @@ export default function PrivacyPolicy() {
                   1. Introduction
                 </h2>
                 <p>
-                  Welcome to <strong>Pro Doc (Viadocs)</strong>, a product of{" "}
+                  Welcome to <strong>Viadocs</strong>, a product of{" "}
                   <strong>Work Wizards Innovations</strong>.  
                   We value your privacy and are committed to protecting your
                   personal data. This policy outlines what information we collect,
@@ -75,7 +75,7 @@ export default function PrivacyPolicy() {
                   </li>
                   <li>
                     <strong className="text-[#1EC6D7]">Documents & Uploads:</strong>{" "}
-                    files you create, edit, or store within Pro Doc tools.  
+                    files you create, edit, or store within Viadocs tools.  
                     These are securely stored and never shared without consent.
                   </li>
                 </ul>
@@ -113,7 +113,7 @@ export default function PrivacyPolicy() {
                   5. Cookies & Tracking Technologies
                 </h2>
                 <p>
-                  Pro Doc uses cookies and similar technologies to analyze traffic
+                  Viadocs uses cookies and similar technologies to analyze traffic
                   and improve usability. You can disable cookies in your browser
                   settings, but some features may not function correctly.  
                   By using our site, you consent to our cookie usage as described

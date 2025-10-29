@@ -68,50 +68,6 @@ export default function Contact() {
 
           {/* Two-column layout (Info + Form) */}
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {/* Left Info Card */}
-            <div className="p-8 bg-white border border-[#1EC6D7]/30 rounded-2xl shadow-xl backdrop-blur-md hover:shadow-2xl transition-all">
-              <h1 className="text-3xl font-extrabold text-[#4066E0] mb-4 text-center md:text-left">
-                Get in Touch with <span className="text-[#1EC6D7]">Viadocs</span>
-              </h1>
-              <p className="text-gray-600 text-center md:text-left mb-8">
-                Whether you have questions, ideas, or collaboration proposals — we’d
-                love to connect with you. Fill out the form or reach us directly below.
-              </p>
-
-              <div className="space-y-6 text-gray-700">
-                <div className="flex items-start gap-3">
-                  <Mail className="text-[#4066E0] mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-gray-800">Email</h3>
-                    <a
-                      href="mailto:official.viadocs@gmail.com"
-                      className="text-[#1EC6D7] hover:underline break-all"
-                    >
-                      official.viadocs@gmail.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <Phone className="text-[#4066E0] mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-gray-800">Phone</h3>
-                    <p className="text-gray-600">+91 83092 24358</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <MapPin className="text-[#4066E0] mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-gray-800">Office</h3>
-                    <p className="text-gray-600">
-                      Work Wizards Innovations Pvt. Ltd.  
-                      Kakinada, Andhra Pradesh, India
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             {/* Right Form Card */}
             <div className="p-8 border border-[#1EC6D7]/30 shadow-xl bg-white/80 backdrop-blur-md rounded-2xl">

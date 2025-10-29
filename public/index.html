@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) –– Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DM9KZJCSF6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-DM9KZJCSF6");
+    </script>
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DM9KZJCSF6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- ✅ Google AdSense verification -->
+    <meta name="google-adsense-account" content="ca-pub-3307249219608799" />
 
-  gtag('config', 'G-DM9KZJCSF6');
-</script>
+    <!-- ✅ Google AdSense script -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3307249219608799"
+      crossorigin="anonymous"
+    ></script>
+
     <meta charset="utf-8" />
-
-    <!-- ✅ Favicon -->
     <link rel="icon" href="%PUBLIC_URL%/logo193.png" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#4066E0" />
 
@@ -30,7 +36,7 @@
       content="ViaDocs — Create, edit, convert, and manage your project documents faster using AI. A free online document builder with PDF tools, collaboration, and smart automation."
     />
 
-    <!-- ✅ Keywords for Search Engines -->
+    <!-- ✅ Keywords -->
     <meta
       name="keywords"
       content="ViaDocs, free PDF tools, AI document builder, document converter, online PDF editor, AI writing, smart document creation, file converter, free document maker, project documentation, Word to PDF, PDF to Word, AI assistant, online file tools, productivity platform, free AI doc tool"
@@ -40,7 +46,7 @@
     <meta name="language" content="English" />
     <meta name="revisit-after" content="7 days" />
 
-    <!-- ✅ Open Graph Meta (For Social Media Sharing) -->
+    <!-- ✅ Open Graph (Social Preview) -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://viadocs.vercel.app/" />
     <meta
@@ -53,7 +59,7 @@
     />
     <meta property="og:image" content="%PUBLIC_URL%/logo192.png" />
 
-    <!-- ✅ Twitter Card Meta -->
+    <!-- ✅ Twitter Card -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://viadocs.vercel.app/" />
     <meta
@@ -89,14 +95,13 @@
         background: #f9fafb;
         color: #111827;
       }
-
       #root {
         min-height: 100vh;
         display: flex;
         flex-direction: column;
       }
 
-      /* ✅ Loading Screen */
+      /* Loader */
       .loader {
         display: flex;
         flex-direction: column;
@@ -110,7 +115,6 @@
         letter-spacing: 1px;
         text-align: center;
       }
-
       .loader img {
         width: 100px;
         height: 100px;
@@ -118,32 +122,17 @@
         animation: fadeIn 1.5s ease-in-out infinite alternate;
         filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
       }
-
       .loader-text {
         animation: pulse 1.5s ease-in-out infinite;
       }
-
       @keyframes pulse {
-        0% {
-          opacity: 0.6;
-        }
-        50% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 0.6;
-        }
+        0% { opacity: 0.6; }
+        50% { opacity: 1; }
+        100% { opacity: 0.6; }
       }
-
       @keyframes fadeIn {
-        0% {
-          opacity: 0.7;
-          transform: scale(0.95);
-        }
-        100% {
-          opacity: 1;
-          transform: scale(1.05);
-        }
+        0% { opacity: 0.7; transform: scale(0.95); }
+        100% { opacity: 1; transform: scale(1.05); }
       }
     </style>
   </head>
@@ -161,7 +150,7 @@
 
     <!--
       🧠 ViaDocs — Free AI Document Builder & PDF Tools
-      🌐 Website: https://viadocs.vercel.app/
+      🌐 https://viadocs.vercel.app/
       📅 2025 © ViaDocs Team. All rights reserved.
     -->
   </body>

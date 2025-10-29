@@ -68,7 +68,7 @@ export default function About() {
               </h2>
               <p className="max-w-2xl mx-auto mt-2 text-gray-600">
                 <strong>Viadocs</strong> is an AI-powered document creation
-                platform under <strong>Pro Doc</strong>. It combines modern UI
+                platform under <strong>Viadocs</strong>. It combines modern UI
                 design, PDF tools, and AI features for document generation and
                 smart file management — making it perfect for creators,
                 professionals, and students.

@@ -14,7 +14,7 @@ import {
   Trash2,
   Plus,
   Bookmark,
-  Settings,
+  FileCog,
   Sparkles,
   Bot,
 } from "lucide-react";
@@ -22,10 +22,10 @@ import { jsPDF } from "jspdf";
 
 // Animated typing text (same as before)
 const texts = [
-  "Use Pro Doc\nto create your\nproject docs faster and smarter",
-  "Use Pro Doc\nto create your\nprofessional documents easily",
-  "Use Pro Doc\nto create your\ncollaborative workspaces quickly",
-  "Use Pro Doc\nto create your\nstructured content efficiently",
+  "Use Viadocs\nto create your\nproject docs faster and smarter",
+  "Use Viadocs\nto create your\nprofessional documents easily",
+  "Use Viadocs\nto create your\ncollaborative workspaces quickly",
+  "Use Viadocs\nto create your\nstructured content efficiently",
 ];
 
 const AnimatedText = () => {
@@ -245,7 +245,7 @@ export default function Home() {
       if (navigator.share && navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
         await navigator.share({
           title: fullDoc.name,
-          text: "Sharing my Pro Doc document",
+          text: "Sharing my Viadocs document",
           files: [pdfFile],
         });
       } else {
@@ -324,7 +324,7 @@ export default function Home() {
           {/* Welcome Section */}
           <div className="p-8 mb-10 text-center bg-white border border-[#1EC6D7]/30 shadow-lg rounded-2xl">
             <h2 className="text-3xl font-extrabold text-gray-900">
-              Welcome to <span className="text-[#4066E0]">Pro Doc</span>
+              Welcome to <span className="text-[#4066E0]">Viadocs</span>
             </h2>
             <p className="mt-3 text-lg text-gray-600">
               Create professional documents, collaborate with your team, and
@@ -379,7 +379,7 @@ export default function Home() {
                   onClick={() => handleNav("/tools")}
                   className="flex flex-col items-center justify-center flex-1 p-4 transition-all duration-300 border cursor-pointer rounded-xl border-[#1EC6D7]/30 hover:border-[#4066E0] hover:bg-[#EAF6FF] hover:shadow-lg group"
                 >
-                  <Settings strokeWidth={3} className="mb-2 w-7 h-7 text-[#4066E0]" />
+                  <FileCog strokeWidth={3} className="mb-2 w-7 h-7 text-[#4066E0]" />
                   <p className="text-sm font-semibold text-gray-900 group-hover:text-[#4066E0]">
                     Tools
                   </p>
@@ -755,7 +755,7 @@ export default function Home() {
       {roleModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
           <div className="w-full max-w-lg p-6 bg-white rounded-lg shadow-lg">
-            <h2 className="mb-2 text-xl font-semibold">Welcome to Pro Doc!</h2>
+            <h2 className="mb-2 text-xl font-semibold">Welcome to Viadocs!</h2>
             <p className="mb-4 text-sm text-gray-600">
               To give you a tailored experience, are you a <strong>Student</strong> or an <strong>Employee</strong>?
             </p>

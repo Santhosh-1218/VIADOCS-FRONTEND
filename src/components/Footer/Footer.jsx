@@ -64,12 +64,7 @@ export default function Footer({ sticky = false }) {
               >
                 <Wrench size={14} /> Tools
               </li>
-              <li
-                onClick={() => navigate("/DocAI")}
-                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all"
-              >
-                <Bot size={14} /> Docxy (AI)
-              </li>
+              
             </ul>
           </div>
 

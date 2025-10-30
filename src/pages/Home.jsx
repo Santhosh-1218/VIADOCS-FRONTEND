@@ -351,6 +351,51 @@ export default function Home() {
               </div>
             )}
           </div>
+          
+
+          {/* ===== Compact Hero Section ===== */}
+<section className="relative p-8 sm:p-12 mb-10 text-center rounded-2xl shadow-lg bg-gradient-to-br from-[#F3F8FF] via-[#EAF6FF] to-[#ffffff] border border-[#E0ECFF] overflow-hidden">
+  {/* Floating accent gradient circles */}
+  <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#4066E0]/20 rounded-full blur-3xl animate-pulse-slow"></div>
+  <div className="absolute -bottom-10 -right-10 w-52 h-52 bg-[#1EC6D7]/20 rounded-full blur-3xl animate-pulse-slow delay-200"></div>
+
+  <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center justify-center">
+    <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-3 leading-tight">
+      Simplify Your <span className="text-[#1EC6D7]">Document Work</span>
+    </h1>
+
+    <p className="max-w-xl text-sm sm:text-base text-gray-600 mb-6 px-4">
+      Convert, Edit, Merge, and Protect PDFs — all in one
+      <span className="text-[#4066E0] font-semibold"> AI-powered workspace</span>.
+    </p>
+
+    {/* Action Buttons */}
+    <div className="flex flex-wrap justify-center gap-3">
+      <button
+        onClick={() => navigate("/tools")}
+        className="px-5 py-2 sm:px-6 sm:py-2.5 rounded-full text-white bg-gradient-to-r from-[#4066E0] to-[#1EC6D7] hover:scale-105 hover:shadow-md transition-all text-sm sm:text-base font-medium"
+      >
+        Try Tools
+      </button>
+
+      <button
+        onClick={() => navigate("/about")}
+        className="px-5 py-2 sm:px-6 sm:py-2.5 rounded-full border border-[#1EC6D7] text-[#1EC6D7] hover:bg-[#1EC6D7]/10 hover:scale-105 transition-all text-sm sm:text-base font-medium"
+      >
+        Learn More
+      </button>
+    </div>
+
+    {/* Sub caption */}
+    <div className="mt-6 text-xs sm:text-sm text-gray-500">
+      Start creating smarter — no sign-up required.
+    </div>
+  </div>
+</section>
+
+
+          
+
 
           {/* Top Section */}
           <div className="grid grid-cols-1 gap-6 mb-12 lg:grid-cols-2">

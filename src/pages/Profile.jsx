@@ -79,14 +79,24 @@ export default function Profile() {
 
   // Fetch profile
   useEffect(() => {
-    fetchProfile();
-    const onFocus = () => fetchProfile(true);
+  if (!token) {
+    navigate("/login");
+    return;
+  }
+  fetchProfile();
+  const onFocus = () => fetchProfile(true);
+
     window.addEventListener("focus", onFocus);
     return () => window.removeEventListener("focus", onFocus);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
-  const fetchProfile = async () => {
+  let lastFetched = 0;
+const fetchProfile = async (force = false) => {
+  const now = Date.now();
+  if (!force && now - lastFetched < 3000) return;
+  lastFetched = now;
+
     try {
       const response = await axios.get("https://viadocs-backend-production.up.railway.app/api/profile", {
         headers: { Authorization: `Bearer ${token}` },
@@ -260,11 +270,11 @@ export default function Profile() {
         setImageSrc(null);
         setFileForUpload(null);
       } else {
-        alert(data.message || "Upload failed");
+        toast.error(data.message || "Upload failed");
       }
     } catch (err) {
       console.error("Crop upload error:", err);
-      alert("Upload failed");
+      toast.error("Upload failed");
     } finally {
       URL.revokeObjectURL(imageSrc);
       setImageSrc(null);
@@ -292,11 +302,11 @@ export default function Profile() {
         setImageSrc(null);
         setFileForUpload(null);
       } else {
-        alert(data.message || "Upload failed");
+        toast.error(data.message || "Upload failed");
       }
     } catch (err) {
       console.error("Upload original error:", err);
-      alert("Upload failed");
+      toast.error("Upload failed");
     } finally {
       setSaving(false);
     }
@@ -314,6 +324,12 @@ export default function Profile() {
       </div>
     );
   }
+// Cleanup blob URLs on unmount
+useEffect(() => {
+  return () => {
+    if (imageSrc) URL.revokeObjectURL(imageSrc);
+  };
+}, [imageSrc]);
 
   // Helper: nicely formatted DOB for display
   const displayDOB = (dob) => {

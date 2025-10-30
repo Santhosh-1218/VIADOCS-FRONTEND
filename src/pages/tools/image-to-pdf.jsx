@@ -10,7 +10,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+
 import axios from "axios";
 
 export default function ImageToPdf() {
@@ -131,8 +131,8 @@ export default function ImageToPdf() {
 
           {/* Header */}
           <div className="mb-10 text-center">
-            <div className="flex items-center justify-center w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#4FC3F7]/30 to-[#3F51B5]/20">
-              <File className="w-10 h-10 text-[#3F51B5]" />
+            <div className="flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#4FC3F7]/30 to-[#3F51B5]/20">
+              <File className="w-10 h-10 sm:w-12 sm:h-12 text-[#3F51B5]" />
             </div>
             <h1 className="mb-3 text-3xl font-bold text-[#3F51B5] sm:text-4xl">
               Image to PDF Converter
@@ -262,7 +262,12 @@ export default function ImageToPdf() {
         </div>
       </main>
 
-      <Footer />
+      <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
+  <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
+    © 2025 <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
+  </div>
+</footer>
+
     </div>
   );
 }

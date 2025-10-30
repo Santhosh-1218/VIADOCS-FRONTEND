@@ -20,7 +20,6 @@ export default function Footer({ sticky = false }) {
   return (
     <footer
      className={`${stickyClasses} bg-gradient-to-br from-[#2F3438] via-[#373C3F] to-[#3F4448] text-gray-200`}
-
     >
       <div className="max-w-7xl px-6 py-10 mx-auto">
         {/* ===== Top Section ===== */}
@@ -32,9 +31,14 @@ export default function Footer({ sticky = false }) {
             </h2>
             <p className="mt-3 text-sm text-gray-400 leading-relaxed">
               Built with passion by{" "}
-              <span className="font-semibold text-white">
+              <a 
+                href="https://wwi.org.in" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="font-semibold text-white hover:underline"
+              >
                 Work Wizards Innovations
-              </span>
+              </a>
               . Empowering creators, professionals, and teams with smarter
               AI-powered document tools.
             </p>
@@ -112,9 +116,14 @@ export default function Footer({ sticky = false }) {
           </p>
           <p className="text-xs text-gray-500">
             Designed & Developed by{" "}
-            <span className="font-semibold text-white">
+            <a 
+              href="https://wwi.org.in" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="font-semibold text-white hover:underline"
+            >
               Work Wizards Innovations
-            </span>
+            </a>
             .
           </p>
         </div>

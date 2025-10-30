@@ -15,7 +15,7 @@ import {
   Palette, Plus, HelpCircle, Keyboard, Info, Printer, Edit
 } from 'lucide-react';
 import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
+
 
 const CreateDoc = () => {
   const [documentName, setDocumentName] = useState('');
@@ -1094,7 +1094,11 @@ if (id && (isLoading || !showEditor)) {
           Loading your document...
         </p>
       </div>
-      <Footer />
+      <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
+  <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
+    © 2025 <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
+  </div>
+</footer>
 
       <style>{`
         @keyframes fadeIn {
@@ -1156,7 +1160,11 @@ if (!id && !showEditor) {
           </div>
         </div>
       </div>
-      <Footer />
+      <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
+  <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
+    © 2025 <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
+  </div>
+</footer>
     </div>
   );
 }
@@ -2218,27 +2226,11 @@ if (!id && !showEditor) {
         </div>
       </div>
       
-      {!isFullscreen && <Footer />}
-      
-      {/* Hidden file input for image upload */}
-      <input
-        type="file"
-        ref={fileInputRef}
-        onChange={handleImageUpload}
-        accept="image/*"
-        style={{ display: 'none' }}
-      />
-      
-      {/* Click outside to close dropdowns */}
-      {(activeDropdown || showColorPicker) && (
-        <div 
-          className="fixed inset-0 z-40" 
-          onClick={() => {
-            setActiveDropdown(null);
-            setShowColorPicker(false);
-          }}
-        />
-      )}
+      <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
+  <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
+    © 2025 <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
+  </div>
+</footer>
      
 {/* Floating toolbar for selected images */}
 {selectedImage && (

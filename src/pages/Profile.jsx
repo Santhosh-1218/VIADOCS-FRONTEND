@@ -6,19 +6,18 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import toast from 'react-hot-toast';
 import Cropper from "react-easy-crop";
+import { Camera, Edit2, Save, X } from "lucide-react";
 
 import {
   ArrowLeft,
   MoreVertical,
   Edit3,
   Check,
-  X,
   Crown,
   Sparkles,
   Star,
   User,
   Mail,
-  Camera,
 } from "lucide-react";
 
 /**
@@ -77,19 +76,24 @@ export default function Profile() {
     { label: "Privacy Policy", path: "/privacy-policy" },
   ];
 
-  // Fetch profile
-  useEffect(() => {
-  if (!token) {
-    navigate("/login");
-    return;
-  }
-  fetchProfile();
-  const onFocus = () => fetchProfile(true);
+useEffect(() => {
+  // ✅ Move condition inside
+  const runFetch = async () => {
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+    await fetchProfile();
+  };
 
-    window.addEventListener("focus", onFocus);
-    return () => window.removeEventListener("focus", onFocus);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname]);
+  runFetch();
+
+  const onFocus = () => fetchProfile(true);
+  window.addEventListener("focus", onFocus);
+  return () => window.removeEventListener("focus", onFocus);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [location.pathname]);
+
 
   let lastFetched = 0;
 const fetchProfile = async (force = false) => {

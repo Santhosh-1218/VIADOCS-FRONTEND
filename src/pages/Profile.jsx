@@ -6,18 +6,19 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import toast from 'react-hot-toast';
 import Cropper from "react-easy-crop";
-import { Camera, Edit2, Save, X } from "lucide-react";
 
 import {
   ArrowLeft,
   MoreVertical,
   Edit3,
   Check,
+  X,
   Crown,
   Sparkles,
   Star,
   User,
   Mail,
+  Camera,
 } from "lucide-react";
 
 /**
@@ -76,31 +77,16 @@ export default function Profile() {
     { label: "Privacy Policy", path: "/privacy-policy" },
   ];
 
-useEffect(() => {
-  const runFetch = async () => {
-    if (!token) {
-      navigate("/login");
-      return;
-    }
-    await fetchProfile();
-  };
+  // Fetch profile
+  useEffect(() => {
+    fetchProfile();
+    const onFocus = () => fetchProfile(true);
+    window.addEventListener("focus", onFocus);
+    return () => window.removeEventListener("focus", onFocus);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
 
-  runFetch();
-
-  const onFocus = () => fetchProfile(true);
-  window.addEventListener("focus", onFocus);
-  return () => window.removeEventListener("focus", onFocus);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [location.pathname]);
-
-
-
-  let lastFetched = 0;
-const fetchProfile = async (force = false) => {
-  const now = Date.now();
-  if (!force && now - lastFetched < 3000) return;
-  lastFetched = now;
-
+  const fetchProfile = async () => {
     try {
       const response = await axios.get("https://viadocs-backend-production.up.railway.app/api/profile", {
         headers: { Authorization: `Bearer ${token}` },
@@ -274,11 +260,11 @@ const fetchProfile = async (force = false) => {
         setImageSrc(null);
         setFileForUpload(null);
       } else {
-        toast.error(data.message || "Upload failed");
+        alert(data.message || "Upload failed");
       }
     } catch (err) {
       console.error("Crop upload error:", err);
-      toast.error("Upload failed");
+      alert("Upload failed");
     } finally {
       URL.revokeObjectURL(imageSrc);
       setImageSrc(null);
@@ -306,11 +292,11 @@ const fetchProfile = async (force = false) => {
         setImageSrc(null);
         setFileForUpload(null);
       } else {
-        toast.error(data.message || "Upload failed");
+        alert(data.message || "Upload failed");
       }
     } catch (err) {
       console.error("Upload original error:", err);
-      toast.error("Upload failed");
+      alert("Upload failed");
     } finally {
       setSaving(false);
     }
@@ -328,12 +314,6 @@ const fetchProfile = async (force = false) => {
       </div>
     );
   }
-// Cleanup blob URLs on unmount
-useEffect(() => {
-  return () => {
-    if (imageSrc) URL.revokeObjectURL(imageSrc);
-  };
-}, [imageSrc]);
 
   // Helper: nicely formatted DOB for display
   const displayDOB = (dob) => {

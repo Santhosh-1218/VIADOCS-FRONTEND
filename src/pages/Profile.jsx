@@ -77,7 +77,6 @@ export default function Profile() {
   ];
 
 useEffect(() => {
-  // ✅ Move condition inside
   const runFetch = async () => {
     if (!token) {
       navigate("/login");
@@ -93,6 +92,7 @@ useEffect(() => {
   return () => window.removeEventListener("focus", onFocus);
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [location.pathname]);
+
 
 
   let lastFetched = 0;

@@ -26,13 +26,13 @@ export default function ForgotPassword() {
   const [otpStatus, setOtpStatus] = useState(null);
   const navigate = useNavigate();
 
-  // ✅ Use environment API URL
+  // ✅ API base URL (production or local)
   const BASE_URL =
     process.env.REACT_APP_API_URL
       ? `${process.env.REACT_APP_API_URL}/api/auth`
       : "https://viadocs-backend-production.up.railway.app/api/auth";
 
-  // ⏳ Timer for resend OTP
+  // Countdown for resend OTP
   useEffect(() => {
     if (timer > 0) {
       const countdown = setTimeout(() => setTimer(timer - 1), 1000);
@@ -40,20 +40,18 @@ export default function ForgotPassword() {
     }
   }, [timer]);
 
-  // ✅ Step 1 — Check Email Existence
+  // ✅ Step 1: Check Email Existence
   const checkEmail = async () => {
     if (!email.trim()) return;
     setEmailStatus("checking");
 
     try {
       const res = await fetch(`${BASE_URL}/check-email?email=${email}`);
-      const data = await res.json();
+      if (!res.ok) throw new Error("Server error");
 
-      if (res.ok && data.exists) {
-        setEmailStatus("exists");
-      } else {
-        setEmailStatus("notfound");
-      }
+      const data = await res.json();
+      if (data.exists) setEmailStatus("exists");
+      else setEmailStatus("notfound");
     } catch (err) {
       console.error("checkEmail error:", err);
       toast.error("Server not responding!");
@@ -61,7 +59,7 @@ export default function ForgotPassword() {
     }
   };
 
-  // ✅ Step 1 — Send OTP
+  // ✅ Step 1: Send OTP
   const handleSendOtp = async (e) => {
     e.preventDefault();
     if (emailStatus !== "exists") {
@@ -76,11 +74,10 @@ export default function ForgotPassword() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
-
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("OTP sent successfully to your email!");
+        toast.success(data.message || "OTP sent successfully!");
         setStep(2);
         setTimer(60);
       } else toast.error(data.message || "Failed to send OTP.");
@@ -92,7 +89,7 @@ export default function ForgotPassword() {
     }
   };
 
-  // ✅ Step 2 — Verify OTP
+  // ✅ Step 2: Verify OTP
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     if (!otp.trim()) {
@@ -109,11 +106,10 @@ export default function ForgotPassword() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp }),
       });
-
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("OTP verified successfully!");
+        toast.success(data.message || "OTP verified successfully!");
         setOtpStatus("valid");
         setTimeout(() => setStep(3), 800);
       } else {
@@ -129,7 +125,7 @@ export default function ForgotPassword() {
     }
   };
 
-  // ✅ Step 3 — Reset Password
+  // ✅ Step 3: Reset Password
   const handleResetPassword = async (e) => {
     e.preventDefault();
     if (newPassword !== confirmPassword) {
@@ -148,11 +144,10 @@ export default function ForgotPassword() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, newPassword }),
       });
-
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("Password reset successful! Redirecting...");
+        toast.success(data.message || "Password reset successful!");
         setTimeout(() => navigate("/login"), 2000);
       } else toast.error(data.message || "Failed to reset password.");
     } catch (err) {
@@ -166,7 +161,6 @@ export default function ForgotPassword() {
   return (
     <>
       <ToastContainer position="top-right" autoClose={2000} />
-
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#E3F2FD] to-[#E8EAF6] p-6">
         <div className="w-full max-w-md p-8 bg-white rounded-2xl shadow-xl transition-all duration-300">
           {/* 🔙 Back Button */}
@@ -216,7 +210,6 @@ export default function ForgotPassword() {
                   No account found with this email.
                 </p>
               )}
-
               {emailStatus === "exists" && (
                 <p className="text-xs text-green-600 mb-3">
                   Account found! You can reset your password.

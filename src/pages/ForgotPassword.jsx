@@ -49,7 +49,7 @@ export default function ForgotPassword() {
       const res = await fetch(`${BASE_URL}/check-email?email=${email}`);
       const data = await res.json();
 
-      if (res.ok && data.available === false) setEmailStatus("exists");
+      if (res.ok && data.exits) setEmailStatus("exists");
       else setEmailStatus("notfound");
     } catch (err) {
       console.error("checkEmail error:", err);

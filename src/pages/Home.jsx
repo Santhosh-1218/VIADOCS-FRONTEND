@@ -8,6 +8,7 @@ import Footer from "../components/Footer/Footer";
 import image1 from "../assets/image1.webp";
 import image2 from "../assets/images2.webp";
 import image3 from "../assets/image3.webp";
+import viadocsVideo from "../assets/viadocs.mp4";
 import {
   MoreVertical,
   Star,
@@ -760,6 +761,33 @@ export default function Home() {
           </div>
         </main>
       </div>
+
+{/* ===== Folder Creation Video Section (Perfect Rectangle) ===== */}
+<section className="w-full px-4 py-12 bg-gradient-to-br from-[#F9FAFB] via-[#F3F8FF] to-[#E4E1FF] text-center border-t border-[#E0ECFF]">
+  <h2 className="text-2xl sm:text-3xl font-extrabold text-[#4066E0] mb-6">
+    Watch How Folder Creation Works 📂
+  </h2>
+
+  <div className="flex justify-center">
+    {/* ✅ Perfect rectangle video wrapper */}
+    <div className="w-full max-w-5xl bg-black rounded-lg overflow-hidden shadow-2xl">
+      <video
+        src={viadocsVideo} // ⚠️ make sure you imported: import viadocsVideo from "../assets/viadocs.mp4";
+        autoPlay
+        muted
+        loop
+        playsInline
+        controls
+        onClick={(e) => (e.target.muted = !e.target.muted)}
+        className="w-full h-auto aspect-video object-fill rounded-none"
+      />
+    </div>
+  </div>
+
+  <p className="mt-3 text-sm text-gray-600">
+    (Click the 🔈 icon to unmute and listen with sound)
+  </p>
+</section>
 
       
 {/* ===== Viadocs Features Section ===== */}

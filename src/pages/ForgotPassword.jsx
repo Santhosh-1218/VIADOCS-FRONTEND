@@ -26,10 +26,11 @@ export default function ForgotPassword() {
   const [timer, setTimer] = useState(0);
   const navigate = useNavigate();
 
-  // ✅ Use your backend URL from .env if available
+  // ✅ Use environment variable correctly for Create React App
   const BASE_URL =
-    import.meta.env.VITE_API_URL ||
-    "https://viadocs-backend-production.up.railway.app/api/auth";
+    process.env.REACT_APP_API_URL
+      ? `${process.env.REACT_APP_API_URL}/api/auth`
+      : "https://viadocs-backend-production.up.railway.app/api/auth";
 
   // ⏳ OTP resend countdown
   useEffect(() => {
@@ -49,7 +50,7 @@ export default function ForgotPassword() {
       const data = await res.json();
 
       if (res.ok && data.available === false) {
-        setEmailStatus("exists"); // email registered
+        setEmailStatus("exists"); // Email registered
       } else {
         setEmailStatus("notfound");
       }

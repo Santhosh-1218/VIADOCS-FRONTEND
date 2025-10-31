@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import wwiLogo from "../assets/wwi-logo.jpg";
+import wwiLogo from "../assets/wwi-logo.webp";
 
 export default function About() {
   const navigate = useNavigate();

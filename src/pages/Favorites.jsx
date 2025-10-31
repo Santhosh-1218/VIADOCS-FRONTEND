@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState,  useCallback } from "react";
 import axios from "axios";
-import image1 from "../assets/image1.jpg";
-import image2 from "../assets/images2.png";
-import image3 from "../assets/image3.jpg";
+import image1 from "../assets/image1.webp";
+import image2 from "../assets/images2.webp";
+import image3 from "../assets/image3.webp";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
@@ -316,68 +316,6 @@ export default function Favorites() {
         </p>
       </section>
 
-{/* ===== Why Save Favorites on Viadocs ===== */}
-<section className="py-16 bg-gradient-to-b from-[#F9FAFB] via-[#F3F8FF] to-[#E4E1FF] text-center border-t border-gray-100">
-  <div className="max-w-5xl mx-auto px-6">
-    <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6">
-      Why Save <span className="text-[#4066E0]">Favorites</span> on Viadocs?
-    </h2>
-
-    <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-8">
-      Viadocs allows you to bookmark and organize your important documents securely.
-      Whether it's project reports, resumes, or AI-generated documents — your favorites
-      stay accessible anytime, on any device.
-    </p>
-
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
-        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">📁 Quick Access</h4>
-        <p className="text-gray-600 text-sm">
-          Instantly open your frequently used or pinned documents without searching through folders.
-        </p>
-      </div>
-
-      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
-        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">🔒 Secure Cloud Storage</h4>
-        <p className="text-gray-600 text-sm">
-          Favorites are stored in your private Viadocs account — encrypted and synced safely.
-        </p>
-      </div>
-
-      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
-        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">🤖 Smart Organization</h4>
-        <p className="text-gray-600 text-sm">
-          Our AI automatically categorizes documents by type (PDF, Word, report) for better workflow.
-        </p>
-      </div>
-
-      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
-        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">⚙️ Edit & Update</h4>
-        <p className="text-gray-600 text-sm">
-          Edit, rename, or re-share your documents directly from the Favorites dashboard.
-        </p>
-      </div>
-
-      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
-        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">🌐 Access Anywhere</h4>
-        <p className="text-gray-600 text-sm">
-          Viadocs works across devices — mobile, desktop, or tablet — so your favorite docs are always available.
-        </p>
-      </div>
-
-      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
-        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">🚀 Built for Productivity</h4>
-        <p className="text-gray-600 text-sm">
-          Save time managing documents with AI-powered tools and automatic PDF generation.
-        </p>
-      </div>
-    </div>
-
-    <p className="mt-10 text-sm text-gray-500 italic">
-      Viadocs — your trusted AI workspace to manage, store, and organize professional documents efficiently.
-    </p>
-  </div>
-</section>
 
 
 

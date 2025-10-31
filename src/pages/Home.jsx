@@ -5,9 +5,9 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import image1 from "../assets/image1.jpg";
-import image2 from "../assets/images2.png";
-import image3 from "../assets/image3.jpg";
+import image1 from "../assets/image1.webp";
+import image2 from "../assets/images2.webp";
+import image3 from "../assets/image3.webp";
 import {
   MoreVertical,
   Star,
@@ -322,7 +322,8 @@ export default function Home() {
       {/* make this a flex column and allow it to grow so `main.flex-1` can push footer to bottom */}
       <div className="flex flex-col flex-1 w-full">
         <Header />
-      <main className="flex-1 px-6 pb-0"> {/* Changed py-10 to pb-0 */}
+      <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28"> {/* Added top padding for header height */}
+
         <div className="max-w-6xl mx-auto">
           {/* Welcome Section */}
           <div className="p-8 mb-10 text-center bg-white border border-[#1EC6D7]/30 shadow-lg rounded-2xl">

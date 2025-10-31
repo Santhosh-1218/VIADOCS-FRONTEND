@@ -1,87 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- ✅ Preconnect for faster Google services -->
+    <!-- Improve compatibility & rendering -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#4066E0" />
+
+    <!-- Preconnect: reduces DNS/TCP/TLS overhead for critical external origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
 
-    <!-- ✅ Preload key assets -->
+    <!-- Preload: fonts stylesheet (safe) and critical images -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" />
     <link rel="preload" href="%PUBLIC_URL%/logo193.webp" as="image" />
     <link rel="preload" href="%PUBLIC_URL%/logo192.webp" as="image" />
     <link rel="preload" href="%PUBLIC_URL%/manifest.json" as="fetch" crossorigin="anonymous" />
 
-    <!-- ✅ Google Analytics -->
+    <!-- Google Fonts (non-blocking) - stylesheet will be applied quickly because of preload above -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Google Analytics - load async, configure after window load to prioritize paint -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DM9KZJCSF6"></script>
     <script>
+      // Minimal, non-blocking GA init:
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag("js", new Date());
-      gtag("config", "G-DM9KZJCSF6");
+
+      // Load gtag library (async) — defer config until window.load so LCP isn't delayed.
+      // We still create the function early so other calls won't error.
+      window.addEventListener('load', function () {
+        try {
+          gtag('js', new Date());
+          // anonymize_ip reduces privacy concerns (optional)
+          gtag('config', 'G-DM9KZJCSF6', { 'anonymize_ip': true, 'send_page_view': true });
+        } catch (e) {
+          // fail silently; analytics must not break the page
+        }
+      });
     </script>
 
-    <!-- ✅ Google AdSense -->
+    <!-- Google AdSense (kept async) -->
     <meta name="google-adsense-account" content="ca-pub-3307249219608799" />
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3307249219608799"
-      crossorigin="anonymous"
-    ></script>
+    <!-- Move ad script after the root to prioritize initial render; kept async and crossorigin -->
+    <!-- NOTE: We intentionally do not run the AdSense script before meaningful paint. -->
 
-    <!-- ✅ Basic Meta Tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#4066E0" />
-    <link rel="icon" href="%PUBLIC_URL%/logo193.webp" />
-
-    <!-- ✅ SEO Tags -->
+    <!-- Basic SEO meta tags -->
     <title>Viadocs | Free AI Document Builder & PDF Tools Online</title>
-    <meta
-      name="title"
-      content="Viadocs | Free AI Document Builder & PDF Tools Online"
-    />
-    <meta
-      name="description"
-      content="Viadocs — Create, edit, convert, and manage your project documents faster using AI. A free online document builder with PDF tools, collaboration, and smart automation."
-    />
-    <meta
-      name="keywords"
-      content="Viadocs, AI document builder, PDF tools, document converter, free online PDF editor, AI assistant, engineering students, professionals"
-    />
+    <meta name="title" content="Viadocs | Free AI Document Builder & PDF Tools Online" />
+    <meta name="description" content="Viadocs — Create, edit, convert, and manage your project documents faster using AI. A free online document builder with PDF tools, collaboration, and smart automation." />
+    <meta name="keywords" content="Viadocs, AI document builder, PDF tools, document converter, free online PDF editor, AI assistant, engineering students, professionals" />
     <meta name="author" content="Work Wizards Innovations" />
     <meta name="robots" content="index, follow" />
-    <meta name="language" content="English" />
-    <meta name="revisit-after" content="7 days" />
 
-    <!-- ✅ Open Graph -->
+    <!-- Open Graph / Twitter Cards -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://viadocs.in/" />
-    <meta
-      property="og:title"
-      content="Viadocs - AI Document Tools for Students & Employees"
-    />
-    <meta
-      property="og:description"
-      content="Create, edit, and manage PDFs with Viadocs — an AI-powered workspace built for engineering students and professionals."
-    />
+    <meta property="og:title" content="Viadocs - AI Document Tools for Students & Employees" />
+    <meta property="og:description" content="Create, edit, and manage PDFs with Viadocs — an AI-powered workspace built for engineering students and professionals." />
     <meta property="og:image" content="https://viadocs.in/logo.png" />
 
-    <!-- ✅ Twitter Card -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://viadocs.in/" />
-    <meta
-      property="twitter:title"
-      content="Viadocs | Free AI Document Builder & PDF Tools Online"
-    />
-    <meta
-      property="twitter:description"
-      content="Smart, AI-powered document and PDF editing platform — free forever."
-    />
+    <meta property="twitter:title" content="Viadocs | Free AI Document Builder & PDF Tools Online" />
+    <meta property="twitter:description" content="Smart, AI-powered document and PDF editing platform — free forever." />
     <meta property="twitter:image" content="https://viadocs.in/logo.png" />
     <link rel="canonical" href="https://viadocs.in/" />
 
-    <!-- ✅ Structured Data (Schema.org) -->
+    <!-- Structured Data (Schema.org) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -98,58 +88,22 @@
       }
     </script>
 
-    <!-- ✅ Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-
+    <!-- Progressive Web App manifest & icons -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.webp" />
+    <link rel="icon" href="%PUBLIC_URL%/logo193.webp" />
 
-    <!-- ✅ Inline Loader Style (Fast Render) -->
+    <!-- Small inline critical CSS for loader (kept minimal) -->
     <style>
-      body {
-        margin: 0;
-        font-family: "Inter", sans-serif;
-        background: #f9fafb;
-        color: #111827;
-      }
-      #root {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-      .loader {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: linear-gradient(to right, #1ec6d7, #4066e0, #6a3fd7);
-        color: white;
-        font-weight: 600;
-        font-size: 1.5rem;
-        text-align: center;
-      }
-      .loader img {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 20px;
-        animation: fadeIn 1.5s ease-in-out infinite alternate;
-        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
-      }
-      .loader-text {
-        animation: pulse 1.5s ease-in-out infinite;
-      }
-      @keyframes pulse {
-        0%, 100% { opacity: 0.6; }
-        50% { opacity: 1; }
-      }
-      @keyframes fadeIn {
-        0% { opacity: 0.7; transform: scale(0.95); }
-        100% { opacity: 1; transform: scale(1.05); }
-      }
+      :root { color-scheme: light; }
+      html,body { margin:0; height:100%; font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#f9fafb; color:#111827; }
+      #root { min-height: 100vh; display:flex; flex-direction:column; }
+      .loader { display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; background:linear-gradient(90deg,#1ec6d7,#4066e0,#6a3fd7); color:#fff; font-weight:600; font-size:1.25rem; text-align:center; }
+      .loader img{ width:96px; height:96px; margin-bottom:18px; animation:fadeIn 1.2s ease-in-out infinite alternate; filter:drop-shadow(0 0 10px rgba(255,255,255,0.7)); }
+      .loader-text{ animation:pulse 1.4s ease-in-out infinite; }
+      @keyframes pulse{ 0%,100%{opacity:.7}50%{opacity:1} }
+      @keyframes fadeIn{ 0%{opacity:.75; transform:scale(.96)} 100%{opacity:1; transform:scale(1.02)} }
+      /* Keep loader styles small and safe for quick paint */
     </style>
   </head>
 
@@ -157,17 +111,39 @@
     <noscript>You need to enable JavaScript to run Viadocs.</noscript>
 
     <div id="root">
-      <!-- ✅ Preload Screen -->
-      <div class="loader">
-        <img src="%PUBLIC_URL%/logo192.webp" alt="Viadocs Logo" />
+      <!-- Lightweight splash while React hydrates -->
+      <div class="loader" aria-hidden="true">
+        <img src="%PUBLIC_URL%/logo192.webp" alt="Viadocs Logo" width="96" height="96" />
         <div class="loader-text">Loading Viadocs...</div>
       </div>
     </div>
 
+    <!-- Place third-party scripts that are not critical after the root so they don't block first paint -->
+    <!-- Google AdSense (async) -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3307249219608799"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Optional: small inline helper to reduce accidental layout shift from scrollbars on load -->
+    <script>
+      // Prevent flash-of-unstyled-scrollbar (minor)
+      document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+
     <!--
-      🧠 Viadocs — Free AI Document Builder & PDF Tools
-      🌐 https://viadocs.in/
-      📅 2025 © Work Wizards Innovations. All rights reserved.
+      Reminder:
+      - Production React build will inject your actual bundle scripts (e.g. /static/js/*.js).
+      - If you use hashed filenames in production, you can add a <link rel="preload"> for the main CSS/JS in your CI/build step
+        once you know the hashed file names (e.g. <link rel="preload" href="/static/css/main.<hash>.css" as="style">).
+    -->
+
+    <!-- Copyright / credits -->
+    <!--
+      Viadocs — Free AI Document Builder & PDF Tools
+      https://viadocs.in/
+      2025 © Work Wizards Innovations. All rights reserved.
     -->
   </body>
 </html>

@@ -11,9 +11,9 @@ frontend/
 ├── src/                                    # 💻 Main source code
 │   │
 │   ├── assets/                             # 🖼️ Static files
-│   │   ├── logo.jpg
-│   │   ├── logo2.jpg
-│   │   └── main logo.jpg
+│   │   ├── logo.webp
+│   │   ├── logo2.webp
+│   │   └── main logo.webp
 │   │
 │   ├── components/                         # 🧩 Reusable UI parts
 │   │   ├── Header/

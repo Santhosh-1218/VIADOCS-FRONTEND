@@ -3,9 +3,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import image1 from "../assets/image1.jpg";
-import image2 from "../assets/images2.png";
-import image3 from "../assets/image3.jpg";
+import image1 from "../assets/image1.webp";
+import image2 from "../assets/images2.webp";
+import image3 from "../assets/image3.webp";
 
 import {
   ArrowLeft,
@@ -18,13 +18,8 @@ import {
   Scissors,
   Merge,
   Download,
-  Upload,
-  PenTool,
-  Languages,
   Shrink,
-  Edit3,
   Presentation,
-  Signature,
 } from "lucide-react";
 
 export default function Tools() {

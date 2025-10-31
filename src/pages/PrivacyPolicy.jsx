@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, ShieldCheck, Lock, Globe, Mail } from "lucide-react";
+import { ArrowLeft, ShieldCheck, } from "lucide-react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 

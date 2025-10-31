@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/logo2.png";
+import logo from "../../assets/logo2.webp";
 import { User, Menu, X } from "lucide-react";
 
 export default function AdminHeader({ onToggleSidebar, sidebarOpen }) {

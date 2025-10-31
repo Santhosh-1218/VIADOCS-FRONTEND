@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { ArrowLeft } from "lucide-react";
+
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import logo from "../assets/logo.jpg";
+import logo from "../assets/logo.webp";
 
 const Signup = () => {
   const [formData, setFormData] = useState({

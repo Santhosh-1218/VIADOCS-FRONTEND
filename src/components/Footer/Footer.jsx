@@ -1,26 +1,25 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Info,
-  Home,
-  FileText,
-  Wrench,
-  Bot,
-  ShieldCheck,
-  MessageCircleQuestion,
-  Mail,
-  Scale,
-} from "lucide-react";
 
-export default function Footer({ sticky = false }) {
+// ✅ Lazy-load Lucide icons (only load when footer mounts)
+const Info = React.lazy(() => import("lucide-react").then((m) => ({ default: m.Info })));
+const Home = React.lazy(() => import("lucide-react").then((m) => ({ default: m.Home })));
+const FileText = React.lazy(() => import("lucide-react").then((m) => ({ default: m.FileText })));
+const Wrench = React.lazy(() => import("lucide-react").then((m) => ({ default: m.Wrench })));
+const ShieldCheck = React.lazy(() => import("lucide-react").then((m) => ({ default: m.ShieldCheck })));
+const MessageCircleQuestion = React.lazy(() =>
+  import("lucide-react").then((m) => ({ default: m.MessageCircleQuestion }))
+);
+const Mail = React.lazy(() => import("lucide-react").then((m) => ({ default: m.Mail })));
+const Scale = React.lazy(() => import("lucide-react").then((m) => ({ default: m.Scale })));
+
+function Footer({ sticky = false }) {
   const navigate = useNavigate();
-  const stickyClasses = sticky
-    ? "fixed bottom-0 left-0 w-full z-40 shadow-inner"
-    : "";
+  const stickyClasses = sticky ? "fixed bottom-0 left-0 w-full z-40 shadow-inner" : "";
 
   return (
     <footer
-     className={`${stickyClasses} bg-gradient-to-br from-[#2F3438] via-[#373C3F] to-[#3F4448] text-gray-200`}
+      className={`${stickyClasses} bg-gradient-to-br from-[#2F3438] via-[#373C3F] to-[#3F4448] text-gray-200 transition-colors duration-300`}
     >
       <div className="max-w-7xl px-6 py-10 mx-auto">
         {/* ===== Top Section ===== */}
@@ -32,9 +31,9 @@ export default function Footer({ sticky = false }) {
             </h2>
             <p className="mt-3 text-sm text-gray-400 leading-relaxed">
               Built with passion by{" "}
-              <a 
-                href="https://wwi.org.in" 
-                target="_blank" 
+              <a
+                href="https://wwi.org.in"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold text-white hover:underline"
               >
@@ -53,23 +52,31 @@ export default function Footer({ sticky = false }) {
             <ul className="space-y-2 text-sm text-gray-400">
               <li
                 onClick={() => navigate("/home")}
-                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all"
+                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all justify-center sm:justify-start"
               >
-                <Home size={14} /> Home
+                <Suspense fallback={<span>•</span>}>
+                  <Home size={14} />
+                </Suspense>
+                Home
               </li>
               <li
                 onClick={() => navigate("/create-doc")}
-                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all"
+                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all justify-center sm:justify-start"
               >
-                <FileText size={14} /> Create Doc
+                <Suspense fallback={<span>•</span>}>
+                  <FileText size={14} />
+                </Suspense>
+                Create Doc
               </li>
               <li
                 onClick={() => navigate("/tools")}
-                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all"
+                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all justify-center sm:justify-start"
               >
-                <Wrench size={14} /> Tools
+                <Suspense fallback={<span>•</span>}>
+                  <Wrench size={14} />
+                </Suspense>
+                Tools
               </li>
-              
             </ul>
           </div>
 
@@ -79,35 +86,50 @@ export default function Footer({ sticky = false }) {
               Support & Legal
             </h3>
             <ul className="space-y-2 text-sm text-gray-400">
-                <li
+              <li
                 onClick={() => navigate("/about")}
-                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all"
+                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all justify-center sm:justify-start"
               >
-                <Info size={14} />About
+                <Suspense fallback={<span>•</span>}>
+                  <Info size={14} />
+                </Suspense>
+                About
               </li>
               <li
                 onClick={() => navigate("/privacy-policy")}
-                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all"
+                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all justify-center sm:justify-start"
               >
-                <ShieldCheck size={14} /> Privacy Policy
+                <Suspense fallback={<span>•</span>}>
+                  <ShieldCheck size={14} />
+                </Suspense>
+                Privacy Policy
               </li>
               <li
                 onClick={() => navigate("/terms")}
-                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all"
+                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all justify-center sm:justify-start"
               >
-                <Scale size={14} /> Terms & Conditions
+                <Suspense fallback={<span>•</span>}>
+                  <Scale size={14} />
+                </Suspense>
+                Terms & Conditions
               </li>
               <li
                 onClick={() => navigate("/contact")}
-                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all"
+                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all justify-center sm:justify-start"
               >
-                <Mail size={14} /> Contact Us
+                <Suspense fallback={<span>•</span>}>
+                  <Mail size={14} />
+                </Suspense>
+                Contact Us
               </li>
               <li
                 onClick={() => navigate("/help")}
-                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all"
+                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all justify-center sm:justify-start"
               >
-                <MessageCircleQuestion size={14} /> Help Center
+                <Suspense fallback={<span>•</span>}>
+                  <MessageCircleQuestion size={14} />
+                </Suspense>
+                Help Center
               </li>
             </ul>
           </div>
@@ -119,13 +141,14 @@ export default function Footer({ sticky = false }) {
         {/* ===== Bottom Section ===== */}
         <div className="flex flex-col items-center justify-between gap-3 sm:flex-row text-center sm:text-left">
           <p className="text-sm text-gray-400">
-            © 2025 <span className="font-semibold text-white">Viadocs</span>. All rights reserved.
+            © 2025{" "}
+            <span className="font-semibold text-white">Viadocs</span>. All rights reserved.
           </p>
           <p className="text-xs text-gray-500">
             Designed & Developed by{" "}
-            <a 
-              href="https://wwi.org.in" 
-              target="_blank" 
+            <a
+              href="https://wwi.org.in"
+              target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-white hover:underline"
             >
@@ -138,3 +161,5 @@ export default function Footer({ sticky = false }) {
     </footer>
   );
 }
+
+export default React.memo(Footer);

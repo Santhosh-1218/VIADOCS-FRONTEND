@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { User, Lock, Eye, EyeOff } from "lucide-react";
-import logo from "../assets/logo.jpg";
+import logo from "../assets/logo.webp";
 
 export default function Login() {
   const [email, setEmail] = useState("");

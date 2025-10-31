@@ -10,14 +10,15 @@ import {
   XCircle,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ForgotPassword() {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
-  const [emailStatus, setEmailStatus] = useState(null); // ✅ Email check
+  const [emailStatus, setEmailStatus] = useState(null);
   const [otp, setOtp] = useState("");
-  const [otpStatus, setOtpStatus] = useState(null); // ✅ OTP check
+  const [otpStatus, setOtpStatus] = useState(null);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -25,9 +26,12 @@ export default function ForgotPassword() {
   const [timer, setTimer] = useState(0);
   const navigate = useNavigate();
 
-  const BASE_URL = "https://viadocs-backend-production.up.railway.app/api/auth";
+  // ✅ Use your backend URL from .env if available
+  const BASE_URL =
+    import.meta.env.VITE_API_URL ||
+    "https://viadocs-backend-production.up.railway.app/api/auth";
 
-  // Timer for OTP resend
+  // ⏳ OTP resend countdown
   useEffect(() => {
     if (timer > 0) {
       const countdown = setTimeout(() => setTimer(timer - 1), 1000);
@@ -35,21 +39,24 @@ export default function ForgotPassword() {
     }
   }, [timer]);
 
-  // ✅ Step 1 — Check if email exists
+  // ✅ Step 1 — Check Email Availability
   const checkEmailAvailability = async () => {
     if (!email.trim()) return;
     setEmailStatus("checking");
+
     try {
       const res = await fetch(`${BASE_URL}/check-email?email=${email}`);
       const data = await res.json();
+
       if (res.ok && data.available === false) {
-        setEmailStatus("exists");
+        setEmailStatus("exists"); // email registered
       } else {
         setEmailStatus("notfound");
       }
     } catch (err) {
       console.error("checkEmail error:", err);
       setEmailStatus("error");
+      toast.error("Unable to verify email. Try again later.");
     }
   };
 
@@ -72,15 +79,15 @@ export default function ForgotPassword() {
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("OTP sent successfully!");
+        toast.success("OTP sent successfully to your email!");
         setStep(2);
         setTimer(60);
       } else {
-        toast.error(data.message || "Failed to send OTP");
+        toast.error(data.message || "Failed to send OTP. Try again later.");
       }
     } catch (err) {
       console.error("send-otp error:", err);
-      toast.error("Server not responding!");
+      toast.error("Server not responding. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -116,7 +123,6 @@ export default function ForgotPassword() {
       }
     } catch (err) {
       console.error("verify-otp error:", err);
-      setOtpStatus("invalid");
       toast.error("Could not verify OTP. Try again.");
     } finally {
       setLoading(false);
@@ -126,6 +132,11 @@ export default function ForgotPassword() {
   // ✅ Step 3 — Reset Password
   const handleResetPassword = async (e) => {
     e.preventDefault();
+    if (newPassword.length < 6) {
+      toast.warning("Password must be at least 6 characters long.");
+      return;
+    }
+
     if (newPassword !== confirmPassword) {
       toast.warning("Passwords do not match!");
       return;
@@ -142,7 +153,7 @@ export default function ForgotPassword() {
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("Password reset successfully!");
+        toast.success("Password reset successful! Redirecting to login...");
         setTimeout(() => navigate("/login"), 2000);
       } else {
         toast.error(data.message || "Failed to reset password");
@@ -156,171 +167,176 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#E3F2FD] to-[#E8EAF6] p-6">
-      <div className="w-full max-w-md p-8 bg-white rounded-2xl shadow-xl">
-        {/* Back button */}
-        <button
-          onClick={() => navigate("/login")}
-          className="flex items-center gap-2 text-sm text-[#3F51B5] mb-6 hover:text-[#1E88E5]"
-        >
-          <ArrowLeft size={18} /> Back
-        </button>
+    <>
+      <ToastContainer position="top-right" autoClose={2000} />
 
-        <h2 className="text-2xl font-bold text-center text-[#1E88E5] mb-4">
-          Forgot Password
-        </h2>
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#E3F2FD] to-[#E8EAF6] p-6">
+        <div className="w-full max-w-md p-8 bg-white rounded-2xl shadow-xl transition-all duration-300">
+          {/* 🔙 Back Button */}
+          <button
+            onClick={() => navigate("/login")}
+            className="flex items-center gap-2 text-sm text-[#3F51B5] mb-6 hover:text-[#1E88E5]"
+          >
+            <ArrowLeft size={18} /> Back
+          </button>
 
-        {/* STEP 1 - Email */}
-        {step === 1 && (
-          <form onSubmit={handleSendOtp}>
-            <div className="flex items-center border-b border-gray-300 mb-4 focus-within:border-[#3F51B5]">
-              <Mail className="mr-3 text-gray-500" />
-              <input
-                type="email"
-                placeholder="Enter your registered email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  setEmailStatus(null);
-                }}
-                onBlur={checkEmailAvailability}
-                required
-                className="w-full py-3 outline-none"
-              />
-              {emailStatus === "checking" && (
-                <span className="text-xs text-gray-500">⏳</span>
-              )}
-              {emailStatus === "exists" && (
-                <CheckCircle className="text-green-500" size={18} />
-              )}
+          <h2 className="text-2xl font-bold text-center text-[#1E88E5] mb-4">
+            Forgot Password
+          </h2>
+
+          {/* ✅ STEP 1 - Email */}
+          {step === 1 && (
+            <form onSubmit={handleSendOtp}>
+              <div className="flex items-center border-b border-gray-300 mb-4 focus-within:border-[#3F51B5]">
+                <Mail className="mr-3 text-gray-500" />
+                <input
+                  type="email"
+                  placeholder="Enter your registered email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setEmailStatus(null);
+                  }}
+                  onBlur={checkEmailAvailability}
+                  required
+                  className="w-full py-3 outline-none"
+                />
+                {emailStatus === "checking" && (
+                  <span className="text-xs text-gray-500">⏳</span>
+                )}
+                {emailStatus === "exists" && (
+                  <CheckCircle className="text-green-500" size={18} />
+                )}
+                {emailStatus === "notfound" && (
+                  <XCircle className="text-red-500" size={18} />
+                )}
+              </div>
+
               {emailStatus === "notfound" && (
-                <XCircle className="text-red-500" size={18} />
+                <p className="text-xs text-red-500 mb-3">
+                  No account found with this email.
+                </p>
               )}
-            </div>
 
-            {emailStatus === "notfound" && (
-              <p className="text-xs text-red-500 mb-3">
-                No account found with this email.
-              </p>
-            )}
-
-            {emailStatus === "exists" && (
-              <p className="text-xs text-green-600 mb-3">
-                Account found! You can reset password.
-              </p>
-            )}
-
-            <button
-              type="submit"
-              disabled={loading || emailStatus !== "exists"}
-              className={`w-full py-3 text-white rounded-full ${
-                emailStatus === "exists"
-                  ? "bg-gradient-to-r from-[#3F51B5] to-[#1E88E5]"
-                  : "bg-gray-400 cursor-not-allowed"
-              }`}
-            >
-              {loading ? "Sending..." : "Send OTP"}
-            </button>
-          </form>
-        )}
-
-        {/* STEP 2 - OTP */}
-        {step === 2 && (
-          <form onSubmit={handleVerifyOtp}>
-            <div className="flex items-center border-b border-gray-300 mb-4 focus-within:border-[#3F51B5]">
-              <KeyRound className="mr-3 text-gray-500" />
-              <input
-                type="text"
-                placeholder="Enter 4-digit OTP"
-                maxLength={4}
-                value={otp}
-                onChange={(e) => {
-                  setOtp(e.target.value);
-                  setOtpStatus(null);
-                }}
-                required
-                className="w-full py-3 text-center outline-none tracking-widest"
-              />
-              {otpStatus === "checking" && (
-                <span className="text-xs text-gray-500">⏳</span>
+              {emailStatus === "exists" && (
+                <p className="text-xs text-green-600 mb-3">
+                  Account found! You can reset your password.
+                </p>
               )}
-              {otpStatus === "valid" && (
-                <CheckCircle className="text-green-500" size={18} />
-              )}
-              {otpStatus === "invalid" && (
-                <XCircle className="text-red-500" size={18} />
-              )}
-            </div>
 
-            {timer > 0 ? (
-              <p className="text-xs text-center text-gray-600 mb-3">
-                Resend available in{" "}
-                <span className="text-[#1E88E5] font-semibold">{timer}s</span>
-              </p>
-            ) : (
               <button
-                type="button"
-                onClick={handleSendOtp}
-                className="block mx-auto text-sm text-[#3F51B5] hover:text-[#1E88E5] mb-3"
+                type="submit"
+                disabled={loading || emailStatus !== "exists"}
+                className={`w-full py-3 text-white rounded-full transition-all ${
+                  emailStatus === "exists"
+                    ? "bg-gradient-to-r from-[#3F51B5] to-[#1E88E5] hover:opacity-90"
+                    : "bg-gray-400 cursor-not-allowed"
+                }`}
               >
-                Resend OTP
+                {loading ? "Sending..." : "Send OTP"}
               </button>
-            )}
+            </form>
+          )}
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 text-white rounded-full bg-gradient-to-r from-[#3F51B5] to-[#1E88E5]"
-            >
-              {loading ? "Verifying..." : "Verify OTP"}
-            </button>
-          </form>
-        )}
+          {/* ✅ STEP 2 - OTP */}
+          {step === 2 && (
+            <form onSubmit={handleVerifyOtp}>
+              <div className="flex items-center border-b border-gray-300 mb-4 focus-within:border-[#3F51B5]">
+                <KeyRound className="mr-3 text-gray-500" />
+                <input
+                  type="text"
+                  placeholder="Enter 4-digit OTP"
+                  maxLength={4}
+                  value={otp}
+                  onChange={(e) => {
+                    setOtp(e.target.value);
+                    setOtpStatus(null);
+                  }}
+                  required
+                  className="w-full py-3 text-center outline-none tracking-widest"
+                />
+                {otpStatus === "checking" && (
+                  <span className="text-xs text-gray-500">⏳</span>
+                )}
+                {otpStatus === "valid" && (
+                  <CheckCircle className="text-green-500" size={18} />
+                )}
+                {otpStatus === "invalid" && (
+                  <XCircle className="text-red-500" size={18} />
+                )}
+              </div>
 
-        {/* STEP 3 - Password */}
-        {step === 3 && (
-          <form onSubmit={handleResetPassword}>
-            <div className="flex items-center border-b border-gray-300 mb-4 focus-within:border-[#3F51B5]">
-              <Lock className="mr-3 text-gray-500" />
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="New Password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                required
-                className="w-full py-3 outline-none"
-              />
+              {timer > 0 ? (
+                <p className="text-xs text-center text-gray-600 mb-3">
+                  Resend available in{" "}
+                  <span className="text-[#1E88E5] font-semibold">{timer}s</span>
+                </p>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleSendOtp}
+                  disabled={loading}
+                  className="block mx-auto text-sm text-[#3F51B5] hover:text-[#1E88E5] mb-3"
+                >
+                  Resend OTP
+                </button>
+              )}
+
               <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="text-gray-500"
+                type="submit"
+                disabled={loading}
+                className="w-full py-3 text-white rounded-full bg-gradient-to-r from-[#3F51B5] to-[#1E88E5] hover:opacity-90"
               >
-                {showPassword ? <EyeOff /> : <Eye />}
+                {loading ? "Verifying..." : "Verify OTP"}
               </button>
-            </div>
+            </form>
+          )}
 
-            <div className="flex items-center border-b border-gray-300 mb-6 focus-within:border-[#3F51B5]">
-              <Lock className="mr-3 text-gray-500" />
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-                className="w-full py-3 outline-none"
-              />
-            </div>
+          {/* ✅ STEP 3 - Reset Password */}
+          {step === 3 && (
+            <form onSubmit={handleResetPassword}>
+              <div className="flex items-center border-b border-gray-300 mb-4 focus-within:border-[#3F51B5]">
+                <Lock className="mr-3 text-gray-500" />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="New Password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  required
+                  className="w-full py-3 outline-none"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="text-gray-500"
+                >
+                  {showPassword ? <EyeOff /> : <Eye />}
+                </button>
+              </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 text-white rounded-full bg-gradient-to-r from-[#3F51B5] to-[#1E88E5]"
-            >
-              {loading ? "Resetting..." : "Reset Password"}
-            </button>
-          </form>
-        )}
+              <div className="flex items-center border-b border-gray-300 mb-6 focus-within:border-[#3F51B5]">
+                <Lock className="mr-3 text-gray-500" />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  className="w-full py-3 outline-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-3 text-white rounded-full bg-gradient-to-r from-[#3F51B5] to-[#1E88E5] hover:opacity-90"
+              >
+                {loading ? "Resetting..." : "Reset Password"}
+              </button>
+            </form>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

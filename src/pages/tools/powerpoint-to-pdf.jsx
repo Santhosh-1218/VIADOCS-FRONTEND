@@ -109,7 +109,7 @@ export default function PowerpointToPdf() {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF4FC] via-[#E1EDFB] to-[#CFE3FA]">
       <Header />
 
-      <main className="flex-1 px-4 py-10 sm:px-6">
+      <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28">
         <div className="max-w-4xl mx-auto">
           {/* 🔙 Back Button */}
           <div className="flex justify-start mb-8">
@@ -251,6 +251,17 @@ export default function PowerpointToPdf() {
           </div>
         </div>
       </main>
+    <div className="mt-10 text-center text-gray-700 text-sm sm:text-base leading-relaxed">
+  <h2 className="text-xl font-semibold text-[#3F51B5] mb-2">
+    Convert PowerPoint Presentations to PDF
+  </h2>
+  <p>
+    Turn PowerPoint slides (.ppt, .pptx) into downloadable PDF documents. 
+    Preserve text, design, animations, and visuals in a print-ready format. 
+    <br className="hidden sm:block" />
+    Viadocs ensures precise conversion — perfect for presentations, lectures, and portfolios.
+  </p>
+</div>
 
       <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
   <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">

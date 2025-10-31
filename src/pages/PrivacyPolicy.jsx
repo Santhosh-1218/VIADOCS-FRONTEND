@@ -11,7 +11,7 @@ export default function PrivacyPolicy() {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF6FF] via-[#F3F8FF] to-[#E4E1FF] text-gray-800">
       <Header />
 
-      <main className="flex-1 px-4 py-10 sm:px-6">
+      <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28">
         <div className="max-w-5xl mx-auto">
           {/* Back Button */}
           <div className="flex justify-start mb-8">

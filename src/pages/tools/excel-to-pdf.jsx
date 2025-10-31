@@ -128,7 +128,8 @@ export default function ExcelToPdf() {
     >
       <Header />
 
-      <main className="flex-1 px-4 py-10 sm:px-6">
+      
+        <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28">
         <div className="max-w-4xl mx-auto">
           {/* 🔙 Back Button */}
           <div className="flex justify-start mb-8">
@@ -270,6 +271,11 @@ export default function ExcelToPdf() {
           </div>
         </div>
       </main>
+      <p className="mt-6 text-center text-gray-600 text-sm sm:text-base">
+  Convert Excel spreadsheets (.xls or .xlsx) into clean, printable PDF files. 
+  Maintain all tables, formulas, and cell alignments with perfect formatting.
+</p>
+
 
       {/* Visible, colored, page-local footer */}
       <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">

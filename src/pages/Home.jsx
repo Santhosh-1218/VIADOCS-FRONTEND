@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { jsPDF } from "jspdf";
 
+
 // Animated typing text (same as before)
 const texts = [
   "Use Viadocs\nto create your\nproject docs faster and smarter",

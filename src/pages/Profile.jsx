@@ -329,7 +329,7 @@ export default function Profile() {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF6FF] via-[#F3F8FF] to-[#E4E1FF]">
       <Header />
 
-      <main className="flex-1 px-4 py-8 sm:px-6 lg:px-8">
+      <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28">
         <div className="max-w-5xl mx-auto">
           {/* Top Navigation */}
           <div className="flex items-center justify-between gap-4 mb-6">

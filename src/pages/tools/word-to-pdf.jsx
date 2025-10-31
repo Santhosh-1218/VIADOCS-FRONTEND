@@ -104,7 +104,7 @@ export default function WordToPDF() {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF4FC] via-[#E1EDFB] to-[#CFE3FA]">
      <Header />
      
-      <main className="flex-1 px-4 py-10 sm:px-6">
+      <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28">
         <div className="max-w-4xl mx-auto">
           {/* Back Button */}
          {/* Back Button */}
@@ -241,6 +241,23 @@ export default function WordToPDF() {
           </div>
         </div>
       </main>
+<div className="mt-10 text-center text-gray-700 text-sm sm:text-base leading-relaxed">
+  <h2 className="text-xl font-semibold text-[#3F51B5] mb-2">
+    Convert Word to PDF Online – Free & Secure
+  </h2>
+  <p>
+    Viadocs allows you to instantly convert your Word documents into high-quality PDF files 
+    without losing layout or formatting. Our platform supports both <strong>.doc</strong> and <strong>.docx</strong> formats, 
+    ensuring your text, tables, and images appear perfectly. 
+    <br className="hidden sm:block" />
+    All conversions are processed securely in the cloud and automatically deleted for your privacy.
+  </p>
+  <p className="mt-2 text-gray-600">
+    Start using Viadocs’ <strong>Word to PDF</strong> converter today — simple, fast, and completely free.
+  </p>
+</div>
+
+
       <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
   <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
     © 2025 <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.

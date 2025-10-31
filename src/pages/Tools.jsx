@@ -43,11 +43,9 @@ export default function Tools() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF6FF] via-[#F3F8FF] to-[#E4E1FF]">
       <Header />
-
-            
-   
-      <main className="flex-1 px-4 py-10 sm:px-6">
-        <div className="mx-auto max-w-7xl">
+      
+      <main className="flex-1 px-0 sm:px-6 pb-16 pt-20 sm:pt-28 bg-gradient-to-br from-[#EAF6FF] via-[#F3F8FF] to-[#E4E1FF]">
+        <div className="mx-auto max-w-7xl px-3 sm:px-0">
          {/* Back Button */}
                              <div className="flex justify-start mb-8">
                                <button
@@ -74,18 +72,22 @@ export default function Tools() {
           </div>
 
           {/* Tools Grid */}
-          <div className="grid grid-cols-3 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 sm:gap-6">
+          <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 sm:gap-6 mb-12">
             {tools.map((tool, i) => (
               <button
                 key={i}
                 onClick={() => navigate(`/tools/${tool.slug}`)}
-                className="flex flex-col items-center justify-center p-4 sm:p-6 text-center bg-white border border-[#1EC6D7]/30 rounded-2xl shadow-sm hover:shadow-xl hover:border-[#4066E0]/40 hover:bg-[#EAF6FF] hover:scale-[1.03] transition-all group"
+                className="relative flex flex-col items-center justify-center p-3 sm:p-6 text-center bg-white border border-[#1EC6D7]/30 rounded-xl shadow-sm hover:shadow-xl hover:border-[#4066E0]/40 hover:bg-[#EAF6FF] hover:scale-[1.02] transition-all group min-h-[135px] sm:min-h-[160px] w-full"
               >
-                <tool.icon className="w-10 h-10 mb-3 text-[#4066E0] group-hover:text-[#1EC6D7] transition-colors" />
-                <h3 className="mb-1 text-sm font-semibold text-gray-800 sm:text-base">
+                <div className="flex items-center justify-center w-10 h-10 mb-2 rounded-lg bg-[#EAF6FF] group-hover:bg-white/80">
+                  <tool.icon className="w-5 h-5 sm:w-6 sm:h-6 text-[#4066E0] group-hover:text-[#1EC6D7] transition-colors" />
+                </div>
+                <h3 className="mb-1 text-xs font-medium text-gray-800 sm:text-sm line-clamp-1 px-0.5">
                   {tool.name}
                 </h3>
-                <p className="text-xs text-gray-600 sm:text-sm">{tool.desc}</p>
+                <p className="text-[10px] sm:text-xs text-gray-500 line-clamp-2 px-1">
+                  {tool.desc}
+                </p>
               </button>
             ))}
           </div>

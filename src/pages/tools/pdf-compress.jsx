@@ -128,7 +128,7 @@ export default function PdfCompress() {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF4FC] via-[#E1EDFB] to-[#CFE3FA]">
       <Header />
 
-      <main className="flex-1 px-4 py-10 sm:px-6">
+      <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28">
         <div className="max-w-4xl mx-auto">
           {/* 🔙 Back button */}
           <div className="flex justify-start mb-8">
@@ -287,6 +287,18 @@ export default function PdfCompress() {
           </div>
         </div>
       </main>
+      <div className="mt-10 text-center text-gray-700 text-sm sm:text-base leading-relaxed">
+  <h2 className="text-xl font-semibold text-[#3F51B5] mb-2">
+    Compress PDF – Reduce File Size Easily
+  </h2>
+  <p>
+    Shrink PDF size while maintaining visual quality. Choose between light, balanced, or extreme compression levels 
+    depending on your needs. 
+    <br className="hidden sm:block" />
+    Perfect for uploading, emailing, and sharing documents faster.
+  </p>
+</div>
+
 
       <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
   <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">

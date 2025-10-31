@@ -135,7 +135,7 @@ export default function PasswordProtect() {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF4FC] via-[#E1EDFB] to-[#CFE3FA]">
       <Header />
 
-      <main className="flex-1 px-3 py-6 sm:px-6 sm:py-10">
+      <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28">
         <div className="w-full max-w-2xl mx-auto">
           {/* Back Button */}
           <div className="flex justify-start mb-6 sm:mb-8">
@@ -352,6 +352,19 @@ export default function PasswordProtect() {
           </div>
         </div>
       </main>
+
+      <div className="mt-10 text-center text-gray-700 text-sm sm:text-base leading-relaxed">
+  <h2 className="text-xl font-semibold text-[#3F51B5] mb-2">
+    Protect Your PDF with a Password
+  </h2>
+  <p>
+    Encrypt your PDF file using Viadocs’ secure online encryption system. 
+    Set a password to prevent unauthorized access, copying, or editing. 
+    <br className="hidden sm:block" />
+    Keep your sensitive files safe — encryption happens instantly and securely.
+  </p>
+</div>
+
       <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
   <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
     © 2025 <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.

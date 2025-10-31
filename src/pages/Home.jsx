@@ -765,7 +765,7 @@ export default function Home() {
 {/* ===== Folder Creation Video Section (Perfect Rectangle) ===== */}
 <section className="w-full px-4 py-12 bg-gradient-to-br from-[#F9FAFB] via-[#F3F8FF] to-[#E4E1FF] text-center border-t border-[#E0ECFF]">
   <h2 className="text-2xl sm:text-3xl font-extrabold text-[#4066E0] mb-6">
-    Watch How Folder Creation Works 📂
+     How Viadocs Works
   </h2>
 
   <div className="flex justify-center">

@@ -49,6 +49,8 @@ export default function Tools() {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF6FF] via-[#F3F8FF] to-[#E4E1FF]">
       <Header />
 
+            
+   
       <main className="flex-1 px-4 py-10 sm:px-6">
         <div className="mx-auto max-w-7xl">
          {/* Back Button */}
@@ -214,6 +216,68 @@ export default function Tools() {
           and PDF tools smarter and easier to use.
         </p>
       </section>
+
+    {/* ===== Why Use Viadocs Tools Section ===== */}
+<section className="py-16 bg-gradient-to-b from-white via-[#F9FAFB] to-[#EEF2FF] text-center border-t border-gray-100">
+  <div className="max-w-5xl mx-auto px-6">
+    <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6">
+      Why Use <span className="text-[#4066E0]">Viadocs PDF Tools</span>?
+    </h2>
+    <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-8">
+      Viadocs offers a seamless experience for document handling — whether you’re converting, merging,
+      or compressing files. Our AI-powered tools are designed to help students, professionals,
+      and educators save time, maintain quality, and ensure document safety.
+    </p>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
+        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">⚡ Instant Conversions</h4>
+        <p className="text-gray-600 text-sm">
+          Convert Word, Excel, PowerPoint, and images into PDFs instantly — without losing formatting.
+        </p>
+      </div>
+
+      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
+        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">🔒 Safe and Secure</h4>
+        <p className="text-gray-600 text-sm">
+          Your files remain private and encrypted. We never store or share your documents.
+        </p>
+      </div>
+
+      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
+        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">💡 AI-Powered Features</h4>
+        <p className="text-gray-600 text-sm">
+          Let our AI assistant summarize reports, extract data, or auto-format content with precision.
+        </p>
+      </div>
+
+      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
+        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">🌍 Works on All Devices</h4>
+        <p className="text-gray-600 text-sm">
+          Access Viadocs tools anywhere — desktop, tablet, or mobile. 100% browser-based.
+        </p>
+      </div>
+
+      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
+        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">🚀 Built for Students & Teams</h4>
+        <p className="text-gray-600 text-sm">
+          Specially crafted for academic and corporate use — simplify project reports and documentation.
+        </p>
+      </div>
+
+      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
+        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">🧠 Free Forever Plan</h4>
+        <p className="text-gray-600 text-sm">
+          Start with all essential tools for free — no sign-up required for most PDF functions.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
 
       <Footer />
     </div>

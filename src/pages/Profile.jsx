@@ -612,6 +612,74 @@ export default function Profile() {
           </div>
       </main>
 
+    {/* ===== About Viadocs Section (SEO + AdSense Friendly) ===== */}
+<div className="p-10 mt-14 text-center border-t border-[#1EC6D7]/30 bg-gradient-to-br from-[#EAF6FF]/60 to-[#E4E1FF]/60 rounded-2xl shadow-sm">
+  <h2 className="text-3xl font-extrabold text-[#4066E0] mb-4">
+    About <span className="text-[#1EC6D7]">Viadocs</span> & Our Users
+  </h2>
+  <p className="max-w-3xl mx-auto text-gray-700 text-sm sm:text-base leading-relaxed mb-6">
+    <strong className="text-[#4066E0]">Viadocs</strong> is more than just an AI-powered document platform —
+    it’s a growing community of learners, professionals, and creators shaping
+    the future of intelligent productivity. Developed by{" "}
+    <span className="text-[#1EC6D7] font-medium">Work Wizards Innovations</span>, Viadocs enables you to
+    create, edit, and manage files with speed, security, and automation — all in one place.
+  </p>
+
+  <p className="max-w-3xl mx-auto text-gray-700 text-sm sm:text-base leading-relaxed mb-6">
+    We believe that technology should empower creativity. Whether you’re a
+    student drafting research, a professional preparing reports, or a startup
+    designing proposals, Viadocs ensures every document is crafted beautifully
+    and securely. Every update we release is inspired by feedback from users like <strong>you</strong>.
+  </p>
+
+  <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
+    <div className="p-6 rounded-xl border border-[#1EC6D7]/30 bg-white/80 shadow-sm hover:shadow-md transition-all">
+      <h3 className="text-xl font-semibold text-[#4066E0] mb-2">Our Vision 🌍</h3>
+      <p className="text-sm text-gray-600">
+        To redefine how people interact with documents — blending Artificial
+        Intelligence, automation, and simplicity for everyone, everywhere.
+      </p>
+    </div>
+    <div className="p-6 rounded-xl border border-[#1EC6D7]/30 bg-white/80 shadow-sm hover:shadow-md transition-all">
+      <h3 className="text-xl font-semibold text-[#4066E0] mb-2">
+        User Commitment 🤝
+      </h3>
+      <p className="text-sm text-gray-600">
+        We value your trust and privacy. Viadocs ensures your data stays secure
+        and never shared, following transparent and GDPR-compliant policies.
+      </p>
+    </div>
+    <div className="p-6 rounded-xl border border-[#1EC6D7]/30 bg-white/80 shadow-sm hover:shadow-md transition-all">
+      <h3 className="text-xl font-semibold text-[#4066E0] mb-2">
+        Innovation Promise ⚙️
+      </h3>
+      <p className="text-sm text-gray-600">
+        Every Viadocs feature is built with cutting-edge AI and cloud
+        technologies — ensuring fast performance and reliable collaboration.
+      </p>
+    </div>
+  </div>
+
+  <div className="mt-10">
+    <h3 className="text-lg font-semibold text-[#4066E0] mb-2">
+      💬 Have Feedback or Ideas?
+    </h3>
+    <p className="text-gray-600 text-sm mb-4">
+      We love hearing from our users! Your suggestions help us improve Viadocs
+      and bring smarter tools to life.
+    </p>
+    <button
+      onClick={() => navigate("/feedback")}
+      className="px-6 py-3 text-sm font-semibold text-white rounded-full shadow-md bg-gradient-to-r from-[#4066E0] to-[#1EC6D7] hover:scale-[1.03] hover:shadow-lg transition-all"
+    >
+      Share Feedback
+    </button>
+  </div>
+</div>
+
+
+
+
       <Footer />
 
       {/* ---------- Crop Modal ---------- */}

@@ -36,6 +36,10 @@ export default function DocAI() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#E8F4FD] via-[#EDE7FB] to-[#F3E9FE]">
       <Header />
+      <section className="bg-[#6A3FD7]/10 py-3 text-center text-sm font-medium text-[#6A3FD7]">
+  🚀 Docxy AI Beta launching soon — Join the waitlist for early access!
+</section>
+
 
       <main className="flex-1 px-6 py-10 animate-fadeIn">
   <div className="flex flex-col max-w-6xl mx-auto md:flex-row md:items-start md:justify-start">
@@ -128,6 +132,72 @@ export default function DocAI() {
     </div>
   </div>
 </main>
+
+{/* ===== About Docxy AI Section ===== */}
+<section className="py-16 bg-gradient-to-b from-[#F9FAFB] via-[#F3F8FF] to-[#E4E1FF] text-center border-t border-gray-100 mt-10">
+  <div className="max-w-5xl mx-auto px-6">
+    <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6">
+      Meet <span className="text-[#6A3FD7]">Docxy AI</span> — The Future of Smart Documentation
+    </h2>
+    <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-8">
+      Docxy is an upcoming AI-powered assistant by Viadocs designed to help students, professionals, and researchers 
+      create structured, professional, and contextually accurate documentation in minutes. 
+      Powered by machine learning and natural language processing, Docxy will revolutionize how you create reports, 
+      proposals, and academic projects.
+    </p>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
+        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">🧠 AI Understanding</h4>
+        <p className="text-gray-600 text-sm">
+          Docxy understands your input context and generates grammatically correct, well-formatted documentation instantly.
+        </p>
+      </div>
+
+      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
+        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">✍️ Custom Writing Styles</h4>
+        <p className="text-gray-600 text-sm">
+          Choose from academic, formal, or professional tone presets to match your document type.
+        </p>
+      </div>
+
+      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
+        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">📊 Smart Structure</h4>
+        <p className="text-gray-600 text-sm">
+          Automatically organizes your content into headings, subpoints, and summaries — ready to export as PDF or Word.
+        </p>
+      </div>
+
+      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
+        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">🔒 Secure Data Processing</h4>
+        <p className="text-gray-600 text-sm">
+          All AI processing happens securely through Viadocs’ servers with strict data encryption.
+        </p>
+      </div>
+
+      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
+        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">📚 Perfect for Students</h4>
+        <p className="text-gray-600 text-sm">
+          Create project documentation, internship reports, or technical writeups without worrying about structure or formatting.
+        </p>
+      </div>
+
+      <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-lg border border-gray-100 transition-all">
+        <h4 className="text-lg font-semibold text-[#4066E0] mb-2">🚀 Early Access Rewards</h4>
+        <p className="text-gray-600 text-sm">
+          Early users get exclusive credits, priority support, and the chance to shape the AI’s next-gen features.
+        </p>
+      </div>
+    </div>
+
+    <p className="mt-10 text-gray-500 text-sm italic">
+      “Docxy — where AI meets creativity to redefine documentation.”
+    </p>
+  </div>
+</section>
+
+
+
 
 
       <Footer />

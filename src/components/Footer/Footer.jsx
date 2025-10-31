@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  Info,
   Home,
   FileText,
   Wrench,
@@ -78,6 +79,12 @@ export default function Footer({ sticky = false }) {
               Support & Legal
             </h3>
             <ul className="space-y-2 text-sm text-gray-400">
+                <li
+                onClick={() => navigate("/about")}
+                className="flex items-center gap-2 cursor-pointer hover:text-white transition-all"
+              >
+                <Info size={14} />About
+              </li>
               <li
                 onClick={() => navigate("/privacy-policy")}
                 className="flex items-center gap-2 cursor-pointer hover:text-white transition-all"

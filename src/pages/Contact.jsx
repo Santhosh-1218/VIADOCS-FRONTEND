@@ -7,8 +7,9 @@ import {
   User,
   MessageSquare,
   Send,
-  Phone,
-  MapPin,
+  ShieldCheck,
+  HeartHandshake,
+  Briefcase,
 } from "lucide-react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
@@ -50,7 +51,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF6FF] via-[#F3F8FF] to-[#E4E1FF]">
       <Header />
 
       <main className="flex-1 px-4 py-10 sm:px-6">
@@ -66,19 +67,86 @@ export default function Contact() {
             </button>
           </div>
 
-          {/* Two-column layout (Info + Form) */}
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          {/* Title */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-extrabold text-[#4066E0]">
+              Contact Us 📬
+            </h1>
+            <p className="mt-3 text-gray-600 max-w-2xl mx-auto text-base">
+              Have a question, suggestion, or partnership idea? We’d love to
+              hear from you. Our team responds within 24–48 hours.
+            </p>
+          </div>
 
-            {/* Right Form Card */}
-            <div className="p-8 border border-[#1EC6D7]/30 shadow-xl bg-white/80 backdrop-blur-md rounded-2xl">
-              <h2 className="text-2xl font-bold text-center text-[#4066E0]">
-                Send Us a Message
+          {/* Main Grid */}
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+            {/* LEFT: About & Brand Impression Section */}
+            <div className="p-8 border border-[#1EC6D7]/30 bg-gradient-to-br from-[#EAF6FF]/80 to-[#E4E1FF]/80 rounded-2xl shadow-lg hover:shadow-xl transition-all">
+              <h2 className="text-2xl font-bold text-[#4066E0] mb-6 text-center">
+                About Viadocs 🌐
               </h2>
-              <p className="text-gray-600 text-center text-sm mt-2 mb-6">
-                We respond to all queries within 24–48 hours.
+
+              <p className="text-gray-700 leading-relaxed mb-6 text-justify">
+                <strong className="text-[#4066E0]">Viadocs</strong> is an
+                <strong> AI-powered document creation and management platform</strong>{" "}
+                built by{" "}
+                <strong className="text-[#1EC6D7]">
+                  Work Wizards Innovations
+                </strong>.  
+                Our goal is to transform document handling into a seamless,
+                automated, and intelligent experience for professionals,
+                students, and creators worldwide.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off">
+              <p className="text-gray-700 leading-relaxed mb-6 text-justify">
+                Viadocs merges smart automation, secure cloud tools, and a
+                modern user interface to simplify your work. Whether converting,
+                compressing, merging, or signing documents — we make it faster,
+                safer, and smarter.
+              </p>
+
+              <p className="text-gray-700 leading-relaxed mb-6 text-justify">
+                As a proud Indian startup under{" "}
+                <span className="font-semibold text-[#4066E0]">
+                  Work Wizards Innovations
+                </span>, we believe in creating ethical, secure, and accessible
+                technology that empowers people. Our focus remains on innovation
+                that simplifies life and promotes digital trust.
+              </p>
+
+              {/* CTA Section */}
+              <div className="mt-6 text-center">
+                <h3 className="text-lg font-semibold text-[#4066E0] mb-3">
+                  🌟 Join the Viadocs Revolution
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Discover how we’re shaping the future of document automation
+                  through AI and simplicity.
+                </p>
+                <button
+                  onClick={() => navigate("/about")}
+                  className="px-6 py-3 text-sm font-semibold text-white rounded-full shadow-md bg-gradient-to-r from-[#4066E0] to-[#1EC6D7] hover:scale-[1.03] hover:shadow-lg transition-all"
+                >
+                  Learn More About Us
+                </button>
+              </div>
+            </div>
+
+            {/* RIGHT: Contact Form */}
+            <div className="p-8 border border-[#1EC6D7]/30 shadow-xl bg-white/80 backdrop-blur-md rounded-2xl">
+              <h2 className="text-2xl font-bold text-center text-[#4066E0]">
+                Send Us a Message ✉️
+              </h2>
+              <p className="text-gray-600 text-center text-sm mt-2 mb-6">
+                We usually reply within 24–48 hours. Please provide valid
+                contact details.
+              </p>
+
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-6"
+                autoComplete="off"
+              >
                 {/* Name */}
                 <div>
                   <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
@@ -144,12 +212,61 @@ export default function Contact() {
 
                 {/* Success Message */}
                 {success && (
-                  <p className="mt-4 text-center text-green-600 animate-fadeIn">
-                    ✅ Your message has been sent! We’ll get back to you soon.
-                  </p>
+                  <div className="p-3 mt-4 text-green-700 bg-green-100 border border-green-300 rounded-lg text-center animate-fadeIn">
+                    ✅ Message sent successfully! Our team will reach out soon.
+                  </div>
                 )}
               </form>
+
+              {/* Quick Help Section */}
+              <div className="mt-10 space-y-6">
+                <h3 className="text-xl font-bold text-[#4066E0] text-center">
+                  Other Ways We Can Help 🤝
+                </h3>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  <div className="p-4 text-center border rounded-lg hover:shadow-md transition-all bg-[#EAF6FF]">
+                    <ShieldCheck
+                      className="mx-auto mb-2 text-[#4066E0]"
+                      size={24}
+                    />
+                    <h4 className="font-semibold text-gray-800">Support</h4>
+                    <p className="text-xs text-gray-600">
+                      Need help with your account or tools? Contact support now.
+                    </p>
+                  </div>
+                  <div className="p-4 text-center border rounded-lg hover:shadow-md transition-all bg-[#EAF6FF]">
+                    <HeartHandshake
+                      className="mx-auto mb-2 text-[#1EC6D7]"
+                      size={24}
+                    />
+                    <h4 className="font-semibold text-gray-800">Partnerships</h4>
+                    <p className="text-xs text-gray-600">
+                      Interested in collaborating or business integration?
+                    </p>
+                  </div>
+                  <div className="p-4 text-center border rounded-lg hover:shadow-md transition-all bg-[#EAF6FF]">
+                    <Briefcase
+                      className="mx-auto mb-2 text-[#6A3FD7]"
+                      size={24}
+                    />
+                    <h4 className="font-semibold text-gray-800">Careers</h4>
+                    <p className="text-xs text-gray-600">
+                      Join our growing team at Work Wizards Innovations.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+
+          {/* Tagline */}
+          <div className="mt-16 text-center">
+            <h2 className="text-2xl font-bold text-[#4066E0]">
+              “Connecting Ideas, People, and Innovation — Work Wizards Innovations.”
+            </h2>
+            <p className="mt-2 text-gray-600">
+              Your message matters to us — every idea helps shape the future of Viadocs.
+            </p>
           </div>
         </div>
       </main>

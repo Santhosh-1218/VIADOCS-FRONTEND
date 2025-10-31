@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ShieldCheck, Lock, Globe, Mail } from "lucide-react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
@@ -8,7 +8,7 @@ export default function PrivacyPolicy() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 text-gray-800">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF6FF] via-[#F3F8FF] to-[#E4E1FF] text-gray-800">
       <Header />
 
       <main className="flex-1 px-4 py-10 sm:px-6">
@@ -26,112 +26,116 @@ export default function PrivacyPolicy() {
 
           {/* Title */}
           <div className="mb-10 text-center">
-            <div className="flex justify-center mb-4">
-              <ShieldCheck className="w-12 h-12 text-[#4066E0]" />
-            </div>
+            <ShieldCheck className="w-12 h-12 mx-auto mb-3 text-[#4066E0]" />
             <h1 className="text-3xl font-extrabold text-[#4066E0] sm:text-4xl">
-              Privacy <span className="text-[#1EC6D7]">Policy</span>
+              Privacy <span className="text-[#1EC6D7]">Policy</span> 🔒
             </h1>
             <p className="mt-3 text-gray-600">
               Last Updated:{" "}
-              <span className="font-semibold text-[#4066E0]">
-                October 2025
-              </span>
+              <span className="font-semibold text-[#4066E0]">October 2025</span>
             </p>
           </div>
 
-          {/* Policy Card */}
-          <div className="p-8 bg-white border border-[#1EC6D7]/30 shadow-xl rounded-2xl backdrop-blur-sm">
+          {/* Policy Content */}
+          <div className="p-8 bg-white border border-[#1EC6D7]/30 shadow-lg rounded-2xl backdrop-blur-sm">
             <section className="space-y-10 leading-relaxed text-gray-700 text-sm sm:text-base">
-              {/* 1. Intro */}
+              
+              {/* 1. Introduction */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
                   1. Introduction
                 </h2>
                 <p>
-                  Welcome to <strong>Viadocs</strong>, a product of{" "}
-                  <strong>Work Wizards Innovations</strong>.  
-                  We value your privacy and are committed to protecting your
-                  personal data. This policy outlines what information we collect,
-                  how we use it, and the rights you have regarding your data.
+                  Welcome to <strong>Viadocs</strong>, a digital document
+                  creation and management platform developed by{" "}
+                  <strong>Work Wizards Innovations (WWI)</strong>.  
+                  We deeply respect your privacy and are committed to ensuring that
+                  your personal data remains secure.  
+                  This Privacy Policy explains how we collect, use, and protect your
+                  information when you access our website or use our tools.
                 </p>
               </div>
 
-              {/* 2. Data We Collect */}
+              {/* 2. Information We Collect */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
                   2. Information We Collect
                 </h2>
                 <ul className="space-y-2 list-disc list-inside">
                   <li>
-                    <strong className="text-[#1EC6D7]">Personal Information:</strong>{" "}
-                    name, email address, date of birth, and profile details when
-                    creating an account.
+                    <strong className="text-[#1EC6D7]">Personal Data:</strong>{" "}
+                    Includes your name, email address, date of birth, and any
+                    information you voluntarily provide during registration or
+                    while using Viadocs.
                   </li>
                   <li>
                     <strong className="text-[#1EC6D7]">Usage Data:</strong>{" "}
-                    pages visited, tool usage, browser type, IP address, and
-                    time spent on the site.
+                    We collect anonymous analytics such as device type, browser,
+                    pages visited, time spent, IP address, and referral source
+                    to improve user experience.
                   </li>
                   <li>
-                    <strong className="text-[#1EC6D7]">Documents & Uploads:</strong>{" "}
-                    files you create, edit, or store within Viadocs tools.  
-                    These are securely stored and never shared without consent.
+                    <strong className="text-[#1EC6D7]">Documents & Files:</strong>{" "}
+                    Files created, uploaded, or edited within Viadocs are securely
+                    stored. We do not access, share, or sell your content.
                   </li>
                 </ul>
               </div>
 
-              {/* 3. Use of Data */}
+              {/* 3. How We Use Information */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
                   3. How We Use Your Information
                 </h2>
-                <ul className="list-disc list-inside space-y-2">
-                  <li>To provide, maintain, and improve our services and tools.</li>
-                  <li>To personalize user experience and recommend relevant features.</li>
-                  <li>To monitor site security and prevent unauthorized access.</li>
-                  <li>To send account updates, newsletters, or promotional messages (optional).</li>
+                <ul className="space-y-2 list-disc list-inside">
+                  <li>To provide and improve Viadocs’ tools and services.</li>
+                  <li>To personalize your experience and suggest relevant features.</li>
+                  <li>To analyze site performance and user behavior via analytics tools.</li>
+                  <li>To communicate with you regarding your account or updates.</li>
+                  <li>To maintain security and prevent fraudulent activity.</li>
                 </ul>
               </div>
 
               {/* 4. Data Sharing */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  4. Data Sharing & Disclosure
+                  4. Data Sharing and Disclosure
                 </h2>
                 <p>
-                  We do not sell, rent, or trade your personal data. We may share
-                  limited information only with trusted partners (e.g., analytics,
-                  cloud storage, AdSense) solely to operate our services, and only
-                  under strict confidentiality agreements.
+                  Viadocs does <strong>not sell or rent</strong> your personal data.  
+                  Limited information may be shared with trusted service providers like{" "}
+                  <strong>Google Analytics, Firebase,</strong> or{" "}
+                  <strong>Cloud Storage providers</strong> to operate our platform
+                  — always under strict data protection terms.
                 </p>
               </div>
 
               {/* 5. Cookies */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  5. Cookies & Tracking Technologies
+                  5. Cookies and Tracking Technologies 🍪
                 </h2>
                 <p>
-                  Viadocs uses cookies and similar technologies to analyze traffic
-                  and improve usability. You can disable cookies in your browser
-                  settings, but some features may not function correctly.  
-                  By using our site, you consent to our cookie usage as described
-                  here.
+                  We use cookies to improve website functionality and personalize
+                  user experience. Cookies help us remember your preferences, login
+                  status, and performance metrics.  
+                  You can disable cookies in your browser settings, but some
+                  features may not function properly.
                 </p>
               </div>
 
               {/* 6. Google AdSense & Analytics */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  6. Google AdSense and Analytics
+                  6. Google AdSense and Analytics Integration 📊
                 </h2>
                 <p>
-                  We use <strong>Google AdSense</strong> to display relevant ads and{" "}
-                  <strong>Google Analytics 4</strong> to understand user behavior.
-                  Google may use cookies or web beacons to serve ads based on your
-                  prior visits to this and other websites.  
-                  You can learn more about how Google uses data at {" "}
+                  We use <strong>Google AdSense</strong> to display relevant,
+                  non-intrusive advertisements and{" "}
+                  <strong>Google Analytics 4</strong> to understand visitor activity.
+                  Google may use cookies or similar technologies to deliver ads
+                  based on your interests and previous interactions.  
+                  Learn how Google uses your data at{" "}
                   <a
                     href="https://policies.google.com/technologies/ads"
                     target="_blank"
@@ -141,65 +145,97 @@ export default function PrivacyPolicy() {
                     policies.google.com/technologies/ads
                   </a>.
                 </p>
-              </div>
-
-              {/* 7. Data Security */}
-              <div>
-                <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  7. Data Security
-                </h2>
-                <p>
-                  We implement SSL encryption, secure servers, and access control
-                  to protect your data.  
-                  Despite our efforts, no system can be 100% secure; use the service
-                  at your own discretion.
+                <p className="mt-2">
+                  By using Viadocs, you consent to Google’s data usage in accordance
+                  with their privacy terms and ours.
                 </p>
               </div>
 
-              {/* 8. User Rights */}
+              {/* 7. Data Protection & Security */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  8. Your Rights & Choices
+                  7. Data Protection and Security 🔐
                 </h2>
                 <p>
-                  You can access, update, or delete your personal information by
-                  contacting us at 
+                  We apply encryption (SSL), access control, and secure databases to
+                  protect your data. However, no online service is completely risk-free.
+                  We encourage users to use strong passwords and avoid sharing
+                  credentials with others.
+                </p>
+              </div>
+
+              {/* 8. Your Rights */}
+              <div>
+                <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
+                  8. Your Rights and Choices 🧾
+                </h2>
+                <p>
+                  You have the right to access, modify, or delete your personal
+                  information. You can request data removal or export by emailing{" "}
                   <a
                     href="mailto:official.viadocs@gmail.com"
                     className="text-[#1EC6D7] hover:underline"
                   >
                     official.viadocs@gmail.com
-                  </a>. You may also opt out of marketing emails at any time.
+                  </a>.  
+                  You may also opt out of marketing emails and cookie tracking at any time.
                 </p>
               </div>
 
-              {/* 9. Policy Updates */}
+              {/* 9. Compliance and Age Policy */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  9. Updates to This Policy
+                  9. Compliance and Age Restrictions ⚖️
                 </h2>
                 <p>
-                  We may update this Privacy Policy occasionally to reflect changes in
-                  our practices or legal requirements.  
-                  The latest version will always be available on this page with the
-                  revised date shown above.
+                  Viadocs complies with applicable laws including{" "}
+                  <strong>GDPR</strong>, <strong>CCPA</strong>, and{" "}
+                  <strong>Google Publisher Policies</strong>.  
+                  Our platform is intended for users aged 13 and above.  
+                  If we discover a user under 13 has provided personal data, we will
+                  promptly delete it.
                 </p>
               </div>
 
-              {/* 10. Contact */}
+              {/* 10. Updates to Policy */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  10. Contact Us
+                  10. Updates to This Policy 🔁
                 </h2>
                 <p>
-                  For questions or concerns about this Privacy Policy or our data usage,
-                  reach out to us at: <br />
+                  This Privacy Policy may be updated periodically. We encourage you
+                  to review it regularly for any changes.  
+                  Continued use of Viadocs after updates constitutes acceptance of
+                  the revised terms.
+                </p>
+              </div>
+
+              {/* 11. Contact */}
+              <div>
+                <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
+                  11. Contact Us 📩
+                </h2>
+                <p>
+                  If you have any questions, concerns, or feedback regarding our
+                  Privacy Policy, please reach out to us at:
+                </p>
+                <p className="mt-3">
                   <strong>Email:</strong>{" "}
                   <a
                     href="mailto:official.viadocs@gmail.com"
                     className="text-[#1EC6D7] hover:underline"
                   >
                     official.viadocs@gmail.com
+                  </a>
+                  <br />
+                  <strong>Website:</strong>{" "}
+                  <a
+                    href="https://wwi.org.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#1EC6D7] hover:underline"
+                  >
+                    www.wwi.org.in
                   </a>
                   <br />
                   <strong>Organization:</strong> Work Wizards Innovations

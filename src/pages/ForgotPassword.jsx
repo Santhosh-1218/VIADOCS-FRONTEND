@@ -26,13 +26,13 @@ export default function ForgotPassword() {
   const [otpStatus, setOtpStatus] = useState(null);
   const navigate = useNavigate();
 
-  // ✅ Use backend API from environment variable (CRA syntax)
+  // ✅ Use environment API URL
   const BASE_URL =
     process.env.REACT_APP_API_URL
       ? `${process.env.REACT_APP_API_URL}/api/auth`
       : "https://viadocs-backend-production.up.railway.app/api/auth";
 
-  // ⏳ OTP resend countdown
+  // ⏳ Timer for resend OTP
   useEffect(() => {
     if (timer > 0) {
       const countdown = setTimeout(() => setTimer(timer - 1), 1000);
@@ -40,7 +40,7 @@ export default function ForgotPassword() {
     }
   }, [timer]);
 
-  // ✅ Step 1 — Check Email Availability
+  // ✅ Step 1 — Check Email Existence
   const checkEmail = async () => {
     if (!email.trim()) return;
     setEmailStatus("checking");
@@ -49,8 +49,11 @@ export default function ForgotPassword() {
       const res = await fetch(`${BASE_URL}/check-email?email=${email}`);
       const data = await res.json();
 
-      if (res.ok && data.exits) setEmailStatus("exists");
-      else setEmailStatus("notfound");
+      if (res.ok && data.exists) {
+        setEmailStatus("exists");
+      } else {
+        setEmailStatus("notfound");
+      }
     } catch (err) {
       console.error("checkEmail error:", err);
       toast.error("Server not responding!");
@@ -196,7 +199,9 @@ export default function ForgotPassword() {
                   className="w-full py-3 outline-none"
                 />
                 {emailStatus === "checking" && (
-                  <span className="text-xs text-gray-500">⏳</span>
+                  <span className="text-xs text-gray-500 animate-pulse">
+                    Checking...
+                  </span>
                 )}
                 {emailStatus === "exists" && (
                   <CheckCircle className="text-green-500" size={18} />
@@ -248,7 +253,6 @@ export default function ForgotPassword() {
                 />
               </div>
 
-              {/* ✅ OTP feedback */}
               {otpStatus === "valid" && (
                 <p className="text-green-500 text-sm text-center mb-2">
                   ✅ OTP verified successfully!

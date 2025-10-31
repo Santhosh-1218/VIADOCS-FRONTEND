@@ -16,17 +16,17 @@ import "react-toastify/dist/ReactToastify.css";
 export default function ForgotPassword() {
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
-  const [emailStatus, setEmailStatus] = useState(null);
   const [otp, setOtp] = useState("");
-  const [otpStatus, setOtpStatus] = useState(null);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [timer, setTimer] = useState(0);
+  const [emailStatus, setEmailStatus] = useState(null);
+  const [otpStatus, setOtpStatus] = useState(null);
   const navigate = useNavigate();
 
-  // ✅ Use environment variable correctly for Create React App
+  // ✅ Use backend API from environment variable (CRA syntax)
   const BASE_URL =
     process.env.REACT_APP_API_URL
       ? `${process.env.REACT_APP_API_URL}/api/auth`
@@ -41,7 +41,7 @@ export default function ForgotPassword() {
   }, [timer]);
 
   // ✅ Step 1 — Check Email Availability
-  const checkEmailAvailability = async () => {
+  const checkEmail = async () => {
     if (!email.trim()) return;
     setEmailStatus("checking");
 
@@ -49,15 +49,12 @@ export default function ForgotPassword() {
       const res = await fetch(`${BASE_URL}/check-email?email=${email}`);
       const data = await res.json();
 
-      if (res.ok && data.available === false) {
-        setEmailStatus("exists"); // Email registered
-      } else {
-        setEmailStatus("notfound");
-      }
+      if (res.ok && data.available === false) setEmailStatus("exists");
+      else setEmailStatus("notfound");
     } catch (err) {
       console.error("checkEmail error:", err);
+      toast.error("Server not responding!");
       setEmailStatus("error");
-      toast.error("Unable to verify email. Try again later.");
     }
   };
 
@@ -83,12 +80,10 @@ export default function ForgotPassword() {
         toast.success("OTP sent successfully to your email!");
         setStep(2);
         setTimer(60);
-      } else {
-        toast.error(data.message || "Failed to send OTP. Try again later.");
-      }
+      } else toast.error(data.message || "Failed to send OTP.");
     } catch (err) {
       console.error("send-otp error:", err);
-      toast.error("Server not responding. Please try again later.");
+      toast.error("Network or server error!");
     } finally {
       setLoading(false);
     }
@@ -119,12 +114,13 @@ export default function ForgotPassword() {
         setOtpStatus("valid");
         setTimeout(() => setStep(3), 800);
       } else {
-        setOtpStatus("invalid");
         toast.error(data.message || "Invalid OTP");
+        setOtpStatus("invalid");
       }
     } catch (err) {
       console.error("verify-otp error:", err);
-      toast.error("Could not verify OTP. Try again.");
+      toast.error("Error verifying OTP.");
+      setOtpStatus("invalid");
     } finally {
       setLoading(false);
     }
@@ -133,13 +129,12 @@ export default function ForgotPassword() {
   // ✅ Step 3 — Reset Password
   const handleResetPassword = async (e) => {
     e.preventDefault();
-    if (newPassword.length < 6) {
-      toast.warning("Password must be at least 6 characters long.");
-      return;
-    }
-
     if (newPassword !== confirmPassword) {
       toast.warning("Passwords do not match!");
+      return;
+    }
+    if (newPassword.length < 6) {
+      toast.warning("Password must be at least 6 characters!");
       return;
     }
 
@@ -154,11 +149,9 @@ export default function ForgotPassword() {
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("Password reset successful! Redirecting to login...");
+        toast.success("Password reset successful! Redirecting...");
         setTimeout(() => navigate("/login"), 2000);
-      } else {
-        toast.error(data.message || "Failed to reset password");
-      }
+      } else toast.error(data.message || "Failed to reset password.");
     } catch (err) {
       console.error("reset-password error:", err);
       toast.error("Server not responding!");
@@ -198,7 +191,7 @@ export default function ForgotPassword() {
                     setEmail(e.target.value);
                     setEmailStatus(null);
                   }}
-                  onBlur={checkEmailAvailability}
+                  onBlur={checkEmail}
                   required
                   className="w-full py-3 outline-none"
                 />
@@ -249,23 +242,23 @@ export default function ForgotPassword() {
                   placeholder="Enter 4-digit OTP"
                   maxLength={4}
                   value={otp}
-                  onChange={(e) => {
-                    setOtp(e.target.value);
-                    setOtpStatus(null);
-                  }}
+                  onChange={(e) => setOtp(e.target.value)}
                   required
                   className="w-full py-3 text-center outline-none tracking-widest"
                 />
-                {otpStatus === "checking" && (
-                  <span className="text-xs text-gray-500">⏳</span>
-                )}
-                {otpStatus === "valid" && (
-                  <CheckCircle className="text-green-500" size={18} />
-                )}
-                {otpStatus === "invalid" && (
-                  <XCircle className="text-red-500" size={18} />
-                )}
               </div>
+
+              {/* ✅ OTP feedback */}
+              {otpStatus === "valid" && (
+                <p className="text-green-500 text-sm text-center mb-2">
+                  ✅ OTP verified successfully!
+                </p>
+              )}
+              {otpStatus === "invalid" && (
+                <p className="text-red-500 text-sm text-center mb-2">
+                  ❌ Invalid OTP, please try again.
+                </p>
+              )}
 
               {timer > 0 ? (
                 <p className="text-xs text-center text-gray-600 mb-3">

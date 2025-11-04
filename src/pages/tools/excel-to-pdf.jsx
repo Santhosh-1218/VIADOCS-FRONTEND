@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 // ResponsiveAd removed (unused)
+
 import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
@@ -11,6 +12,7 @@ import {
   Download,
 } from "lucide-react";
 import Header from "../../components/Header/Header";
+import ResponsiveAd from "../components/ResponsiveAd";
 import axios from "axios";
 
 export default function ExcelToPdf() {

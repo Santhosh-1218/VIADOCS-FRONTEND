@@ -6,7 +6,9 @@ import Footer from "../components/Footer/Footer";
 import image1 from "../assets/image1.webp";
 import image2 from "../assets/images2.webp";
 import image3 from "../assets/image3.webp";
-import ResponsiveAd from "../components/ResponsiveAd";
+
+import ResponsiveAd from '../components/ResponsiveAd';
+
 import {
   ArrowLeft,
   FileText,

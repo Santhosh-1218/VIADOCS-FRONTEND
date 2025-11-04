@@ -2,15 +2,15 @@
 import React, { useEffect } from "react";
 
 export default function ResponsiveAd({
-  adId = "container-c152ce441ed68e2ebb08bdbddefa4fac", // your Adsterra container ID
-  scriptSrc = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js", // your Adsterra script
+  adId = "container-c152ce441ed68e2ebb08bdbddefa4fac", // Adsterra container ID
+  scriptSrc = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js", // Adsterra script
   minHeightDesktop = "160px",
   minHeightMobile = "120px",
   className = "",
 }) {
   useEffect(() => {
     // Prevent adding the same script multiple times
-    const existing = document.querySelector(`script[src="${scriptSrc}"]`);
+    const existing = document.querySelector(script[src="${scriptSrc}"]);
     if (!existing) {
       const script = document.createElement("script");
       script.async = true;
@@ -20,7 +20,9 @@ export default function ResponsiveAd({
     }
   }, [scriptSrc]);
 
-  const isMobile = window.innerWidth < 768;
+  // Check safely for mobile width
+  const isMobile =
+    typeof window !== "undefined" && window.innerWidth < 768;
 
   const style = {
     minHeight: isMobile ? minHeightMobile : minHeightDesktop,
@@ -34,7 +36,7 @@ export default function ResponsiveAd({
       style={style}
       className={`flex justify-center items-center bg-transparent my-6 ${className}`}
     >
-      {/* Adsterra ad loads here */}
+      {/* Adsterra ad will load here */}
     </div>
   );
 }

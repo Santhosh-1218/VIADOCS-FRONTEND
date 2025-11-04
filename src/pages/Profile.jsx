@@ -6,7 +6,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import toast from 'react-hot-toast';
 import Cropper from "react-easy-crop";
-import ResponsiveAd from "../components/ResponsiveAd";
+
 import {
   ArrowLeft,
   MoreVertical,
@@ -31,25 +31,6 @@ import {
  * - Improved mobile layout and stacking
  * - Kept existing logic for fetching/updating/cropping/uploading
  */
-
-// Ad placeholder component
-function AdPlaceholder({ className = "" }) {
-  const wrapperRef = useRef(null);
-  useEffect(() => {
-    const wrapper = wrapperRef.current;
-    if (!wrapper) return;
-    const script = document.createElement("script");
-    script.async = true;
-    script.setAttribute("data-cfasync", "false");
-    script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
-    wrapper.appendChild(script);
-    const container = document.createElement("div");
-    container.id = "container-c152ce441ed68e2ebb08bdbddefa4fac";
-    wrapper.appendChild(container);
-    return () => { if (wrapper) wrapper.innerHTML = ""; };
-  }, []);
-  return <div ref={wrapperRef} className={className} aria-hidden="true" />;
-}
 
 export default function Profile() {
   const navigate = useNavigate();

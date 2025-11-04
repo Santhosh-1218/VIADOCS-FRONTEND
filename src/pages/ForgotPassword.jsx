@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ResponsiveAd from "../components/ResponsiveAd";
 import {
   Mail,
   KeyRound,

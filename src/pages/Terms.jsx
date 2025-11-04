@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft,  Scale } from "lucide-react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import ResponsiveAd from "../components/ResponsiveAd";
+
 // Ad placeholder component
 function AdPlaceholder({ className = "" }) {
   const wrapperRef = useRef(null);
@@ -27,7 +27,7 @@ export default function Terms() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen w-full bg-[#EAF6FF] text-gray-800">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF6FF] via-[#F3F8FF] to-[#E4E1FF] text-gray-800">
       <Header />
 
       <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28">

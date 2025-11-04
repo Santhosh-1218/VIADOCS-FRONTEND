@@ -293,7 +293,8 @@ export default function PdfToWord() {
     Viadocs makes it easy to transform reports, resumes, and scanned PDFs into editable Word files anytime.
   </p>
 </div>
-<div id="ad-root-pdf-to-word" className="my-10" />
+ 
+
       <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
   <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
     © 2025 <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.

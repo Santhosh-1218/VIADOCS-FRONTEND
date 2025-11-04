@@ -9,7 +9,6 @@ import image1 from "../assets/image1.webp";
 import image2 from "../assets/images2.webp";
 import image3 from "../assets/image3.webp";
 import viadocsVideo from "../assets/viadocs.mp4";
-import ResponsiveAd from "../components/ResponsiveAd";
 import {
   MoreVertical,
   Star,
@@ -25,33 +24,6 @@ import {
 } from "lucide-react";
 import { jsPDF } from "jspdf";
 
-// Ad placeholder component: injects the ad script and container div on mount
-function AdPlaceholder({ className = "" }) {
-  const wrapperRef = useRef(null);
-
-  useEffect(() => {
-    const wrapper = wrapperRef.current;
-    if (!wrapper) return;
-
-    // append external script
-    const script = document.createElement("script");
-    script.async = true;
-    script.setAttribute("data-cfasync", "false");
-    script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
-    wrapper.appendChild(script);
-
-    // append expected container
-    const container = document.createElement("div");
-    container.id = "container-c152ce441ed68e2ebb08bdbddefa4fac";
-    wrapper.appendChild(container);
-
-    return () => {
-      if (wrapper) wrapper.innerHTML = "";
-    };
-  }, []);
-
-  return <div ref={wrapperRef} className={className} aria-hidden="true" />;
-}
 
 // Animated typing text (same as before)
 const texts = [
@@ -352,39 +324,39 @@ export default function Home() {
       {/* make this a flex column and allow it to grow so `main.flex-1` can push footer to bottom */}
       <div className="flex flex-col flex-1 w-full">
         <Header />
-        <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28"> {/* Added top padding for header height */}
+      <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28"> {/* Added top padding for header height */}
 
-          <div className="max-w-6xl mx-auto">
-            {/* Welcome Section */}
-            <div className="p-8 mb-10 text-center bg-white border border-[#1EC6D7]/30 shadow-lg rounded-2xl">
-              <h2 className="text-3xl font-extrabold text-gray-900">
-                Welcome to <span className="text-[#4066E0]">Viadocs</span>
-              </h2>
-              <p className="mt-3 text-lg text-gray-600">
-                Create professional documents, collaborate with your team, and
-                manage projects efficiently.
-              </p>
+        <div className="max-w-6xl mx-auto">
+          {/* Welcome Section */}
+          <div className="p-8 mb-10 text-center bg-white border border-[#1EC6D7]/30 shadow-lg rounded-2xl">
+            <h2 className="text-3xl font-extrabold text-gray-900">
+              Welcome to <span className="text-[#4066E0]">Viadocs</span>
+            </h2>
+            <p className="mt-3 text-lg text-gray-600">
+              Create professional documents, collaborate with your team, and
+              manage projects efficiently.
+            </p>
 
-              {!isLoggedIn && (
-                <div className="flex flex-col items-center justify-center gap-3 mt-8 sm:flex-row sm:gap-6">
-                  <button
-                    onClick={() => navigate("/login")}
-                    className="px-5 py-2 text-sm font-medium text-white transition-all rounded-full shadow-md bg-[#4066E0] hover:bg-[#1EC6D7] hover:shadow-lg sm:px-6 sm:py-2 sm:text-base"
-                  >
-                    Get Started - Login
-                  </button>
-                  <button
-                    onClick={() => navigate("/signup")}
-                    className="px-5 py-2 text-sm font-medium text-[#4066E0] transition-all border border-[#1EC6D7] rounded-full shadow-sm hover:bg-[#1EC6D7]/10 hover:text-[#1EC6D7] hover:shadow-md sm:px-6 sm:py-2 sm:text-base"
-                  >
-                    Create Account
-                  </button>
-                </div>
-              )}
-            </div>
-            
+            {!isLoggedIn && (
+              <div className="flex flex-col items-center justify-center gap-3 mt-8 sm:flex-row sm:gap-6">
+                <button
+                  onClick={() => navigate("/login")}
+                  className="px-5 py-2 text-sm font-medium text-white transition-all rounded-full shadow-md bg-[#4066E0] hover:bg-[#1EC6D7] hover:shadow-lg sm:px-6 sm:py-2 sm:text-base"
+                >
+                  Get Started - Login
+                </button>
+                <button
+                  onClick={() => navigate("/signup")}
+                  className="px-5 py-2 text-sm font-medium text-[#4066E0] transition-all border border-[#1EC6D7] rounded-full shadow-sm hover:bg-[#1EC6D7]/10 hover:text-[#1EC6D7] hover:shadow-md sm:px-6 sm:py-2 sm:text-base"
+                >
+                  Create Account
+                </button>
+              </div>
+            )}
+          </div>
+          
 
-            {/* ===== Compact Hero Section ===== */}
+          {/* ===== Compact Hero Section ===== */}
 <section className="relative p-8 sm:p-12 mb-10 text-center rounded-2xl shadow-lg bg-gradient-to-br from-[#F3F8FF] via-[#EAF6FF] to-[#ffffff] border border-[#E0ECFF] overflow-hidden">
   {/* Floating accent gradient circles */}
   <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#4066E0]/20 rounded-full blur-3xl animate-pulse-slow"></div>
@@ -790,16 +762,6 @@ export default function Home() {
         </main>
       </div>
 
-      {/* Inline ad: centered between main content and the following sections */}
-      <div className="flex justify-center my-8">
-        <AdPlaceholder className="w-full max-w-3xl" />
-      </div>
-
-      {/* Right-side hanging ad (visible on large screens) */}
-      <div className="pointer-events-none">
-        <AdPlaceholder className="hidden lg:block fixed right-4 top-1/3 z-50 w-48 pointer-events-auto" />
-      </div>
-
 {/* ===== Folder Creation Video Section (Perfect Rectangle) ===== */}
 <section className="w-full px-4 py-12 bg-gradient-to-br from-[#F9FAFB] via-[#F3F8FF] to-[#E4E1FF] text-center border-t border-[#E0ECFF]">
   <h2 className="text-2xl sm:text-3xl font-extrabold text-[#4066E0] mb-6">
@@ -1098,13 +1060,8 @@ export default function Home() {
           </div>
         </section>
 
-      <div className="w-full bg-transparent flex justify-center py-6">
-        <AdPlaceholder className="w-full max-w-7xl" />
-      </div>
-
-      <Footer />
-
-      {/* Delete confirmation modal - requires typing doc name */}
+          <Footer />
+          {/* Delete confirmation modal - requires typing doc name */}
       {deleteTarget && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
           <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">

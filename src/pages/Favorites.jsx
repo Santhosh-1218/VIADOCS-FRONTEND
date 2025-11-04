@@ -6,7 +6,6 @@ import image3 from "../assets/image3.webp";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import ResponsiveAd from "../components/ResponsiveAd";
 import {
   Star,
   Eye,

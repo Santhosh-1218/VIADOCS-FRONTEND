@@ -1,7 +1,6 @@
 // src/pages/Contact.jsx
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ResponsiveAd from "../components/ResponsiveAd";
 import {
   ArrowLeft,
   Mail,

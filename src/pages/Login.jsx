@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ResponsiveAd from "../components/ResponsiveAd";
+
 import { User, Lock, Eye, EyeOff } from "lucide-react";
 import logo from "../assets/logo.webp";
 

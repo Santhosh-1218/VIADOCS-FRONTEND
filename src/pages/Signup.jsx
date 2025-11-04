@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import ResponsiveAd from "../components/ResponsiveAd";
+
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import {
   ArrowLeft,
   Upload,
@@ -116,45 +117,23 @@ export default function PdfSplit() {
     return undefined;
   }, []);
 
-  // Add: page-local ad injection that appends the same container script inside the ad-root-pdf-split wrapper
-  useEffect(() => {
-    const wrapper = document.getElementById("ad-root-pdf-split");
-    if (!wrapper) return;
-    const cid = "container-c152ce441ed68e2ebb08bdbddefa4fac";
-    let container = wrapper.querySelector(`#${cid}`);
-    if (!container) {
-      container = document.createElement("div");
-      container.id = cid;
-      wrapper.appendChild(container);
-    }
-    if (!document.querySelector(`script[data-cfasync][src*="effectivegatecpm.com"]`)) {
-      const script = document.createElement("script");
-      script.async = true;
-      script.setAttribute("data-cfasync", "false");
-      script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
-      wrapper.appendChild(script);
-      return () => script.remove();
-    }
-    return undefined;
-  }, []);
-
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF4FC] via-[#E1EDFB] to-[#CFE3FA]">
       <Header />
       <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28">
         <div className="max-w-6xl mx-auto">
           {/* Back Button */}
-          <div className="flex justify-start mb-8">
-            <button
-              onClick={() => navigate("/tools")}
-              className="flex items-center gap-2 px-4 py-2 text-white transition-all rounded-lg shadow-md bg-gradient-to-r from-[#4FC3F7] to-[#3F51B5] hover:opacity-90 hover:scale-[1.03]"
-            >
-              <ArrowLeft size={18} />
-              <span className="text-sm font-medium sm:text-base">
-                Back to Tools
-              </span>
-            </button>
-          </div>
+                              <div className="flex justify-start mb-8">
+                                <button
+                                  onClick={() => navigate("/tools")}
+                                  className="flex items-center gap-2 px-4 py-2 text-white transition-all rounded-lg shadow-md bg-gradient-to-r from-[#4FC3F7] to-[#3F51B5] hover:opacity-90 hover:scale-[1.03]"
+                                >
+                                  <ArrowLeft size={18} />
+                                  <span className="text-sm font-medium sm:text-base">
+                                    Back to Tools
+                                  </span>
+                                </button>
+                             </div>
 
           {/* 🧾 Header */}
           <div className="mb-8 text-center">
@@ -295,30 +274,24 @@ export default function PdfSplit() {
           </div>
         </div>
       </main>
-
-      {/* Keep the page-local ad wrapper inside the valid JSX */}
-      <div id="ad-root-pdf-split" className="my-10" />
-
       <div className="mt-10 text-center text-gray-700 text-sm sm:text-base leading-relaxed">
-        <h2 className="text-xl font-semibold text-[#3F51B5] mb-2">
-          Split PDF Pages Instantly
-        </h2>
-        <p>
-          Extract specific pages or sections from your PDF in seconds.
-          Upload, select page ranges, and download your new document without installing any software.
-          <br className="hidden sm:block" />
-          Viadocs makes PDF splitting fast, simple, and privacy-safe.
-        </p>
-      </div>
-
-      {/* Remove duplicated raw container element that was previously added here */}
-      {/* ...existing footer... */}
+  <h2 className="text-xl font-semibold text-[#3F51B5] mb-2">
+    Split PDF Pages Instantly
+  </h2>
+  <p>
+    Extract specific pages or sections from your PDF in seconds. 
+    Upload, select page ranges, and download your new document without installing any software. 
+    <br className="hidden sm:block" />
+    Viadocs makes PDF splitting fast, simple, and privacy-safe.
+  </p>
+</div>
+<div id="container-c152ce441ed68e2ebb08bdbddefa4fac" />
       <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
-        <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
-          © 2025{" "}
-          <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
-        </div>
-      </footer>
+  <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
+    © 2025 <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
+  </div>
+</footer>
+
     </div>
   );
 }

@@ -106,21 +106,20 @@ export default function PowerpointToPdf() {
   };
 
   useEffect(() => {
-    const wrapper = document.getElementById("ad-root-ppt-to-pdf");
-    if (!wrapper) return;
-    const cid = "container-c152ce441ed68e2ebb08bdbddefa4fac";
-    let container = wrapper.querySelector(`#${cid}`);
+    const containerId = "container-c152ce441ed68e2ebb08bdbddefa4fac";
+    let container = document.getElementById(containerId);
     if (!container) {
       container = document.createElement("div");
-      container.id = cid;
-      wrapper.appendChild(container);
+      container.id = containerId;
+      document.body.appendChild(container);
     }
     if (!document.querySelector(`script[data-cfasync][src*="effectivegatecpm.com"]`)) {
       const script = document.createElement("script");
       script.async = true;
       script.setAttribute("data-cfasync", "false");
-      script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
-      wrapper.appendChild(script);
+      script.src =
+        "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
+      container.parentNode.insertBefore(script, container.nextSibling);
       return () => script.remove();
     }
     return undefined;
@@ -284,7 +283,14 @@ export default function PowerpointToPdf() {
         </p>
       </div>
 
-      <div id="ad-root-ppt-to-pdf" className="my-10" />
+      <div id="container-c152ce441ed68e2ebb08bdbddefa4fac" />
+
+      <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
+        <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
+          © 2025{" "}
+          <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
+        </div>
+      </footer>
     </div>
   );
 }

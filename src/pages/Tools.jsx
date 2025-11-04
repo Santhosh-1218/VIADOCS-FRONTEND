@@ -1,13 +1,11 @@
 // src/pages/Tools.jsx
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import image1 from "../assets/image1.webp";
 import image2 from "../assets/images2.webp";
 import image3 from "../assets/image3.webp";
-
-import ResponsiveAd from '../components/ResponsiveAd';
 
 import {
   ArrowLeft,
@@ -23,35 +21,6 @@ import {
   Shrink,
   Presentation,
 } from "lucide-react";
-
-// Ad placeholder component: injects the given script and container div when mounted
-function AdPlaceholder({ className = "" }) {
-  const wrapperRef = useRef(null);
-
-  useEffect(() => {
-    const wrapper = wrapperRef.current;
-    if (!wrapper) return;
-
-    // create and append script
-    const script = document.createElement("script");
-    script.async = true;
-    script.setAttribute("data-cfasync", "false");
-    script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
-    wrapper.appendChild(script);
-
-    // create and append container div expected by the script
-    const container = document.createElement("div");
-    container.id = "container-c152ce441ed68e2ebb08bdbddefa4fac";
-    wrapper.appendChild(container);
-
-    return () => {
-      // cleanup appended nodes
-      if (wrapper) wrapper.innerHTML = "";
-    };
-  }, []);
-
-  return <div ref={wrapperRef} className={className} aria-hidden="true" />;
-}
 
 export default function Tools() {
   const navigate = useNavigate();
@@ -122,19 +91,12 @@ export default function Tools() {
               </button>
             ))}
           </div>
-
-          {/* Inline ad: centered between tools and the following content */}
-          <div className="flex justify-center mb-8">
-            <AdPlaceholder className="w-full max-w-3xl" />
-          </div>
         </div>
       </main>
 
-      {/* Right-side hanging ad (visible on md/lg screens) */}
-      <div className="pointer-events-none">
-        <AdPlaceholder className="hidden lg:block fixed right-4 top-1/3 z-50 w-48 pointer-events-auto" />
-      </div>
 
+
+     
 {/* ===== Viadocs Features Section ===== */}
 <section className="py-16 bg-gradient-to-b from-[#F9FAFB] via-[#F3F4F6] to-white text-center">
   <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6">
@@ -310,10 +272,9 @@ export default function Tools() {
   </div>
 </section>
 
-      {/* Ad placeholder above footer */}
-      <div className="w-full bg-transparent flex justify-center py-6">
-        <AdPlaceholder className="w-full max-w-7xl" />
-      </div>
+
+
+
 
       <Footer />
     </div>

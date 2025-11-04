@@ -122,195 +122,172 @@ export default function WordToPDF() {
     return undefined;
   }, []);
 
-  // Add: page-local ad injection inside the wrapper "ad-root-word-to-pdf"
-  useEffect(() => {
-    const wrapper = document.getElementById("ad-root-word-to-pdf");
-    if (!wrapper) return;
-    const cid = "container-c152ce441ed68e2ebb08bdbddefa4fac";
-    let container = wrapper.querySelector(`#${cid}`);
-    if (!container) {
-      container = document.createElement("div");
-      container.id = cid;
-      wrapper.appendChild(container);
-    }
-    if (!document.querySelector(`script[data-cfasync][src*="effectivegatecpm.com"]`)) {
-      const script = document.createElement("script");
-      script.async = true;
-      script.setAttribute("data-cfasync", "false");
-      script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
-      wrapper.appendChild(script);
-      return () => script.remove();
-    }
-    return undefined;
-  }, []);
-
   return (
     <>
       <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF4FC] via-[#E1EDFB] to-[#CFE3FA]">
-        <Header />
-        <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28">
-          <div className="max-w-4xl mx-auto">
-            {/* Back Button */}
-            {/* Back Button */}
-            <div className="flex justify-start mb-8">
-              <button
-                onClick={() => navigate("/tools")}
-                className="flex items-center gap-2 px-4 py-2 text-white transition-all rounded-lg shadow-md bg-gradient-to-r from-[#4FC3F7] to-[#3F51B5] hover:opacity-90 hover:scale-[1.03]"
+     <Header />
+     
+      <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28">
+        <div className="max-w-4xl mx-auto">
+          {/* Back Button */}
+         {/* Back Button */}
+                                       <div className="flex justify-start mb-8">
+                                         <button
+                                           onClick={() => navigate("/tools")}
+                                           className="flex items-center gap-2 px-4 py-2 text-white transition-all rounded-lg shadow-md bg-gradient-to-r from-[#4FC3F7] to-[#3F51B5] hover:opacity-90 hover:scale-[1.03]"
+                                         >
+                                           <ArrowLeft size={18} />
+                                           <span className="text-sm font-medium sm:text-base">
+                                             Back to Tools
+                                           </span>
+                                         </button>
+                                      </div>
+
+          {/* Header */}
+          <div className="mb-8 text-center">
+            <div className="flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#4FC3F7]/30 to-[#3F51B5]/20">
+              <File className="w-10 h-10 sm:w-12 sm:h-12 text-[#3F51B5]" />
+            </div>
+            <h1 className="mb-2 text-3xl font-bold text-[#1E3A8A] sm:text-4xl">
+              Word to PDF Converter
+            </h1>
+            <p className="text-base text-gray-600 sm:text-lg">
+              Convert your Word documents into PDF files
+            </p>
+          </div>
+
+          {/* Main Tool */}
+          <div className="p-6 bg-white shadow-lg sm:p-8 rounded-2xl">
+            {!file ? (
+              <div
+                onDrop={handleDrop}
+                onDragOver={(e) => e.preventDefault()}
+                className="p-10 sm:p-12 text-center transition-all border-2 border-gray-300 border-dashed cursor-pointer rounded-xl hover:border-[#3F51B5] hover:bg-[#E3F2FD]/40"
+                onClick={() => fileInputRef.current?.click()}
               >
-                <ArrowLeft size={18} />
-                <span className="text-sm font-medium sm:text-base">
-                  Back to Tools
-                </span>
-              </button>
-            </div>
-
-            {/* Header */}
-            <div className="mb-8 text-center">
-              <div className="flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#4FC3F7]/30 to-[#3F51B5]/20">
-                <File className="w-10 h-10 sm:w-12 sm:h-12 text-[#3F51B5]" />
-              </div>
-              <h1 className="mb-2 text-3xl font-bold text-[#1E3A8A] sm:text-4xl">
-                Word to PDF Converter
-              </h1>
-              <p className="text-base text-gray-600 sm:text-lg">
-                Convert your Word documents into PDF files
-              </p>
-            </div>
-
-            {/* Main Tool */}
-            <div className="p-6 bg-white shadow-lg sm:p-8 rounded-2xl">
-              {!file ? (
-                <div
-                  onDrop={handleDrop}
-                  onDragOver={(e) => e.preventDefault()}
-                  className="p-10 sm:p-12 text-center transition-all border-2 border-gray-300 border-dashed cursor-pointer rounded-xl hover:border-[#3F51B5] hover:bg-[#E3F2FD]/40"
-                  onClick={() => fileInputRef.current?.click()}
-                >
-                  <Upload className="w-12 h-12 mx-auto mb-4 text-[#3F51B5]" />
-                  <h3 className="mb-2 text-xl font-semibold text-gray-700">
-                    Drop your Word file here
-                  </h3>
-                  <p className="mb-4 text-sm text-gray-500 sm:text-base">
-                    or click to browse files
-                  </p>
-                  <div className="text-xs text-gray-400 sm:text-sm">
-                    <p>Supported formats: DOC, DOCX</p>
-                    <p>Maximum file size: 10MB</p>
-                  </div>
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept=".doc,.docx"
-                    onChange={handleFileInput}
-                    className="hidden"
-                  />
+                <Upload className="w-12 h-12 mx-auto mb-4 text-[#3F51B5]" />
+                <h3 className="mb-2 text-xl font-semibold text-gray-700">
+                  Drop your Word file here
+                </h3>
+                <p className="mb-4 text-sm text-gray-500 sm:text-base">
+                  or click to browse files
+                </p>
+                <div className="text-xs text-gray-400 sm:text-sm">
+                  <p>Supported formats: DOC, DOCX</p>
+                  <p>Maximum file size: 10MB</p>
                 </div>
-              ) : (
-                <div className="space-y-6">
-                  {/* File Info */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 p-4 rounded-lg bg-[#F5F7FB]">
-                    <File className="w-8 h-8 text-[#3F51B5]" />
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-gray-900 break-all">
-                        {file.name}
-                      </h3>
-                      <p className="text-sm text-gray-500">
-                        {(file.size / 1024 / 1024).toFixed(2)} MB
-                      </p>
-                    </div>
-                    <button
-                      onClick={resetTool}
-                      className="px-3 py-1 text-sm text-gray-600 transition-all rounded-md hover:bg-red-50 hover:text-red-600"
-                    >
-                      Remove
-                    </button>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept=".doc,.docx"
+                  onChange={handleFileInput}
+                  className="hidden"
+                />
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {/* File Info */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 p-4 rounded-lg bg-[#F5F7FB]">
+                  <File className="w-8 h-8 text-[#3F51B5]" />
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-gray-900 break-all">
+                      {file.name}
+                    </h3>
+                    <p className="text-sm text-gray-500">
+                      {(file.size / 1024 / 1024).toFixed(2)} MB
+                    </p>
                   </div>
+                  <button
+                    onClick={resetTool}
+                    className="px-3 py-1 text-sm text-gray-600 transition-all rounded-md hover:bg-red-50 hover:text-red-600"
+                  >
+                    Remove
+                  </button>
+                </div>
 
-                  {/* Status */}
-                  {error && (
-                    <div className="flex items-center gap-2 p-4 border border-red-200 rounded-lg bg-red-50">
-                      <AlertCircle className="w-5 h-5 text-red-500" />
-                      <span className="text-sm text-red-700 sm:text-base">{error}</span>
-                    </div>
+                {/* Status */}
+                {error && (
+                  <div className="flex items-center gap-2 p-4 border border-red-200 rounded-lg bg-red-50">
+                    <AlertCircle className="w-5 h-5 text-red-500" />
+                    <span className="text-sm text-red-700 sm:text-base">{error}</span>
+                  </div>
+                )}
+                {isComplete && (
+                  <div className="flex items-center gap-2 p-4 border border-green-200 rounded-lg bg-green-50">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span className="text-green-700">
+                      Conversion completed successfully!
+                    </span>
+                  </div>
+                )}
+
+                {/* Buttons */}
+                <div className="flex flex-col items-center justify-center gap-4 mt-6 sm:flex-row">
+                  {!isProcessing && !isComplete && (
+                    <button
+                      onClick={processFile}
+                      className="flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 font-medium text-white rounded-lg shadow-md transition-all bg-gradient-to-r from-[#4FC3F7] to-[#3F51B5] hover:scale-[1.02]"
+                    >
+                      <File className="w-5 h-5" />
+                      Convert to PDF
+                    </button>
+                  )}
+                  {isProcessing && (
+                    <button
+                      disabled
+                      className="flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 font-medium text-white bg-[#9FA8DA] rounded-lg cursor-not-allowed"
+                    >
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Converting...
+                    </button>
                   )}
                   {isComplete && (
-                    <div className="flex items-center gap-2 p-4 border border-green-200 rounded-lg bg-green-50">
-                      <CheckCircle className="w-5 h-5 text-green-500" />
-                      <span className="text-green-700">
-                        Conversion completed successfully!
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Buttons */}
-                  <div className="flex flex-col items-center justify-center gap-4 mt-6 sm:flex-row">
-                    {!isProcessing && !isComplete && (
+                    <div className="flex flex-col items-center w-full gap-4 sm:flex-row sm:w-auto">
                       <button
-                        onClick={processFile}
+                        onClick={downloadFile}
                         className="flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 font-medium text-white rounded-lg shadow-md transition-all bg-gradient-to-r from-[#4FC3F7] to-[#3F51B5] hover:scale-[1.02]"
                       >
-                        <File className="w-5 h-5" />
-                        Convert to PDF
+                        <Download className="w-5 h-5" />
+                        Download PDF
                       </button>
-                    )}
-                    {isProcessing && (
                       <button
-                        disabled
-                        className="flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 font-medium text-white bg-[#9FA8DA] rounded-lg cursor-not-allowed"
+                        onClick={resetTool}
+                        className="flex items-center justify-center w-full gap-2 px-6 py-3 font-medium text-white transition-all rounded-lg shadow-md sm:w-auto bg-gradient-to-r from-gray-400 to-gray-600 hover:opacity-90"
                       >
-                        <Loader2 className="w-5 h-5 animate-spin" />
-                        Converting...
+                        Convert Another
                       </button>
-                    )}
-                    {isComplete && (
-                      <div className="flex flex-col items-center w-full gap-4 sm:flex-row sm:w-auto">
-                        <button
-                          onClick={downloadFile}
-                          className="flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 font-medium text-white rounded-lg shadow-md transition-all bg-gradient-to-r from-[#4FC3F7] to-[#3F51B5] hover:scale-[1.02]"
-                        >
-                          <Download className="w-5 h-5" />
-                          Download PDF
-                        </button>
-                        <button
-                          onClick={resetTool}
-                          className="flex items-center justify-center w-full gap-2 px-6 py-3 font-medium text-white transition-all rounded-lg shadow-md sm:w-auto bg-gradient-to-r from-gray-400 to-gray-600 hover:opacity-90"
-                        >
-                          Convert Another
-                        </button>
-                      </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
-        </main>
-
-        <div className="mt-10 text-center text-gray-700 text-sm sm:text-base leading-relaxed">
-          <h2 className="text-xl font-semibold text-[#3F51B5] mb-2">
-            Convert Word to PDF Online – Free & Secure
-          </h2>
-          <p>
-            Viadocs allows you to instantly convert your Word documents into high-quality PDF files
-            without losing layout or formatting. Our platform supports both <strong>.doc</strong> and <strong>.docx</strong> formats,
-            ensuring your text, tables, and images appear perfectly.
-            <br className="hidden sm:block" />
-            All conversions are processed securely in the cloud and automatically deleted for your privacy.
-          </p>
-          <p className="mt-2 text-gray-600">
-            Start using Viadocs’ <strong>Word to PDF</strong> converter today — simple, fast, and completely free.
-          </p>
         </div>
+      </main>
+<div className="mt-10 text-center text-gray-700 text-sm sm:text-base leading-relaxed">
+  <h2 className="text-xl font-semibold text-[#3F51B5] mb-2">
+    Convert Word to PDF Online – Free & Secure
+  </h2>
+  <p>
+    Viadocs allows you to instantly convert your Word documents into high-quality PDF files 
+    without losing layout or formatting. Our platform supports both <strong>.doc</strong> and <strong>.docx</strong> formats, 
+    ensuring your text, tables, and images appear perfectly. 
+    <br className="hidden sm:block" />
+    All conversions are processed securely in the cloud and automatically deleted for your privacy.
+  </p>
+  <p className="mt-2 text-gray-600">
+    Start using Viadocs’ <strong>Word to PDF</strong> converter today — simple, fast, and completely free.
+  </p>
+</div>
 
-        {/* Page-local responsive ad wrapper (ensures container+script live INSIDE this area for mobile) */}
-        <div id="ad-root-word-to-pdf" className="my-10" />
 
-        <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
-          <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
-            © 2025 <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
-          </div>
-        </footer>
-      </div>
+      <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
+  <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
+    © 2025 <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
+  </div>
+</footer>
+<div id="container-c152ce441ed68e2ebb08bdbddefa4fac" />
+    </div>
     </>
   );
 }

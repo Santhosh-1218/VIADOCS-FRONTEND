@@ -4,7 +4,6 @@ import { Cpu, ArrowLeft, Mail } from "lucide-react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import axios from "axios";
-import ResponsiveAd from "../components/ResponsiveAd";
 
 // Ad placeholder component
 function AdPlaceholder({ className = "" }) {

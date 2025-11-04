@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
@@ -31,6 +31,35 @@ export default function About() {
   };
 
   const cardHover = "hover:shadow-2xl hover:scale-[1.03] transition-all duration-300";
+
+  // Insert ad script & ensure container exists before loading script
+  useEffect(() => {
+    const containerId = "container-c152ce441ed68e2ebb08bdbddefa4fac";
+    // ensure container exists (it is also added in JSX below; this is defensive)
+    let container = document.getElementById(containerId);
+    if (!container) {
+      container = document.createElement("div");
+      container.id = containerId;
+      document.body.appendChild(container);
+    }
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.setAttribute("data-cfasync", "false");
+    script.src =
+      "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
+    // append script after ensuring container is present
+    container.parentNode.insertBefore(script, container.nextSibling);
+
+    return () => {
+      script.remove();
+      // optional: keep container in JSX, so only remove if we created it dynamically
+      // if it was dynamically created here, remove it
+      if (!document.querySelector(`#${containerId}`)) return;
+      // don't remove if container is part of the JSX; if you want to remove always, uncomment next line
+      // container.remove();
+    };
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF6FF] via-[#F3F8FF] to-[#E4E1FF] text-gray-800">
@@ -181,55 +210,6 @@ export default function About() {
             ))}
           </section>
 
-          {/* Timeline / Journey */}
-          <motion.section
-            variants={fadeIn}
-            initial="hidden"
-            animate="show"
-            className="mt-16 bg-white p-8 rounded-2xl border border-[#1EC6D7]/30 shadow-lg"
-          >
-            <Rocket className="text-[#4066E0] w-10 h-10 mx-auto mb-3" />
-            <h2 className="text-3xl font-semibold text-center text-[#4066E0] mb-8">
-              Our Journey of Innovation
-            </h2>
-            <div className="relative border-l-4 border-[#1EC6D7]/50 pl-6 space-y-8">
-              {[
-                {
-                  year: "2022",
-                  title: "Foundation of WWI",
-                  desc: "Started as a small group of visionaries exploring AI and automation in academic projects.",
-                },
-                {
-                  year: "2023",
-                  title: "Birth of Viadocs",
-                  desc: "Developed the first prototype of the AI document editor, merging Flask, React, and GPT APIs.",
-                },
-                {
-                  year: "2024",
-                  title: "Scaling the Platform",
-                  desc: "Launched Viadocs globally, integrated PDF tools, and introduced user authentication with Firebase.",
-                },
-                {
-                  year: "2025",
-                  title: "AI Expansion",
-                  desc: "Introduced DocAI — an intelligent assistant that reads, explains, and writes documents autonomously.",
-                },
-              ].map((milestone, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ x: 10 }}
-                  className="relative bg-gradient-to-r from-[#EAF6FF]/50 to-[#E4E1FF]/50 p-5 rounded-xl border border-[#1EC6D7]/20 shadow-md"
-                >
-                  <div className="absolute -left-3 top-5 w-3 h-3 bg-[#4066E0] rounded-full border-2 border-white"></div>
-                  <h3 className="text-[#4066E0] font-bold text-lg">
-                    {milestone.year} — {milestone.title}
-                  </h3>
-                  <p className="text-gray-600 mt-1">{milestone.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.section>
-
           {/* Values Section */}
           <section className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -324,6 +304,9 @@ export default function About() {
           </div>
         </div>
       </main>
+
+      {/* Ad container required by the vendor script */}
+      <div id="container-c152ce441ed68e2ebb08bdbddefa4fac" />
 
       <Footer />
     </div>

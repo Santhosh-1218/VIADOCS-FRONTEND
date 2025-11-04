@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
@@ -13,6 +13,25 @@ import {
 } from "lucide-react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+
+// Ad placeholder component
+function AdPlaceholder({ className = "" }) {
+  const wrapperRef = useRef(null);
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+    const script = document.createElement("script");
+    script.async = true;
+    script.setAttribute("data-cfasync", "false");
+    script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
+    wrapper.appendChild(script);
+    const container = document.createElement("div");
+    container.id = "container-c152ce441ed68e2ebb08bdbddefa4fac";
+    wrapper.appendChild(container);
+    return () => { if (wrapper) wrapper.innerHTML = ""; };
+  }, []);
+  return <div ref={wrapperRef} className={className} aria-hidden="true" />;
+}
 
 export default function HelpCenter() {
   const navigate = useNavigate();
@@ -39,7 +58,7 @@ export default function HelpCenter() {
     },
     {
       q: "How can I contact the Viadocs support team?",
-      a: "Visit our Contact page or email us directly at official.viadocs@gmail.com. Our support team typically responds within 24–48 hours.",
+      a: "Visit our Contact page or email us directly at official@wwi.org.in. Our support team typically responds within 24–48 hours.",
     },
   ];
 
@@ -128,6 +147,11 @@ export default function HelpCenter() {
             )}
           </div>
 
+          {/* Inline ad after FAQ list */}
+          <div className="flex justify-center my-8">
+            <AdPlaceholder className="w-full max-w-3xl" />
+          </div>
+
           {/* Knowledge Section */}
           <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-3">
             <div className="p-6 border border-[#1EC6D7]/30 bg-[#EAF6FF]/70 rounded-xl shadow-sm hover:shadow-md transition-all text-center">
@@ -189,7 +213,7 @@ export default function HelpCenter() {
             <p className="max-w-3xl mx-auto text-gray-600 text-sm leading-relaxed">
               Viadocs prioritizes your privacy, safety, and user satisfaction.
               Our platform follows Google AdSense, GDPR, and CCPA guidelines to
-              ensure complete transparency in how data is used.  
+              ensure complete transparency in how data is used.
               For details about cookies, analytics, and advertising partners,
               please visit our{" "}
               <span
@@ -197,7 +221,8 @@ export default function HelpCenter() {
                 onClick={() => navigate("/privacy-policy")}
               >
                 Privacy Policy
-              </span>.
+              </span>
+              .
             </p>
           </div>
 
@@ -212,6 +237,16 @@ export default function HelpCenter() {
           </div>
         </div>
       </main>
+
+      {/* Right-side hanging ad */}
+      <div className="pointer-events-none">
+        <AdPlaceholder className="hidden lg:block fixed right-4 top-1/3 z-50 w-48 pointer-events-auto" />
+      </div>
+
+      {/* Ad above footer */}
+      <div className="w-full bg-transparent flex justify-center py-6">
+        <AdPlaceholder className="w-full max-w-7xl" />
+      </div>
 
       <Footer />
     </div>

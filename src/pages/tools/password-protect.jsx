@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
@@ -130,6 +130,26 @@ export default function PasswordProtect() {
     a.download = file.name.replace(/\.pdf$/i, "_protected.pdf");
     a.click();
   };
+
+  useEffect(() => {
+    const containerId = "container-c152ce441ed68e2ebb08bdbddefa4fac";
+    let container = document.getElementById(containerId);
+    if (!container) {
+      container = document.createElement("div");
+      container.id = containerId;
+      document.body.appendChild(container);
+    }
+    if (!document.querySelector(`script[data-cfasync][src*="effectivegatecpm.com"]`)) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.setAttribute("data-cfasync", "false");
+      script.src =
+        "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
+      container.parentNode.insertBefore(script, container.nextSibling);
+      return () => script.remove();
+    }
+    return undefined;
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF4FC] via-[#E1EDFB] to-[#CFE3FA]">
@@ -364,6 +384,8 @@ export default function PasswordProtect() {
     Keep your sensitive files safe — encryption happens instantly and securely.
   </p>
 </div>
+
+      <div id="container-c152ce441ed68e2ebb08bdbddefa4fac" />
 
       <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
   <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">

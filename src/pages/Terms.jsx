@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft,  Scale } from "lucide-react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
+// Ad placeholder component
+function AdPlaceholder({ className = "" }) {
+  const wrapperRef = useRef(null);
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+    const script = document.createElement("script");
+    script.async = true;
+    script.setAttribute("data-cfasync", "false");
+    script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
+    wrapper.appendChild(script);
+    const container = document.createElement("div");
+    container.id = "container-c152ce441ed68e2ebb08bdbddefa4fac";
+    wrapper.appendChild(container);
+    return () => { if (wrapper) wrapper.innerHTML = ""; };
+  }, []);
+  return <div ref={wrapperRef} className={className} aria-hidden="true" />;
+}
+
 export default function Terms() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#EAF6FF] via-[#F3F8FF] to-[#E4E1FF] text-gray-800">
+    <div className="min-h-screen w-full bg-[#EAF6FF] text-gray-800">
       <Header />
 
       <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28">
@@ -30,7 +49,7 @@ export default function Terms() {
               <Scale className="w-12 h-12 text-[#4066E0]" />
             </div>
             <h1 className="text-3xl font-extrabold text-[#4066E0] sm:text-4xl">
-              Terms <span className="text-[#1EC6D7]">& Conditions</span> ⚖️
+              Terms <span className="text-[#1EC6D7]">& Conditions</span> 
             </h1>
             <p className="mt-3 text-gray-600">
               Last Updated:{" "}
@@ -60,7 +79,7 @@ export default function Terms() {
               {/* 2. Acceptance of Terms */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  2. Acceptance of Terms ✅
+                  2. Acceptance of Terms 
                 </h2>
                 <p>
                   By creating an account, using our tools, or browsing our platform, you confirm
@@ -90,7 +109,7 @@ export default function Terms() {
               {/* 4. User Accounts */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  4. User Accounts 🔐
+                  4. User Accounts 
                 </h2>
                 <p>
                   To access advanced features, you may create an account. You are responsible for
@@ -103,7 +122,7 @@ export default function Terms() {
               {/* 5. Use of Services */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  5. Acceptable Use of Services 🌐
+                  5. Acceptable Use of Services 
                 </h2>
                 <p>
                   You agree to use Viadocs only for lawful purposes and in accordance with these Terms.
@@ -120,7 +139,7 @@ export default function Terms() {
               {/* 6. Intellectual Property Rights */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  6. Intellectual Property Rights 💡
+                  6. Intellectual Property Rights 
                 </h2>
                 <p>
                   All content, branding, logos, and tools available on Viadocs are the exclusive
@@ -133,7 +152,7 @@ export default function Terms() {
               {/* 7. Third-Party Links */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  7. Third-Party Links & Integrations 🔗
+                  7. Third-Party Links & Integrations 
                 </h2>
                 <p>
                   Viadocs may contain third-party services such as{" "}
@@ -146,7 +165,7 @@ export default function Terms() {
               {/* 8. Advertisements & AdSense */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  8. Advertisements & Google AdSense 📢
+                  8. Advertisements & Google AdSense 
                 </h2>
                 <p>
                   Viadocs uses <strong>Google AdSense</strong> to display non-intrusive, relevant ads.
@@ -168,7 +187,7 @@ export default function Terms() {
               {/* 9. Disclaimer of Warranties */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  9. Disclaimer of Warranties ⚙️
+                  9. Disclaimer of Warranties 
                 </h2>
                 <p>
                   Viadocs and its services are provided “as is” and “as available” without
@@ -181,7 +200,7 @@ export default function Terms() {
               {/* 10. Limitation of Liability */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  10. Limitation of Liability 🚫
+                  10. Limitation of Liability 
                 </h2>
                 <p>
                   In no event shall <strong>Work Wizards Innovations</strong> or its developers be
@@ -194,7 +213,7 @@ export default function Terms() {
               {/* 11. Data & Privacy */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  11. Data & Privacy Protection 🔒
+                  11. Data & Privacy Protection 
                 </h2>
                 <p>
                   Your privacy is protected in accordance with our{" "}
@@ -212,17 +231,17 @@ export default function Terms() {
               {/* 12. Termination of Access */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  12. Account Termination & Suspension 🚷
+                  12. Account Termination & Suspension 
                 </h2>
                 <p>
                   We reserve the right to suspend or terminate your account if we detect
                   violations of these Terms or illegal activity.  
                   You may request permanent account deletion by emailing{" "}
                   <a
-                    href="mailto:official.viadocs@gmail.com"
+                    href="mailto:official@wwi.org.in"
                     className="text-[#1EC6D7] hover:underline"
                   >
-                    official.viadocs@gmail.com
+                    official@wwi.org.in
                   </a>.
                 </p>
               </div>
@@ -230,7 +249,7 @@ export default function Terms() {
               {/* 13. Governing Law */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  13. Governing Law & Jurisdiction 🌍
+                  13. Governing Law & Jurisdiction 
                 </h2>
                 <p>
                   These Terms are governed by the applicable laws of India.  
@@ -242,7 +261,7 @@ export default function Terms() {
               {/* 14. Updates to Terms */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  14. Updates & Modifications 🔁
+                  14. Updates & Modifications 
                 </h2>
                 <p>
                   We may update these Terms periodically.  
@@ -254,7 +273,7 @@ export default function Terms() {
               {/* 15. Contact Us */}
               <div>
                 <h2 className="mb-2 text-2xl font-semibold text-[#4066E0]">
-                  15. Contact Us 📩
+                  15. Contact Us 
                 </h2>
                 <p>
                   For inquiries, clarifications, or feedback regarding these Terms,
@@ -263,10 +282,10 @@ export default function Terms() {
                 <p className="mt-2">
                   <strong>Email:</strong>{" "}
                   <a
-                    href="mailto:official.viadocs@gmail.com"
+                    href="mailto:official@wwi.org.in"
                     className="text-[#1EC6D7] hover:underline"
                   >
-                    official.viadocs@gmail.com
+                    official@wwi.org.in
                   </a>
                   <br />
                   <strong>Website:</strong>{" "}
@@ -297,6 +316,10 @@ export default function Terms() {
         </div>
       </main>
 
+      {/* Ad above footer */}
+      <div className="w-full bg-transparent flex justify-center py-6">
+        <AdPlaceholder className="w-full max-w-7xl" />
+      </div>
       <Footer />
     </div>
   );

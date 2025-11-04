@@ -87,6 +87,10 @@ export default function Visitors() {
 
   return (
     <div className="pt-20 sm:ml-56 min-h-screen bg-[#D3EAFD] transition-all">
+      {/* AdSense Script and Container */}
+      <script async="async" data-cfasync="false" src="//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js"></script>
+      <div id="container-c152ce441ed68e2ebb08bdbddefa4fac"></div>
+
       <div className="px-6 pb-10">
         {/* Header */}
         <div className="flex flex-col items-start justify-between gap-4 mb-6 sm:flex-row sm:items-center">

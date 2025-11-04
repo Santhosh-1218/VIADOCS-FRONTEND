@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, ShieldCheck, } from "lucide-react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+
+// Ad placeholder component
+function AdPlaceholder({ className = "" }) {
+  const wrapperRef = useRef(null);
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+    const script = document.createElement("script");
+    script.async = true;
+    script.setAttribute("data-cfasync", "false");
+    script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
+    wrapper.appendChild(script);
+    const container = document.createElement("div");
+    container.id = "container-c152ce441ed68e2ebb08bdbddefa4fac";
+    wrapper.appendChild(container);
+    return () => { if (wrapper) wrapper.innerHTML = ""; };
+  }, []);
+  return <div ref={wrapperRef} className={className} aria-hidden="true" />;
+}
 
 export default function PrivacyPolicy() {
   const navigate = useNavigate();
@@ -173,10 +192,10 @@ export default function PrivacyPolicy() {
                   You have the right to access, modify, or delete your personal
                   information. You can request data removal or export by emailing{" "}
                   <a
-                    href="mailto:official.viadocs@gmail.com"
+                    href="mailto:official@wwi.org.in"
                     className="text-[#1EC6D7] hover:underline"
                   >
-                    official.viadocs@gmail.com
+                    official@wwi.org.in
                   </a>.  
                   You may also opt out of marketing emails and cookie tracking at any time.
                 </p>
@@ -222,10 +241,10 @@ export default function PrivacyPolicy() {
                 <p className="mt-3">
                   <strong>Email:</strong>{" "}
                   <a
-                    href="mailto:official.viadocs@gmail.com"
+                    href="mailto:official@wwi.org.in"
                     className="text-[#1EC6D7] hover:underline"
                   >
-                    official.viadocs@gmail.com
+                    official@wwi.org.in
                   </a>
                   <br />
                   <strong>Website:</strong>{" "}
@@ -246,6 +265,10 @@ export default function PrivacyPolicy() {
         </div>
       </main>
 
+      {/* Ad above footer */}
+      <div className="w-full bg-transparent flex justify-center py-6">
+        <AdPlaceholder className="w-full max-w-7xl" />
+      </div>
       <Footer />
     </div>
   );

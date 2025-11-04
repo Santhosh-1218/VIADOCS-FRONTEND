@@ -1,4 +1,4 @@
-import React, { useEffect, useState,  useCallback } from "react";
+import React, { useEffect, useState,  useCallback, useRef, useEffect as useEf } from "react";
 import axios from "axios";
 import image1 from "../assets/image1.webp";
 import image2 from "../assets/images2.webp";
@@ -16,6 +16,25 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { jsPDF } from "jspdf";
+
+// Ad placeholder component
+function AdPlaceholder({ className = "" }) {
+  const wrapperRef = useRef(null);
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+    const script = document.createElement("script");
+    script.async = true;
+    script.setAttribute("data-cfasync", "false");
+    script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
+    wrapper.appendChild(script);
+    const container = document.createElement("div");
+    container.id = "container-c152ce441ed68e2ebb08bdbddefa4fac";
+    wrapper.appendChild(container);
+    return () => { if (wrapper) wrapper.innerHTML = ""; };
+  }, []);
+  return <div ref={wrapperRef} className={className} aria-hidden="true" />;
+}
 
 export default function Favorites() {
   const [docs, setDocs] = useState([]);
@@ -215,115 +234,113 @@ export default function Favorites() {
               Please log in to view your favorites.
             </p>
           )}
+
+          {/* Inline ad after docs grid */}
+          <div className="flex justify-center my-8">
+            <AdPlaceholder className="w-full max-w-3xl" />
+          </div>
+
+          {/* ===== Viadocs Features Section ===== */}
+          <section className="mt-0 py-16 bg-gradient-to-b from-[#F9FAFB] via-[#F3F4F6] to-white text-center"> {/* Added mt-0 */}
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6">
+              Work Smarter with <span className="text-[#4066E0]">Viadocs</span>
+            </h2>
+
+            <p className="max-w-3xl mx-auto text-gray-600 text-base sm:text-lg mb-10 px-4">
+              Whether you’re a student preparing reports or an employee managing PDFs, 
+              Viadocs brings everything together in one seamless, powerful workspace.
+            </p>
+
+            {/* ===== Feature Cards ===== */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
+              {/* Card 1 */}
+              <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all border border-gray-100 hover:-translate-y-1">
+                <div className="flex items-center justify-center mb-4">
+                  <div className="p-3 rounded-xl bg-[#EAF6FF] shadow-inner">
+                    <img
+                      src={image1}
+                      alt="Create Documents"
+                      className="w-20 h-20 object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                  Create Documents Instantly
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Generate professional projects, assignments, and resumes in seconds 
+                  using Viadocs’ AI document builder — built for students and employees.
+                </p>
+              </div>
+
+              {/* Card 2 */}
+              <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all border border-gray-100 hover:-translate-y-1">
+                <div className="flex items-center justify-center mb-4">
+                  <div className="p-3 rounded-xl bg-[#EAF6FF] shadow-inner">
+                    <img
+                      src={image2}
+                      alt="PDF Tools"
+                      className="w-20 h-20 object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                  All-in-One PDF Tools
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Merge, split, compress, or convert PDFs instantly. 
+                  Manage your files securely — anytime, anywhere.
+                </p>
+              </div>
+
+              {/* Card 3 */}
+              <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all border border-gray-100 hover:-translate-y-1">
+                <div className="flex items-center justify-center mb-4">
+                  <div className="p-3 rounded-xl bg-[#EAF6FF] shadow-inner">
+                    <img
+                      src={image3}
+                      alt="AI Assistant"
+                      className="w-20 h-20 object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                  AI-Powered Assistance
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Let our AI help summarize, rewrite, or extract key data 
+                  from documents — boosting your productivity and creativity.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ===== Trusted Section ===== */}
+          <section className="py-16 text-center bg-white">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-4">
+              Built for Engineering Students & Employees
+            </h2>
+            <p className="max-w-2xl mx-auto text-gray-600 mb-10 px-4">
+              I’m a fresher who built <span className="text-[#4066E0] font-semibold">Viadocs</span> 
+              for engineering students and professionals — making document creation, editing, 
+              and PDF tools smarter and easier to use.
+            </p>
+          </section>
         </div>
       </main>
-     
 
-
-     
-      
-{/* ===== Viadocs Features Section ===== */}
-<section className="mt-0 py-16 bg-gradient-to-b from-[#F9FAFB] via-[#F3F4F6] to-white text-center"> {/* Added mt-0 */}
-  <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6">
-    Work Smarter with <span className="text-[#4066E0]">Viadocs</span>
-  </h2>
-
-  <p className="max-w-3xl mx-auto text-gray-600 text-base sm:text-lg mb-10 px-4">
-    Whether you’re a student preparing reports or an employee managing PDFs, 
-    Viadocs brings everything together in one seamless, powerful workspace.
-  </p>
-
-  {/* ===== Feature Cards ===== */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
-    {/* Card 1 */}
-    <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all border border-gray-100 hover:-translate-y-1">
-      <div className="flex items-center justify-center mb-4">
-        <div className="p-3 rounded-xl bg-[#EAF6FF] shadow-inner">
-          <img
-            src={image1}
-            alt="Create Documents"
-            className="w-20 h-20 object-contain"
-            loading="lazy"
-          />
-        </div>
+      {/* Right-side hanging ad */}
+      <div className="pointer-events-none">
+        <AdPlaceholder className="hidden lg:block fixed right-4 top-1/3 z-50 w-48 pointer-events-auto" />
       </div>
-      <h3 className="text-lg font-semibold text-gray-800 mb-2">
-        Create Documents Instantly
-      </h3>
-      <p className="text-gray-600 text-sm leading-relaxed">
-        Generate professional projects, assignments, and resumes in seconds 
-        using Viadocs’ AI document builder — built for students and employees.
-      </p>
-    </div>
 
-    {/* Card 2 */}
-    <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all border border-gray-100 hover:-translate-y-1">
-      <div className="flex items-center justify-center mb-4">
-        <div className="p-3 rounded-xl bg-[#EAF6FF] shadow-inner">
-          <img
-            src={image2}
-            alt="PDF Tools"
-            className="w-20 h-20 object-contain"
-            loading="lazy"
-          />
-        </div>
+      {/* Ad above footer */}
+      <div className="w-full bg-transparent flex justify-center py-6">
+        <AdPlaceholder className="w-full max-w-7xl" />
       </div>
-      <h3 className="text-lg font-semibold text-gray-800 mb-2">
-        All-in-One PDF Tools
-      </h3>
-      <p className="text-gray-600 text-sm leading-relaxed">
-        Merge, split, compress, or convert PDFs instantly. 
-        Manage your files securely — anytime, anywhere.
-      </p>
-    </div>
-
-    {/* Card 3 */}
-    <div className="p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all border border-gray-100 hover:-translate-y-1">
-      <div className="flex items-center justify-center mb-4">
-        <div className="p-3 rounded-xl bg-[#EAF6FF] shadow-inner">
-          <img
-            src={image3}
-            alt="AI Assistant"
-            className="w-20 h-20 object-contain"
-            loading="lazy"
-          />
-        </div>
-      </div>
-      <h3 className="text-lg font-semibold text-gray-800 mb-2">
-        AI-Powered Assistance
-      </h3>
-      <p className="text-gray-600 text-sm leading-relaxed">
-        Let our AI help summarize, rewrite, or extract key data 
-        from documents — boosting your productivity and creativity.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-
-
-
-      {/* ===== Trusted Section ===== */}
-      <section className="py-16 text-center bg-white">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-4">
-          Built for Engineering Students & Employees
-        </h2>
-        <p className="max-w-2xl mx-auto text-gray-600 mb-10 px-4">
-          I’m a fresher who built <span className="text-[#4066E0] font-semibold">Viadocs</span> 
-          for engineering students and professionals — making document creation, editing, 
-          and PDF tools smarter and easier to use.
-        </p>
-      </section>
-
-
-
-
-
-
-
-
-
 
       <Footer />
 

@@ -24,6 +24,33 @@ import {
 } from "lucide-react";
 import { jsPDF } from "jspdf";
 
+// Ad placeholder component: injects the ad script and container div on mount
+function AdPlaceholder({ className = "" }) {
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    // append external script
+    const script = document.createElement("script");
+    script.async = true;
+    script.setAttribute("data-cfasync", "false");
+    script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
+    wrapper.appendChild(script);
+
+    // append expected container
+    const container = document.createElement("div");
+    container.id = "container-c152ce441ed68e2ebb08bdbddefa4fac";
+    wrapper.appendChild(container);
+
+    return () => {
+      if (wrapper) wrapper.innerHTML = "";
+    };
+  }, []);
+
+  return <div ref={wrapperRef} className={className} aria-hidden="true" />;
+}
 
 // Animated typing text (same as before)
 const texts = [
@@ -324,39 +351,39 @@ export default function Home() {
       {/* make this a flex column and allow it to grow so `main.flex-1` can push footer to bottom */}
       <div className="flex flex-col flex-1 w-full">
         <Header />
-      <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28"> {/* Added top padding for header height */}
+        <main className="flex-1 px-6 pb-0 pt-20 sm:pt-28"> {/* Added top padding for header height */}
 
-        <div className="max-w-6xl mx-auto">
-          {/* Welcome Section */}
-          <div className="p-8 mb-10 text-center bg-white border border-[#1EC6D7]/30 shadow-lg rounded-2xl">
-            <h2 className="text-3xl font-extrabold text-gray-900">
-              Welcome to <span className="text-[#4066E0]">Viadocs</span>
-            </h2>
-            <p className="mt-3 text-lg text-gray-600">
-              Create professional documents, collaborate with your team, and
-              manage projects efficiently.
-            </p>
+          <div className="max-w-6xl mx-auto">
+            {/* Welcome Section */}
+            <div className="p-8 mb-10 text-center bg-white border border-[#1EC6D7]/30 shadow-lg rounded-2xl">
+              <h2 className="text-3xl font-extrabold text-gray-900">
+                Welcome to <span className="text-[#4066E0]">Viadocs</span>
+              </h2>
+              <p className="mt-3 text-lg text-gray-600">
+                Create professional documents, collaborate with your team, and
+                manage projects efficiently.
+              </p>
 
-            {!isLoggedIn && (
-              <div className="flex flex-col items-center justify-center gap-3 mt-8 sm:flex-row sm:gap-6">
-                <button
-                  onClick={() => navigate("/login")}
-                  className="px-5 py-2 text-sm font-medium text-white transition-all rounded-full shadow-md bg-[#4066E0] hover:bg-[#1EC6D7] hover:shadow-lg sm:px-6 sm:py-2 sm:text-base"
-                >
-                  Get Started - Login
-                </button>
-                <button
-                  onClick={() => navigate("/signup")}
-                  className="px-5 py-2 text-sm font-medium text-[#4066E0] transition-all border border-[#1EC6D7] rounded-full shadow-sm hover:bg-[#1EC6D7]/10 hover:text-[#1EC6D7] hover:shadow-md sm:px-6 sm:py-2 sm:text-base"
-                >
-                  Create Account
-                </button>
-              </div>
-            )}
-          </div>
-          
+              {!isLoggedIn && (
+                <div className="flex flex-col items-center justify-center gap-3 mt-8 sm:flex-row sm:gap-6">
+                  <button
+                    onClick={() => navigate("/login")}
+                    className="px-5 py-2 text-sm font-medium text-white transition-all rounded-full shadow-md bg-[#4066E0] hover:bg-[#1EC6D7] hover:shadow-lg sm:px-6 sm:py-2 sm:text-base"
+                  >
+                    Get Started - Login
+                  </button>
+                  <button
+                    onClick={() => navigate("/signup")}
+                    className="px-5 py-2 text-sm font-medium text-[#4066E0] transition-all border border-[#1EC6D7] rounded-full shadow-sm hover:bg-[#1EC6D7]/10 hover:text-[#1EC6D7] hover:shadow-md sm:px-6 sm:py-2 sm:text-base"
+                  >
+                    Create Account
+                  </button>
+                </div>
+              )}
+            </div>
+            
 
-          {/* ===== Compact Hero Section ===== */}
+            {/* ===== Compact Hero Section ===== */}
 <section className="relative p-8 sm:p-12 mb-10 text-center rounded-2xl shadow-lg bg-gradient-to-br from-[#F3F8FF] via-[#EAF6FF] to-[#ffffff] border border-[#E0ECFF] overflow-hidden">
   {/* Floating accent gradient circles */}
   <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#4066E0]/20 rounded-full blur-3xl animate-pulse-slow"></div>
@@ -762,6 +789,16 @@ export default function Home() {
         </main>
       </div>
 
+      {/* Inline ad: centered between main content and the following sections */}
+      <div className="flex justify-center my-8">
+        <AdPlaceholder className="w-full max-w-3xl" />
+      </div>
+
+      {/* Right-side hanging ad (visible on large screens) */}
+      <div className="pointer-events-none">
+        <AdPlaceholder className="hidden lg:block fixed right-4 top-1/3 z-50 w-48 pointer-events-auto" />
+      </div>
+
 {/* ===== Folder Creation Video Section (Perfect Rectangle) ===== */}
 <section className="w-full px-4 py-12 bg-gradient-to-br from-[#F9FAFB] via-[#F3F8FF] to-[#E4E1FF] text-center border-t border-[#E0ECFF]">
   <h2 className="text-2xl sm:text-3xl font-extrabold text-[#4066E0] mb-6">
@@ -895,186 +932,177 @@ export default function Home() {
   </div>
 </section>
 
-      {/* ===== Trusted Section ===== */}
-      <section className="py-16 text-center bg-white">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-4">
-          Built for Engineering Students & Employees
-        </h2>
-        <p className="max-w-2xl mx-auto text-gray-600 mb-10 px-4">
-          I’m a fresher who built <span className="text-[#4066E0] font-semibold">Viadocs</span> 
-          for engineering students and professionals — making document creation, editing, 
-          and PDF tools smarter and easier to use.
-        </p>
-      </section>
-
-
-
-      {/* ===== Why Viadocs is Used by Engineering Students and Employees ===== */}
-<section className="py-16 bg-gradient-to-b from-white via-[#F8FAFF] to-[#EEF3FF] text-center border-t border-gray-100">
-  <div className="max-w-6xl mx-auto px-6">
-    <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-8">
-      Why <span className="text-[#4066E0]">Viadocs</span> is Used by Engineering Students and Employees
-    </h2>
-
-    <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6">
-      Viadocs was designed with one clear goal — to make documentation simple, smart, and accessible for everyone.
-      Whether you are an engineering student preparing lab reports and project documentation, or an employee
-      handling PDFs, proposals, and presentations, Viadocs acts as your intelligent workspace powered by modern
-      AI. It bridges the gap between learning and professional productivity by providing fast, reliable, and
-      customizable tools in one place.
-    </p>
-
-    <h3 className="text-2xl font-semibold text-[#1EC6D7] mt-10 mb-4">📘 For Engineering Students</h3>
-    <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6">
-      Engineering students handle massive documentation work — from project abstracts to final year reports,
-      mini-project documentation, and research paper submissions. Viadocs simplifies this entire process.
-      Students can create, edit, merge, and convert PDFs without worrying about formatting or complex software.
-      Using the built-in AI assistant, they can generate project summaries, technical write-ups, and even
-      auto-formatted reports in a few clicks. The goal is to save time so students can focus on innovation,
-      coding, and creativity instead of repetitive documentation.
-    </p>
-
-    <ul className="text-left max-w-4xl mx-auto list-disc list-inside text-gray-600 space-y-2">
-      <li>Create IEEE-style or academic project documentation with ease.</li>
-      <li>Auto-generate content for abstracts, introductions, and conclusions using AI.</li>
-      <li>Use Viadocs’ PDF tools to combine circuit diagrams, reports, and code snippets into one file.</li>
-      <li>Save time during submissions with instant PDF converters and compressors.</li>
-      <li>Access all documents anywhere — everything is cloud-based and secure.</li>
-    </ul>
-
-    <h3 className="text-2xl font-semibold text-[#1EC6D7] mt-10 mb-4">💼 For Employees and Professionals</h3>
-    <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6">
-      In a corporate or startup environment, time is money. Employees often juggle between document edits,
-      proposal formatting, client reports, and PDF conversions. Viadocs brings professional document management
-      to the browser — no installation needed. Users can create technical documentation, HR reports, financial
-      summaries, and business proposals faster with automation and consistency. The AI features reduce manual
-      editing and repetitive phrasing, while cloud sync ensures files are never lost.
-    </p>
-
-    <ul className="text-left max-w-4xl mx-auto list-disc list-inside text-gray-600 space-y-2">
-      <li>Generate professional reports and company documents in minutes.</li>
-      <li>Use secure PDF tools to protect, unlock, or e-sign files.</li>
-      <li>Collaborate with teammates easily by sharing editable docs.</li>
-      <li>Eliminate dependency on expensive licensed software.</li>
-      <li>Boost productivity with AI-based proofreading and summarization tools.</li>
-    </ul>
-
-    <h3 className="text-2xl font-semibold text-[#1EC6D7] mt-10 mb-4">🚀 Bridging Learning and Industry</h3>
-    <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6">
-      Viadocs is not just another PDF tool — it is an ecosystem built by students for the next generation of
-      creators and professionals. Engineering students today are tomorrow’s engineers, developers, and
-      entrepreneurs. By using Viadocs early in their academic journey, they learn professional documentation
-      standards, technical formatting, and digital presentation skills that directly translate into workplace
-      efficiency.
-    </p>
-
-    <h3 className="text-2xl font-semibold text-[#1EC6D7] mt-10 mb-4">🔐 Security and Data Privacy</h3>
-    <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6">
-      Viadocs understands the importance of security in academic and corporate environments. Every document
-      uploaded is encrypted and processed securely. We don’t store personal files for AI learning or external
-      training — your data is yours. Employees can manage confidential contracts or technical data without
-      worrying about leaks. Students can upload academic documents safely without fear of plagiarism exposure.
-    </p>
-
-    <h3 className="text-2xl font-semibold text-[#1EC6D7] mt-10 mb-4">🧠 AI That Understands You</h3>
-    <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6">
-      Viadocs’ integrated AI assistant, Docxy, acts like your personal documentation partner. You can ask Docxy
-      to generate code documentation, format project titles, summarize lengthy notes, or explain technical
-      concepts. Unlike generic tools, it’s fine-tuned for engineering and office documentation, ensuring
-      precision and relevance.
-    </p>
-
-    <h3 className="text-2xl font-semibold text-[#1EC6D7] mt-10 mb-4">🌍 Empowering Indian Engineering Education</h3>
-    <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6">
-      Viadocs was proudly built by young Indian engineers to support the next generation of innovators. Many
-      Indian students face challenges preparing academic documentation — from project reports to internship
-      certificates. Viadocs provides ready-to-use templates, automated formatting, and grammar-checked content
-      so that even first-year students can prepare polished submissions without external help.
-    </p>
-
-    <h3 className="text-2xl font-semibold text-[#1EC6D7] mt-10 mb-4">🏗️ Built for the Future</h3>
-    <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6">
-      Viadocs is continuously evolving. Future updates include real-time team collaboration, cloud document
-      storage, AI plagiarism checks, and voice-based report generation. The aim is to make Viadocs not just a
-      tool but a digital companion for modern education and professional life.
-    </p>
-
-    <h3 className="text-2xl font-semibold text-[#1EC6D7] mt-10 mb-4">✨ In Summary</h3>
-    <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-10">
-      Viadocs unites simplicity, power, and intelligence. For students, it transforms the boring parts of
-      documentation into creativity. For employees, it replaces multiple tools with one secure platform.
-      Whether you are writing your final year project or drafting your next proposal, Viadocs saves your time
-      and improves your output — intelligently.
-    </p>
-
-    <p className="text-gray-500 text-sm italic">
-      “Smart documentation leads to smart innovation.” – The Viadocs Vision
-    </p>
-  </div>
-</section>
-
-
-
-
-
-{/* ===== FAQ Section ===== */}
-<section className="py-16 bg-white text-center border-t border-gray-100">
-  <div className="max-w-5xl mx-auto px-6">
-    <h2 className="text-3xl font-extrabold text-gray-800 mb-6">
-      Frequently Asked <span className="text-[#4066E0]">Questions</span>
-    </h2>
-
-    <div className="space-y-6 text-left text-gray-600 text-base sm:text-lg">
-      <div>
-        <h3 className="font-semibold text-[#1EC6D7]">1. Is Viadocs free to use?</h3>
-        <p>
-          Yes, Viadocs offers a completely free plan that allows users to create and manage 
-          their documents without any charges. Premium plans are optional for advanced AI tools 
-          and faster processing.
-        </p>
-      </div>
-
-      <div>
-        <h3 className="font-semibold text-[#1EC6D7]">2. Who can use Viadocs?</h3>
-        <p>
-          Viadocs is built mainly for engineering students, professionals, teachers, and 
-          employees who need efficient tools for project documentation, PDF editing, and AI assistance.
-        </p>
-      </div>
-
-      <div>
-        <h3 className="font-semibold text-[#1EC6D7]">3. Is my data safe on Viadocs?</h3>
-        <p>
-          Absolutely. Viadocs ensures all uploads are encrypted and stored securely. 
-          We never share your data for AI training or external analysis.
-        </p>
-      </div>
-
-      <div>
-        <h3 className="font-semibold text-[#1EC6D7]">4. Does Viadocs work on mobile?</h3>
-        <p>
-          Yes, Viadocs is fully responsive and works smoothly on mobile, tablet, and desktop devices.
-        </p>
-      </div>
-
-      <div>
-        <h3 className="font-semibold text-[#1EC6D7]">5. How is Viadocs different from other PDF tools?</h3>
-        <p>
-          Unlike ordinary PDF tools, Viadocs is AI-powered and built by engineers for engineers. 
-          It helps you create complete documentation — not just convert files.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-
       
+        <section className="py-16 text-center bg-white">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-4">
+            Built for Engineering Students & Employees
+          </h2>
+          <p className="max-w-2xl mx-auto text-gray-600 mb-10 px-4">
+            I'm a fresher who built <span className="text-[#4066E0] font-semibold">Viadocs</span> 
+            for engineering students and professionals — making document creation, editing, 
+            and PDF tools smarter and easier to use.
+          </p>
+        </section>
+
+        {/* ===== Why Viadocs is Used by Engineering Students and Employees ===== */}
+          <section className="py-16 bg-gradient-to-b from-white via-[#F8FAFF] to-[#EEF3FF] text-left border-t border-gray-100">
+            <div className="max-w-6xl mx-auto px-6">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-black mb-8">
+            Why <span className="text-[#4066E0]">Viadocs</span> is Used by Engineering Students and Employees
+              </h2>
+
+              <p className="text-gray-600/80 text-base sm:text-lg leading-relaxed mb-6">
+            Viadocs was designed with one clear goal — to make documentation simple, smart, and accessible for everyone.
+            Whether you are an engineering student preparing lab reports and project documentation, or an employee
+            handling PDFs, proposals, and presentations, Viadocs acts as your intelligent workspace powered by modern
+            AI. It bridges the gap between learning and professional productivity by providing fast, reliable, and
+            customizable tools in one place.
+              </p>
+
+              <h3 className="text-2xl font-semibold text-black mt-10 mb-4">For Engineering Students</h3>
+              <p className="text-gray-600/80 text-base sm:text-lg leading-relaxed mb-6">
+            Engineering students handle massive documentation work — from project abstracts to final year reports,
+            mini-project documentation, and research paper submissions. Viadocs simplifies this entire process.
+            Students can create, edit, merge, and convert PDFs without worrying about formatting or complex software.
+            Using the built-in AI assistant, they can generate project summaries, technical write-ups, and even
+            auto-formatted reports in a few clicks. The goal is to save time so students can focus on innovation,
+            coding, and creativity instead of repetitive documentation.
+              </p>
+
+              <ul className="max-w-4xl list-disc list-inside text-gray-600/80 space-y-2">
+            <li>Create IEEE-style or academic project documentation with ease.</li>
+            <li>Auto-generate content for abstracts, introductions, and conclusions using AI.</li>
+            <li>Use Viadocs' PDF tools to combine circuit diagrams, reports, and code snippets into one file.</li>
+            <li>Save time during submissions with instant PDF converters and compressors.</li>
+            <li>Access all documents anywhere — everything is cloud-based and secure.</li>
+              </ul>
+
+              <h3 className="text-2xl font-semibold text-black mt-10 mb-4">For Employees and Professionals</h3>
+              <p className="text-gray-600/80 text-base sm:text-lg leading-relaxed mb-6">
+            In a corporate or startup environment, time is money. Employees often juggle between document edits,
+            proposal formatting, client reports, and PDF conversions. Viadocs brings professional document management
+            to the browser — no installation needed. Users can create technical documentation, HR reports, financial
+            summaries, and business proposals faster with automation and consistency. The AI features reduce manual
+            editing and repetitive phrasing, while cloud sync ensures files are never lost.
+              </p>
+
+              <ul className="max-w-4xl list-disc list-inside text-gray-600/80 space-y-2">
+            <li>Generate professional reports and company documents in minutes.</li>
+            <li>Use secure PDF tools to protect, unlock, or e-sign files.</li>
+            <li>Collaborate with teammates easily by sharing editable docs.</li>
+            <li>Eliminate dependency on expensive licensed software.</li>
+            <li>Boost productivity with AI-based proofreading and summarization tools.</li>
+              </ul>
+
+              <h3 className="text-2xl font-black text-black mt-10 mb-4">Bridging Learning and Industry</h3>
+              <p className="text-gray-600/80 text-base sm:text-lg leading-relaxed mb-6">
+            Viadocs is not just another PDF tool — it is an ecosystem built by students for the next generation of
+            creators and professionals. Engineering students today are tomorrow's engineers, developers, and
+            entrepreneurs. By using Viadocs early in their academic journey, they learn professional documentation
+            standards, technical formatting, and digital presentation skills that directly translate into workplace
+            efficiency.
+              </p>
+
+              <h3 className="text-2xl font-semibold text-black mt-10 mb-4">Security and Data Privacy</h3>
+              <p className="text-gray-600/80 text-base sm:text-lg leading-relaxed mb-6">
+            Viadocs understands the importance of security in academic and corporate environments. Every document
+            uploaded is encrypted and processed securely. We don't store personal files for AI learning or external
+            training — your data is yours. Employees can manage confidential contracts or technical data without
+            worrying about leaks. Students can upload academic documents safely without fear of plagiarism exposure.
+              </p>
+
+              <h3 className="text-2xl font-semibold text-black mt-10 mb-4">AI That Understands You</h3>
+              <p className="text-gray-600/80 text-base sm:text-lg leading-relaxed mb-6">
+            Viadocs' integrated AI assistant, Docxy, acts like your personal documentation partner. You can ask Docxy
+            to generate code documentation, format project titles, summarize lengthy notes, or explain technical
+            concepts. Unlike generic tools, it's fine-tuned for engineering and office documentation, ensuring
+            precision and relevance.
+              </p>
+
+              <h3 className="text-2xl font-black text-black mt-10 mb-4">Empowering Indian Engineering Education</h3>
+              <p className="text-gray-600/80 text-base sm:text-lg leading-relaxed mb-6">
+            Viadocs was proudly built by young Indian engineers to support the next generation of innovators. Many
+            Indian students face challenges preparing academic documentation — from project reports to internship
+            certificates. Viadocs provides ready-to-use templates, automated formatting, and grammar-checked content
+            so that even first-year students can prepare polished submissions without external help.
+              </p>
+
+              <h3 className="text-2xl font-black text-black mt-10 mb-4">Built for the Future</h3>
+              <p className="text-gray-600/80 text-base sm:text-lg leading-relaxed mb-6">
+            Viadocs is continuously evolving. Future updates include real-time team collaboration, cloud document
+            storage, AI plagiarism checks, and voice-based report generation. The aim is to make Viadocs not just a
+            tool but a digital companion for modern education and professional life.
+              </p>
+
+              <h3 className="text-2xl font-black text-black mt-10 mb-4">In Summary</h3>
+              <p className="text-gray-600/80 text-base sm:text-lg leading-relaxed mb-10">
+            Viadocs unites simplicity, power, and intelligence. For students, it transforms the boring parts of
+            documentation into creativity. For employees, it replaces multiple tools with one secure platform.
+            Whether you are writing your final year project or drafting your next proposal, Viadocs saves your time
+            and improves your output — intelligently.
+              </p>
+
+              <p className="text-gray-500/80 text-sm italic">
+            "Smart documentation leads to smart innovation." – The Viadocs Vision
+              </p>
+            </div>
+          </section>
+        <section className="py-16 bg-white text-center border-t border-gray-100">
+          <div className="max-w-5xl mx-auto px-6">
+            <h2 className="text-3xl font-extrabold text-black mb-6">
+          Frequently Asked <span className="text-black font-black">Questions</span>
+            </h2>
+
+            <div className="space-y-6 text-left text-gray-600 text-base sm:text-lg">
+          <div>
+            <h3 className="font-semibold text-black">1. Is Viadocs free to use?</h3>
+            <p>
+              Yes, Viadocs offers a completely free plan that allows users to create and manage 
+              their documents without any charges. Premium plans are optional for advanced AI tools 
+              and faster processing.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black">2. Who can use Viadocs?</h3>
+            <p>
+              Viadocs is built mainly for engineering students, professionals, teachers, and 
+              employees who need efficient tools for project documentation, PDF editing, and AI assistance.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black">3. Is my data safe on Viadocs?</h3>
+            <p>
+              Absolutely. Viadocs ensures all uploads are encrypted and stored securely. 
+              We never share your data for AI training or external analysis.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black">4. Does Viadocs work on mobile?</h3>
+            <p>
+              Yes, Viadocs is fully responsive and works smoothly on mobile, tablet, and desktop devices.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black">5. How is Viadocs different from other PDF tools?</h3>
+            <p>
+              Unlike ordinary PDF tools, Viadocs is AI-powered and built by engineers for engineers. 
+              It helps you create complete documentation — not just convert files.
+            </p>
+          </div>
+            </div>
+          </div>
+        </section>
+
+      <div className="w-full bg-transparent flex justify-center py-6">
+        <AdPlaceholder className="w-full max-w-7xl" />
+      </div>
 
       <Footer />
+
       {/* Delete confirmation modal - requires typing doc name */}
       {deleteTarget && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">

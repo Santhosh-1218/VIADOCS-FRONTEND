@@ -175,3 +175,9 @@ main {
     box-shadow: 0 2px 6px rgba(0,0,0,0.1) !important;
   }
 }
+
+body {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #EAF6FF, #F3F8FF, #E4E1FF);
+}

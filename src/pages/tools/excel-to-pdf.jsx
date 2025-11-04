@@ -39,6 +39,27 @@ export default function ExcelToPdf() {
     };
   }, []);
 
+  // page already uses useEffect elsewhere — add ad injection effect
+  useEffect(() => {
+    const containerId = "container-c152ce441ed68e2ebb08bdbddefa4fac";
+    let container = document.getElementById(containerId);
+    if (!container) {
+      container = document.createElement("div");
+      container.id = containerId;
+      document.body.appendChild(container);
+    }
+    if (!document.querySelector(`script[data-cfasync][src*="effectivegatecpm.com"]`)) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.setAttribute("data-cfasync", "false");
+      script.src =
+        "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
+      container.parentNode.insertBefore(script, container.nextSibling);
+      return () => script.remove();
+    }
+    return undefined;
+  }, []);
+
   // ✅ File validation
   const handleFileSelect = (selectedFile) => {
     const validTypes = [
@@ -276,6 +297,8 @@ export default function ExcelToPdf() {
   Maintain all tables, formulas, and cell alignments with perfect formatting.
 </p>
 
+      {/* Ad container required by the vendor script (page-local) */}
+      <div id="container-c152ce441ed68e2ebb08bdbddefa4fac" />
 
       {/* Visible, colored, page-local footer */}
       <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">

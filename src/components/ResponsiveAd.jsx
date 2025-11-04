@@ -10,14 +10,23 @@ export default function ResponsiveAd({
 }) {
   useEffect(() => {
     // Prevent adding the same script multiple times
-    const existing = document.querySelector(script[src="${scriptSrc}"]);
+    const existing = document.querySelector(`script[src="${scriptSrc}"]`);
     if (!existing) {
-      const script = document.createElement("script");
-      script.async = true;
-      script.dataset.cfasync = "false";
-      script.src = scriptSrc;
-      document.body.appendChild(script);
+      const s = document.createElement("script");
+      s.async = true;
+      s.dataset.cfasync = "false";
+      s.src = scriptSrc;
+      document.body.appendChild(s);
+      // cleanup when this component unmounts
+      return () => {
+        try {
+          s.remove();
+        } catch (e) {
+          // ignore if already removed
+        }
+      };
     }
+    return undefined;
   }, [scriptSrc]);
 
   // Check safely for mobile width

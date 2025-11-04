@@ -12,7 +12,7 @@ import {
   Download,
 } from "lucide-react";
 import Header from "../../components/Header/Header";
-import ResponsiveAd from "../components/ResponsiveAd";
+import ResponsiveAd from "../../components/ResponsiveAd";
 import axios from "axios";
 
 export default function ExcelToPdf() {

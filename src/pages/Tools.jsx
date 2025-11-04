@@ -1,5 +1,5 @@
 // src/pages/Tools.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
@@ -24,6 +24,25 @@ import {
 
 export default function Tools() {
   const navigate = useNavigate();
+
+  // Add AdSense script and container (defensive)
+  useEffect(() => {
+    const containerId = "container-c152ce441ed68e2ebb08bdbddefa4fac";
+    let container = document.getElementById(containerId);
+    if (!container) {
+      container = document.createElement("div");
+      container.id = containerId;
+      document.body.appendChild(container);
+    }
+    const script = document.createElement("script");
+    script.async = true;
+    script.setAttribute("data-cfasync", "false");
+    script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
+    container.parentNode.insertBefore(script, container.nextSibling);
+    return () => {
+      script.remove();
+    };
+  }, []);
 
   const tools = [
     { slug: "pdf-to-word", name: "PDF to Word", desc: "Convert PDF into editable Word docs", icon: FileText },
@@ -94,16 +113,9 @@ export default function Tools() {
         </div>
       </main>
 
-      {/* AdSense Ad Section */}
-      <section className="py-8 bg-white border-t border-gray-100">
-        <div className="max-w-6xl mx-auto px-4">
-          <div 
-            id="container-c152ce441ed68e2ebb08bdbddefa4fac"
-            className="w-full min-h-[100px] flex items-center justify-center"
-          />
-        </div>
-      </section>
 
+
+     
 {/* ===== Viadocs Features Section ===== */}
 <section className="py-16 bg-gradient-to-b from-[#F9FAFB] via-[#F3F4F6] to-white text-center">
   <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6">
@@ -284,6 +296,7 @@ export default function Tools() {
 
 
       <Footer />
+      <div id="container-c152ce441ed68e2ebb08bdbddefa4fac" />
     </div>
   );
 }

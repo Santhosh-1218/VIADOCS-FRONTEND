@@ -868,6 +868,16 @@ export default function Home() {
   </div>
 </section>
 
+{/* AdSense Ad Section */}
+<section className="py-8 bg-white">
+  <div className="max-w-6xl mx-auto px-4">
+    <div 
+      id="container-c152ce441ed68e2ebb08bdbddefa4fac"
+      className="w-full min-h-[100px] flex items-center justify-center"
+    />
+  </div>
+</section>
+
      {/* ===== Premium Section ===== */}
 <section className="py-16 bg-gradient-to-r from-[#4066E0]/10 via-[#1EC6D7]/10 to-[#6A3FD7]/10 text-center">
   <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-4">

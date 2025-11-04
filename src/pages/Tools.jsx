@@ -94,9 +94,16 @@ export default function Tools() {
         </div>
       </main>
 
+      {/* AdSense Ad Section */}
+      <section className="py-8 bg-white border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-4">
+          <div 
+            id="container-c152ce441ed68e2ebb08bdbddefa4fac"
+            className="w-full min-h-[100px] flex items-center justify-center"
+          />
+        </div>
+      </section>
 
-
-     
 {/* ===== Viadocs Features Section ===== */}
 <section className="py-16 bg-gradient-to-b from-[#F9FAFB] via-[#F3F4F6] to-white text-center">
   <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6">

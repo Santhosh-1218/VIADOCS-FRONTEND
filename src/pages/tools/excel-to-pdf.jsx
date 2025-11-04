@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+// ResponsiveAd removed (unused)
 import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
@@ -17,6 +18,9 @@ export default function ExcelToPdf() {
   const fileInputRef = useRef(null);
   const pageRef = useRef(null); // <-- root ref for this page
   const hiddenFootersRef = useRef([]); // store hidden footers to restore
+  const isMountedRef = useRef(true); // track if component is mounted
+  const abortControllerRef = useRef(null); // store any active AbortController
+  const downloadUrlRef = useRef(null); // store created object URL for cleanup
   const [file, setFile] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
@@ -39,6 +43,23 @@ export default function ExcelToPdf() {
     };
   }, []);
 
+  // Track mount state and cleanup aborts / object URLs on unmount
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+      // Abort any in-flight request
+      if (abortControllerRef.current) {
+        try { abortControllerRef.current.abort(); } catch (e) {}
+      }
+      // Revoke any created object URL
+      if (downloadUrlRef.current) {
+        try { URL.revokeObjectURL(downloadUrlRef.current); } catch (e) {}
+        downloadUrlRef.current = null;
+      }
+    };
+  }, []);
+
   // page already uses useEffect elsewhere — add ad injection effect
   useEffect(() => {
     const containerId = "container-c152ce441ed68e2ebb08bdbddefa4fac";
@@ -55,6 +76,28 @@ export default function ExcelToPdf() {
       script.src =
         "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
       container.parentNode.insertBefore(script, container.nextSibling);
+      return () => script.remove();
+    }
+    return undefined;
+  }, []);
+
+  // Ad injection for page-local ad-root
+  useEffect(() => {
+    const wrapper = document.getElementById("ad-root-excel-to-pdf");
+    if (!wrapper) return;
+    const cid = "container-c152ce441ed68e2ebb08bdbddefa4fac";
+    let container = wrapper.querySelector(`#${cid}`);
+    if (!container) {
+      container = document.createElement("div");
+      container.id = cid;
+      wrapper.appendChild(container);
+    }
+    if (!document.querySelector(`script[data-cfasync][src*="effectivegatecpm.com"]`)) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.setAttribute("data-cfasync", "false");
+      script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
+      wrapper.appendChild(script);
       return () => script.remove();
     }
     return undefined;
@@ -96,6 +139,13 @@ export default function ExcelToPdf() {
     setIsProcessing(true);
     setError(null);
 
+    // abort previous controller if any
+    if (abortControllerRef.current) {
+      try { abortControllerRef.current.abort(); } catch (e) {}
+    }
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
     try {
       const formData = new FormData();
       formData.append("file", file);
@@ -106,19 +156,31 @@ export default function ExcelToPdf() {
         {
           headers: { "Content-Type": "multipart/form-data" },
           responseType: "blob", // Important: Expect binary PDF
+          signal: controller.signal,
         }
       );
 
       // Create blob download URL
       const blob = new Blob([response.data], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
-      setDownloadUrl(url);
-      setIsComplete(true);
+      // store both in state and ref for cleanup
+      downloadUrlRef.current = url;
+      if (isMountedRef.current) {
+        setDownloadUrl(url);
+        setIsComplete(true);
+      }
     } catch (err) {
-      console.error("❌ Conversion Error:", err);
-      setError("Server error during conversion. Please try again.");
+      // ignore abort errors
+      if (err?.name === "CanceledError" || err?.name === "AbortError") {
+        console.warn("Request aborted");
+      } else {
+        console.error("❌ Conversion Error:", err);
+        if (isMountedRef.current) setError("Server error during conversion. Please try again.");
+      }
     } finally {
-      setIsProcessing(false);
+      // clear current controller
+      abortControllerRef.current = null;
+      if (isMountedRef.current) setIsProcessing(false);
     }
   };
 
@@ -129,6 +191,14 @@ export default function ExcelToPdf() {
       link.href = downloadUrl;
       link.download = file.name.replace(/\.(xlsx|xls)$/i, ".pdf");
       link.click();
+      // Revoke after a short timeout to allow browser to process the download
+      setTimeout(() => {
+        if (downloadUrlRef.current) {
+          try { URL.revokeObjectURL(downloadUrlRef.current); } catch (e) {}
+          downloadUrlRef.current = null;
+        }
+        if (isMountedRef.current) setDownloadUrl(null);
+      }, 2000);
     }
   };
 
@@ -139,6 +209,14 @@ export default function ExcelToPdf() {
     setIsProcessing(false);
     setIsComplete(false);
     setDownloadUrl(null);
+    if (downloadUrlRef.current) {
+      try { URL.revokeObjectURL(downloadUrlRef.current); } catch (e) {}
+      downloadUrlRef.current = null;
+    }
+    if (abortControllerRef.current) {
+      try { abortControllerRef.current.abort(); } catch (e) {}
+      abortControllerRef.current = null;
+    }
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
@@ -180,7 +258,7 @@ export default function ExcelToPdf() {
 
           {/* Tool Area */}
           <div className="p-6 bg-white shadow-lg sm:p-8 rounded-2xl">
-            {!file ? (
+            { !file ? (
               <div
                 onDrop={handleDrop}
                 onDragOver={(e) => e.preventDefault()}
@@ -278,35 +356,32 @@ export default function ExcelToPdf() {
                         <Download className="w-5 h-5" />
                         Download PDF
                       </button>
-                      <button
-                        onClick={resetTool}
-                        className="flex items-center justify-center w-full gap-2 px-6 py-3 font-medium text-white transition-all rounded-lg shadow-md sm:w-auto bg-gradient-to-r from-gray-400 to-gray-600 hover:opacity-90"
-                      >
-                        Convert Another
-                      </button>
                     </div>
                   )}
+
+                  {/* Ad Root */}
+                  <div id="ad-root-excel-to-pdf" className="my-10" />
                 </div>
               </div>
-            )}
+            ) }
           </div>
+ 
+          {/* Visible, colored, page-local footer */}
+          <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
+            <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
+              © 2025 <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
+            </div>
+          </footer>
         </div>
       </main>
-      <p className="mt-6 text-center text-gray-600 text-sm sm:text-base">
-  Convert Excel spreadsheets (.xls or .xlsx) into clean, printable PDF files. 
-  Maintain all tables, formulas, and cell alignments with perfect formatting.
-</p>
-
-      {/* Ad container required by the vendor script (page-local) */}
-      <div id="container-c152ce441ed68e2ebb08bdbddefa4fac" />
-
-      {/* Visible, colored, page-local footer */}
-      <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
-  <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
-    © 2025 <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
-  </div>
-</footer>
-
     </div>
   );
 }
+
+
+
+
+
+
+
+

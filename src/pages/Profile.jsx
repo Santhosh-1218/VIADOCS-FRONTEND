@@ -6,7 +6,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import toast from 'react-hot-toast';
 import Cropper from "react-easy-crop";
-
+import ResponsiveAd from "../components/ResponsiveAd";
 import {
   ArrowLeft,
   MoreVertical,

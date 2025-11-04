@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import toast from "react-hot-toast";
 import { jsPDF } from "jspdf";
 import axios from "axios";
+import ResponsiveAd from "../components/ResponsiveAd";
 
 
 

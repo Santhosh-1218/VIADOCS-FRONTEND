@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import ResponsiveAd from "../components/ResponsiveAd";
 import {
   ArrowLeft,
   Send,

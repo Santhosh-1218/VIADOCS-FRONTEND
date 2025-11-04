@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import ResponsiveAd from "../components/ResponsiveAd";
 import { useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
@@ -111,20 +112,21 @@ export default function ImageToPdf() {
   };
 
   useEffect(() => {
-    const containerId = "container-c152ce441ed68e2ebb08bdbddefa4fac";
-    let container = document.getElementById(containerId);
+    const wrapper = document.getElementById("ad-root-image-to-pdf");
+    if (!wrapper) return;
+    const cid = "container-c152ce441ed68e2ebb08bdbddefa4fac";
+    let container = wrapper.querySelector(`#${cid}`);
     if (!container) {
       container = document.createElement("div");
-      container.id = containerId;
-      document.body.appendChild(container);
+      container.id = cid;
+      wrapper.appendChild(container);
     }
     if (!document.querySelector(`script[data-cfasync][src*="effectivegatecpm.com"]`)) {
       const script = document.createElement("script");
       script.async = true;
       script.setAttribute("data-cfasync", "false");
-      script.src =
-        "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
-      container.parentNode.insertBefore(script, container.nextSibling);
+      script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
+      wrapper.appendChild(script);
       return () => script.remove();
     }
     return undefined;
@@ -281,24 +283,15 @@ export default function ImageToPdf() {
           </div>
         </div>
       </main>
-      <div className="mt-10 text-center text-gray-700 text-sm sm:text-base leading-relaxed">
-  <h2 className="text-xl font-semibold text-[#3F51B5] mb-2">
-    Convert Images to PDF
-  </h2>
-  <p>
-    Create PDFs from multiple images in seconds. Drag and drop JPG, PNG, or WEBP files and 
-    get a neatly arranged, downloadable PDF instantly. 
-    <br className="hidden sm:block" />
-    All files are processed securely with no watermarks or signups.
-  </p>
-</div>
-<div id="container-c152ce441ed68e2ebb08bdbddefa4fac" />
-      <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
-  <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
-    © 2025 <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
-  </div>
-</footer>
 
+      <div id="ad-root-image-to-pdf" className="my-10" />
+      <div id="container-c152ce441ed68e2ebb08bdbddefa4fac" />
+      <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
+        <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
+          © 2025{" "}
+          <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
+        </div>
+      </footer>
     </div>
   );
 }

@@ -9,6 +9,7 @@ import image1 from "../assets/image1.webp";
 import image2 from "../assets/images2.webp";
 import image3 from "../assets/image3.webp";
 import viadocsVideo from "../assets/viadocs.mp4";
+import ResponsiveAd from "../components/ResponsiveAd";
 import {
   MoreVertical,
   Star,

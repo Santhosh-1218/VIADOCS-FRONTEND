@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft,  Scale } from "lucide-react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-
+import ResponsiveAd from "../components/ResponsiveAd";
 // Ad placeholder component
 function AdPlaceholder({ className = "" }) {
   const wrapperRef = useRef(null);

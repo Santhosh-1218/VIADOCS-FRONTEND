@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ResponsiveAd from "../components/ResponsiveAd";
 import {
   ArrowLeft,
   Upload,
@@ -125,20 +126,21 @@ export default function PdfCompress() {
   };
 
   useEffect(() => {
-    const containerId = "container-c152ce441ed68e2ebb08bdbddefa4fac";
-    let container = document.getElementById(containerId);
+    const wrapper = document.getElementById("ad-root-pdf-compress");
+    if (!wrapper) return;
+    const cid = "container-c152ce441ed68e2ebb08bdbddefa4fac";
+    let container = wrapper.querySelector(`#${cid}`);
     if (!container) {
       container = document.createElement("div");
-      container.id = containerId;
-      document.body.appendChild(container);
+      container.id = cid;
+      wrapper.appendChild(container);
     }
     if (!document.querySelector(`script[data-cfasync][src*="effectivegatecpm.com"]`)) {
       const script = document.createElement("script");
       script.async = true;
       script.setAttribute("data-cfasync", "false");
-      script.src =
-        "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
-      container.parentNode.insertBefore(script, container.nextSibling);
+      script.src = "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
+      wrapper.appendChild(script);
       return () => script.remove();
     }
     return undefined;
@@ -307,24 +309,26 @@ export default function PdfCompress() {
           </div>
         </div>
       </main>
-      <div className="mt-10 text-center text-gray-700 text-sm sm:text-base leading-relaxed">
-  <h2 className="text-xl font-semibold text-[#3F51B5] mb-2">
-    Compress PDF – Reduce File Size Easily
-  </h2>
-  <p>
-    Shrink PDF size while maintaining visual quality. Choose between light, balanced, or extreme compression levels 
-    depending on your needs. 
-    <br className="hidden sm:block" />
-    Perfect for uploading, emailing, and sharing documents faster.
-  </p>
-</div>
-<div id="container-c152ce441ed68e2ebb08bdbddefa4fac" />
-      <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
-  <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
-    © 2025 <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
-  </div>
-</footer>
 
+      <div id="ad-root-pdf-compress" className="my-10" />
+      <div className="mt-10 text-center text-gray-700 text-sm sm:text-base leading-relaxed">
+        <h2 className="text-xl font-semibold text-[#3F51B5] mb-2">
+          Compress PDF – Reduce File Size Easily
+        </h2>
+        <p>
+          Shrink PDF size while maintaining visual quality. Choose between light, balanced, or extreme compression levels
+          depending on your needs.
+          <br className="hidden sm:block" />
+          Perfect for uploading, emailing, and sharing documents faster.
+        </p>
+      </div>
+      <div id="container-c152ce441ed68e2ebb08bdbddefa4fac" />
+      <footer className="w-full mt-auto py-3 bg-black border-t border-gray-800">
+        <div className="max-w-5xl mx-auto text-center text-xs sm:text-sm text-white font-medium tracking-wide">
+          © 2025{" "}
+          <span className="text-[#1EC6D7] font-semibold">Viadocs</span>. All rights reserved.
+        </div>
+      </footer>
     </div>
   );
 }

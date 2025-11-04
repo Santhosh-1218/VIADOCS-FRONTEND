@@ -60,6 +60,33 @@ export default function Visitors() {
     return () => clearInterval(interval);
   }, []);
 
+  // Inject ad script (use same robust pattern as other pages)
+  useEffect(() => {
+    const containerId = "container-c152ce441ed68e2ebb08bdbddefa4fac";
+    let container = document.getElementById(containerId);
+    if (!container) {
+      // keep a container in DOM so ad script can target it
+      container = document.createElement("div");
+      container.id = containerId;
+      // append to body so it's available regardless of component mount/unmount
+      document.body.appendChild(container);
+    }
+
+    // add script only once
+    if (!document.querySelector(`script[data-cfasync][src*="effectivegatecpm.com"]`)) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.setAttribute("data-cfasync", "false");
+      script.src =
+        "//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js";
+      // insert script after the container
+      container.parentNode.insertBefore(script, container.nextSibling);
+      return () => script.remove();
+    }
+
+    return undefined;
+  }, []);
+
   // ✅ Search by referral ID
   useEffect(() => {
     if (!searchTerm.trim()) {
@@ -87,9 +114,8 @@ export default function Visitors() {
 
   return (
     <div className="pt-20 sm:ml-56 min-h-screen bg-[#D3EAFD] transition-all">
-      {/* AdSense Script and Container */}
-      <script async="async" data-cfasync="false" src="//pl27986002.effectivegatecpm.com/c152ce441ed68e2ebb08bdbddefa4fac/invoke.js"></script>
-      <div id="container-c152ce441ed68e2ebb08bdbddefa4fac"></div>
+  {/* AdSense Script and Container (script injected via useEffect) */}
+  <div id="container-c152ce441ed68e2ebb08bdbddefa4fac"></div>
 
       <div className="px-6 pb-10">
         {/* Header */}

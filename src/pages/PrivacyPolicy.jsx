@@ -265,8 +265,10 @@ export default function PrivacyPolicy() {
         </div>
       </main>
 
+       <div id="container-c152ce441ed68e2ebb08bdbddefa4fac" />
+
       <Footer />
-      <div id="container-c152ce441ed68e2ebb08bdbddefa4fac" />
+     
     </div>
   );
 }

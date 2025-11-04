@@ -64,14 +64,14 @@ const AnimatedText = () => {
   }, [displayedText, isDeleting, currentText, speed]);
 
   return (
-    <div className="relative min-h-[120px]">
+     <div className="relative min-h-[120px]">
       <h2 className="invisible text-2xl font-extrabold whitespace-pre-line lg:text-3xl">
         {longestText}
       </h2>
       <h2 className="absolute top-0 left-0 text-2xl font-extrabold leading-snug text-gray-900 whitespace-pre-line lg:text-3xl">
-        <span className="text-[#4066E0]">{displayedText}</span>
-        <span className="animate-pulse">|</span>
-      </h2>
+  <span className="text-[#4066E0]">{displayedText}</span>
+</h2>
+
     </div>
   );
 };

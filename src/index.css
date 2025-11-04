@@ -181,3 +181,12 @@ body {
   width: 100vw;
   background: linear-gradient(135deg, #EAF6FF, #F3F8FF, #E4E1FF);
 }
+.typing::after {
+  content: '|';
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
